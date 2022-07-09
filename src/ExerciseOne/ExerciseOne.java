@@ -2,10 +2,7 @@ package ExerciseOne;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ExerciseOne {
     public static void main(String[] args) {
@@ -17,15 +14,21 @@ public class ExerciseOne {
 
             while (scanner.hasNextLine()){
                 String fileLine = scanner.nextLine();
-                String fileData[] = {null, null, null} ;
-                fileData = fileLine.split(":");
-                System.out.println(Arrays.toString(fileData));
+                String fileData[];
+                //Overload split function with a negative limit makes function doesnt discard empty values
+                fileData = fileLine.split(":", -1);
+                System.out.println("Longitud de datos: " + fileData.length);
 
-                Person auxPerson = new Person(fileData[0], fileData[1], fileData[2]);
+                String nameData = Optional.of(fileData[0]).orElse("Desconocido");
+                String cityData = Optional.of(fileData[1]).orElse("Desconocido");
+                String age = Optional.of(fileData[2]).orElse("Desconocido");
+
+                Person auxPerson = new Person(nameData, cityData, age);
+                System.out.println(auxPerson.toString());
                 personList.add(auxPerson);
             }
 
-            personList.stream().filter( l -> l.getAge() > 25);
+
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

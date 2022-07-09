@@ -1,43 +1,36 @@
 package ExerciseOne;
 
+import java.util.Optional;
+
 public class Person {
     private String name;
     private String city;
-    private Integer age;
+    private String age;
 
     public Person(String name, String city, String age) {
-        if(name == "")
-                this.name="Desconocido";
-        else this.name = name;
-        if(city == "")
-            this.name="Desconocido";
-        else this.city = city;
-        if(age == "")
-            this.age= -1;
-        else this.age = Integer.parseInt(age);
+        this.name = name;
+        this.city = city;
+        this.age = age;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public Integer getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", age='" + age + '\'' +
+                '}';
     }
 }
