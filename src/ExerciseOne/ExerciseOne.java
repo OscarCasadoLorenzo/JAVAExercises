@@ -1,5 +1,6 @@
 package ExerciseOne;
 
+import javax.annotation.processing.SupportedSourceVersion;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -17,13 +18,19 @@ public class ExerciseOne {
                 String fileData[];
                 //Overload split function with a negative limit makes function doesnt discard empty values
                 fileData = fileLine.split(":", -1);
-                System.out.println("Longitud de datos: " + fileData.length);
 
-                String nameData = Optional.of(fileData[0]).orElse("Desconocido");
-                String cityData = Optional.of(fileData[1]).orElse("Desconocido");
-                String age = Optional.of(fileData[2]).orElse("Desconocido");
+                Person auxPerson;
+                switch (fileData.length){
+                    case 1: auxPerson = new Person(fileData[0], null, null);
+                        break;
+                    case 2: auxPerson = new Person(fileData[0], fileData[1], null);
+                        break;
+                    default: auxPerson = new Person(fileData[0], fileData[1], fileData[2]);
+                }
 
-                Person auxPerson = new Person(nameData, cityData, age);
+
+
+
                 System.out.println(auxPerson.toString());
                 personList.add(auxPerson);
             }

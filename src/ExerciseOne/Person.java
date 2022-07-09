@@ -8,9 +8,9 @@ public class Person {
     private String age;
 
     public Person(String name, String city, String age) {
-        this.name = name;
-        this.city = city;
-        this.age = age;
+        this.name = (name == "") ? null : name;
+        this.city = (city == "") ? null : city;
+        this.age  = (age == "") ? null : age;
     }
 
     public String getName() {
