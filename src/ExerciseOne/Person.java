@@ -13,27 +13,26 @@ public class Person {
         this.age  = (age == "") ? null : age;
     }
 
-    public String getName() { return name; }
-
-    public String getCity() {
-        return city;
+    public String getName() {
+        Optional<String> maybeName = Optional.ofNullable(this.name);
+        return maybeName.orElse("Desconocido");
     }
 
-    public String getAge() { return age; }
+    public String getCity() {
+        Optional<String> maybeCity = Optional.ofNullable(this.city);
+        return maybeCity.orElse("Desconocido");
+    }
+
+    public String getAge() {
+        Optional<String> maybeAge = Optional.ofNullable(this.age);
+        return maybeAge.orElse("Desconocido");
+    }
 
     @Override
     public String toString() {
-        String response = "";
-        if(name !=null)
-            response += "Nombre: " + getName() + ". ";
-        else response += "Nombre: Desconocido. ";
-        if(city !=null)
-            response += "Poblacion: " + getCity() + ". ";
-        else response += "Poblacion: Desconocida. ";
-        if(age !=null)
-            response += "Edad: " + getAge();
-        else response += "Edad: Desconocida. ";
-
+        String response = "Nombre: " + getName() + ". "
+                        + "Poblacion: " + getCity() + ". "
+                        + "Edad: " + getAge();
         return response;
     }
 }
