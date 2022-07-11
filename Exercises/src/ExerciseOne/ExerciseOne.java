@@ -46,7 +46,9 @@ public class ExerciseOne {
     public static void main(String[] args) {
         String filePath = "C:\\Users\\oscar.clorenzo\\IdeaProjects\\Exercises\\src\\ExerciseOne\\inputFile.txt";
         ArrayList<Person> personList = importDataFile(filePath);
-        personList.stream().filter(p -> p.getAge() !="Desconocido" && Integer.parseInt(p.getAge()) < 25).forEach(p -> System.out.println(p.toString()));
+        personList.stream()
+                .filter(p -> p.getAge() !="Desconocido" && Integer.parseInt(p.getAge()) < 25)
+                .forEach(p -> System.out.println(p));
 
     }
 }
