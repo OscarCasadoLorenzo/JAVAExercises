@@ -13,6 +13,10 @@ public class Person {
         this.age  = (age == "") ? null : age;
     }
 
+    public void addOneYear() {
+        this.age =  String.valueOf(Integer.parseInt(getAge()) +1);
+    }
+
     public String getName() {
         Optional<String> maybeName = Optional.ofNullable(this.name);
         return maybeName.orElse("Desconocido");
