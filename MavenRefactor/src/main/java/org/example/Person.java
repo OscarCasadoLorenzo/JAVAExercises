@@ -1,4 +1,4 @@
-package ExerciseOne;
+package org.example;
 
 import java.util.Optional;
 

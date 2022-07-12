@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MavenRefactor:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MavenRefactor_jar</output-path>
+    <root id="archive" name="MavenRefactor.jar">
+      <element id="module-output" name="MavenRefactor" />
+    </root>
+  </artifact>
+</component>

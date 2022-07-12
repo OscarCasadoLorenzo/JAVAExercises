@@ -1,9 +1,9 @@
-package ExerciseOne;
+package org.example;
 
-import javax.annotation.processing.SupportedSourceVersion;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ExerciseOne {
     private static ArrayList<Person> importDataFile (String filePath) {
