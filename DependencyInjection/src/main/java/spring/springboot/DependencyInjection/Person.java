@@ -1,7 +1,10 @@
 package spring.springboot.DependencyInjection;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
+@Service
 public class Person implements PersonI{
     private String name;
     private String city;
@@ -30,8 +33,8 @@ public class Person implements PersonI{
 
     @Override
     public String toString() {
-        return response = "Nombre: " + getName() + ". "
-                        + "Poblacion: " + getCity() + ". "
-                        + "Edad: " + getAge();
+        return  "Nombre: " + getName() + ". "
+                    + "Poblacion: " + getCity() + ". "
+                    + "Edad: " + getAge();
     }
 }
