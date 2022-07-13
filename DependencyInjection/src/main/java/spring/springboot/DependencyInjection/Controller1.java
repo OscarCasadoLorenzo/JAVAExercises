@@ -17,7 +17,7 @@ public class Controller1
     PersonI addPerson (@RequestHeader Map<String, String> headers){
         personI.setName(headers.get("name"));
         personI.setCity(headers.get("city"));
-        personI.setAge(headers.get("age"));
+        personI.setAge(Integer.parseInt(headers.get("age")));
 
         return personI;
     }
