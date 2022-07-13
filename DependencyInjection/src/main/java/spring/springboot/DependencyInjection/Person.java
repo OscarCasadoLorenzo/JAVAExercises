@@ -32,6 +32,21 @@ public class Person implements PersonI{
     }
 
     @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    @Override
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    @Override
     public String toString() {
         return  "Nombre: " + getName() + ". "
                     + "Poblacion: " + getCity() + ". "
