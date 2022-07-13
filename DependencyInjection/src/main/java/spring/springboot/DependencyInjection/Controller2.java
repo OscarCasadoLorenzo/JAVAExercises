@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
-@RestController ("c2")
+@RestController ("/c2")
 public class Controller2
 {
     @Autowired
@@ -15,8 +15,7 @@ public class Controller2
 
     @GetMapping("/controller2/getPerson")
     PersonI addPerson (){
-
-
+        personI.setAge(personI.getAge()*2);
         return personI;
     }
 }
