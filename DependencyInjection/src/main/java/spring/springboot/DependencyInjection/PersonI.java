@@ -1,8 +1,5 @@
 package spring.springboot.DependencyInjection;
 
-import org.springframework.stereotype.Service;
-
-@Service
 public interface PersonI {
     String getName();
     String getCity();

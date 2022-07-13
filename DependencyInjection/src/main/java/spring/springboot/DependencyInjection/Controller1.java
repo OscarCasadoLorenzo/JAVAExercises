@@ -14,7 +14,11 @@ public class Controller1
     PersonI personI;
 
     @GetMapping("/controller1/addPerson")
-    PersonI addPerson listHeaders(@RequestHeader Map<String, String> headers){
+    PersonI addPerson (@RequestHeader Map<String, String> headers){
+        personI.setName(headers.get("name"));
+        personI.setCity(headers.get("city"));
+        personI.setAge(headers.get("age"));
 
+        return personI;
     }
 }
