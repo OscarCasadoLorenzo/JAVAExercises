@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "4c3d966b-fbc8-4349-a868-827a79c7173f",
+		"name": "DependencyInjection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21914220"
+	},
+	"item": [
+		{
+			"name": "controller1/addPerson",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "controller2/getPerson",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/controller2/getPerson",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"controller2",
+						"getPerson"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "controller1/addCity",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cityName\":\"Oviedo\",\r\n    \"cityPopulation\":3000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/controller1/addCity",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"controller1",
+						"addCity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "controller2/getCities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/controller2/getCities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"controller2",
+						"getCities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/bean/{bean}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/bean/{bean}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bean",
+						"{bean}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
