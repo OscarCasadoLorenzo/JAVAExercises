@@ -12,6 +12,9 @@ public class Controller1
     @Autowired
     PersonService personService;
 
+    @Autowired
+    CityService cityService;
+
     @GetMapping("/controller1/addPerson")
     PersonService addPerson (@RequestHeader Map<String, String> headers){
         personService.setName(headers.get("name"));
@@ -22,11 +25,14 @@ public class Controller1
     }
 
     @PostMapping("/controller1/addCity")
-    void addPerson (@RequestBody ObjectNode requestObject){
+    City addCity (@RequestBody ObjectNode requestObject){
         String cityName = requestObject.get("cityName").asText();
         Integer cityPopulation = requestObject.get("cityPopulation").asInt();
 
         City newCity = new City(cityName, cityPopulation);
+        cityService.addCity(newCity);
+
+        return newCity;
     }
 
 }

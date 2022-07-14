@@ -4,6 +4,11 @@ public class City {
     private String name;
     private Integer population;
 
+    public City() {
+        this.name = null;
+        this.population = null;
+    }
+
     public City(String name, Integer population) {
         this.name = name;
         this.population = population;

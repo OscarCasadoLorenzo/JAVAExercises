@@ -24,7 +24,6 @@ public class Person{
         return this.age;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }

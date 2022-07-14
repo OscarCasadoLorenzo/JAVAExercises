@@ -12,14 +12,17 @@ public class Controller2
     @Autowired
     PersonService personService;
 
+    @Autowired
+    CityService cityService;
+
     @GetMapping("/controller2/getPerson")
     PersonService addPerson (){
         personService.setAge(personService.getAge()*2);
         return personService;
     }
-    @GetMapping("/controller2/getCitys")
+    @GetMapping("/controller2/getCities")
     List<City> getCities (){
-
+        return cityService.getCities();
     }
 
 }
