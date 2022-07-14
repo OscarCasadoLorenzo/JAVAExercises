@@ -4,22 +4,21 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController("/c1")
 public class Controller1
 {
     @Autowired
-    PersonI personI;
+    PersonService personService;
 
     @GetMapping("/controller1/addPerson")
-    PersonI addPerson (@RequestHeader Map<String, String> headers){
-        personI.setName(headers.get("name"));
-        personI.setCity(headers.get("city"));
-        personI.setAge(Integer.parseInt(headers.get("age")));
+    PersonService addPerson (@RequestHeader Map<String, String> headers){
+        personService.setName(headers.get("name"));
+        personService.setCity(headers.get("city"));
+        personService.setAge(Integer.parseInt(headers.get("age")));
 
-        return personI;
+        return personService;
     }
 
     @PostMapping("/controller1/addCity")
