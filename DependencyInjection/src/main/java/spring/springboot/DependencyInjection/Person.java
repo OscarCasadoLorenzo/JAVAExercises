@@ -1,5 +1,8 @@
 package spring.springboot.DependencyInjection;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+
 public class Person{
 
     private String name;

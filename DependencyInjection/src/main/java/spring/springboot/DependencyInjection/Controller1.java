@@ -2,6 +2,10 @@ package spring.springboot.DependencyInjection;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -10,7 +14,20 @@ import java.util.Map;
 public class Controller1
 {
     @Autowired
+    @Qualifier("standardBean")
     PersonService personService;
+
+    @Autowired
+    @Qualifier("bean1")
+    PersonService personServiceBean1;
+
+    @Autowired
+    @Qualifier("bean2")
+    PersonService personServiceBean2;
+
+    @Autowired
+    @Qualifier("bean3")
+    PersonService personServiceBean3;
 
     @Autowired
     CityService cityService;
@@ -33,6 +50,26 @@ public class Controller1
         cityService.addCity(newCity);
 
         return newCity;
+    }
+
+    @GetMapping("/bean/{bean}")
+    PersonService chooseBean (@PathVariable String bean){
+        PersonService whichPersonService;
+        switch (bean){
+            case "bean1":
+                whichPersonService = personServiceBean1;
+                break;
+            case "bean2":
+                whichPersonService = personServiceBean2;
+                break;
+            case "bean3":
+                whichPersonService = personServiceBean3;
+                break;
+            default:
+                whichPersonService = personService;
+        }
+
+        return whichPersonService;
     }
 
 }
