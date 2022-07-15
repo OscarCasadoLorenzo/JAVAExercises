@@ -2,9 +2,11 @@ package spring.springboot.CRUDExercise;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController("/personController")
@@ -41,12 +43,34 @@ public class PersonController {
     }
 
     @PutMapping("/person/{id}")
-    public Person updatePerson(){
-        return null;
+    public Person updatePerson(@RequestBody ObjectNode requestPerson, @PathVariable Integer id){
+        String personName;
+        String personCity;
+        String personAge;
+
+//        personName = Optional.ofNullable(requestPerson.get("name")).ifPresent(n -> n.asText()).orElse("");
+//        personCity = Optional.ofNullable(requestPerson.get("city").asText()).orElse("");
+//        personAge = Optional.ofNullable(requestPerson.get("age").asText()).orElse("");
+
+        if(requestPerson.has("name"))
+            personName = requestPerson.get("name").asText();
+        else personName = "";
+
+        if(requestPerson.has("city"))
+            personCity = requestPerson.get("city").asText();
+        else personCity = "";
+
+        if(requestPerson.has("age"))
+            personAge = requestPerson.get("age").asText();
+        else personAge = "";
+
+
+        Person updatePerson = new Person(personName, personCity, personAge);
+        return personService.updatePerson(id, updatePerson);
     }
 
     @DeleteMapping("/person/{id}")
-    public Person deletePerson(){
-        return null;
+    public Person deletePerson(@PathVariable Integer id){
+        return personService.deletePerson(id);
     }
 }
