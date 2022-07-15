@@ -23,7 +23,7 @@ public class PersonImplementation implements PersonService {
     }
 
     @Override
-    public Person addPerson(Person person) {
+    public void addPerson(Person person) {
         personList.add(person);
     }
 }

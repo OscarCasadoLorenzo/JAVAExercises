@@ -7,5 +7,5 @@ public interface PersonService {
 
     Person getPerson(Integer id);
 
-    Person addPerson(Person person);
+    void addPerson(Person person);
 }
