@@ -5,7 +5,9 @@ import java.util.List;
 public interface PersonService {
     List<Person> getPersons();
 
-    Person getPerson(Integer id);
+    Person getPersonById(Integer id);
+
+    List<Person> getPersonByName(String name);
 
     void addPerson(Person person);
 }

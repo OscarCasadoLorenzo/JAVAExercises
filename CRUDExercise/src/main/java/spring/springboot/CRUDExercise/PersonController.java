@@ -14,21 +14,19 @@ public class PersonController {
     @Autowired
     PersonService personService;
 
-    private AtomicInteger counter = new AtomicInteger();
-
     @GetMapping("/persons")
     public List<Person> getPersons(){
         return personService.getPersons();
     }
 
     @GetMapping("/person/{id}")
-    public Person getPerson(@PathVariable Integer id){
-        return null;
+    public Person getPersonById(@PathVariable Integer id){
+        return personService.getPersonById(id);
     }
 
     @GetMapping("/person/name/{name}")
-    public Person getPerson(@PathVariable String name){
-        return null;
+    public List<Person> getPersonByName(@PathVariable String name){
+        return personService.getPersonByName(name);
     }
 
     @PostMapping("/person")

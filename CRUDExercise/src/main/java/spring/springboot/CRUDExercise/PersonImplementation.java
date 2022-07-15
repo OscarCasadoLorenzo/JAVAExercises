@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonImplementation implements PersonService {
@@ -17,9 +18,15 @@ public class PersonImplementation implements PersonService {
     }
 
     @Override
-    public Person getPerson(Integer id) {
-        Person maybePerson = personList.stream().filter(person -> person.getId()==id).findFirst().orElse(null) ;
-        return maybePerson;
+    public Person getPersonById(Integer id) {
+        return personList.stream().filter(person -> person.getId()==id).findFirst().orElse(null) ;
+
+    }
+
+    @Override
+    public List<Person> getPersonByName(String name) {
+        return personList.stream().filter(person -> person.getName().equals("Estela")).collect(Collectors.toList());
+
     }
 
     @Override
