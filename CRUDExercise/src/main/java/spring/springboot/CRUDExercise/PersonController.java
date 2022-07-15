@@ -39,7 +39,6 @@ public class PersonController {
 
         Person newPerson = new Person(personName, personCity, personAge);
         personService.addPerson(newPerson);
-
         return newPerson;
     }
 
