@@ -1,11 +1,11 @@
 package spring.springboot.CRUDExercise;
 
+import java.util.List;
+
 public interface PersonService {
-    String getName();
-    String getCity();
-    Integer getAge();
-    void setName(String name);
-    void setCity(String city);
-    void setAge(Integer age);
-    String toString();
+    List<Person> getPersons();
+
+    Person getPerson(Integer id);
+
+    Person addPerson(Person person);
 }

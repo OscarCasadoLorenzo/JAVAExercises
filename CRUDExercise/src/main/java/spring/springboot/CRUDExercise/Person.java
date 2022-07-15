@@ -1,7 +1,10 @@
 package spring.springboot.CRUDExercise;
 
-public class Person{
+import java.util.concurrent.atomic.AtomicInteger;
 
+public class Person{
+    private static AtomicInteger count = new AtomicInteger(0);
+    private Integer id;
     private String name;
     private String city;
     private Integer age;
@@ -10,6 +13,11 @@ public class Person{
         this.name = (name.equals("")) ? null : name;
         this.city = (city.equals("")) ? null : city;
         this.age  = (age.equals(""))  ? null : Integer.parseInt(age);
+        this.id = count.incrementAndGet();
+    }
+
+    public Integer getId() {
+        return this.id;
     }
 
     public String getName() {
@@ -38,8 +46,11 @@ public class Person{
 
     @Override
     public String toString() {
-        return  "Nombre: " + getName() + ". "
-                    + "Poblacion: " + getCity() + ". "
-                    + "Edad: " + getAge();
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
