@@ -1,0 +1,18 @@
+{
+	"info": {
+		"_postman_id": "938ef21e-b7a9-443b-97da-45932bbf5391",
+		"name": "AppConfiguration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21914220"
+	},
+	"item": [
+		{
+			"name": "/values",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
