@@ -1,13 +1,13 @@
-package spring.springboot.JPAExample;
+package spring.springboot.JPAExercise;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JpaExampleApplication {
+public class JpaExerciseApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JpaExampleApplication.class, args);
+		SpringApplication.run(JpaExerciseApplication.class, args);
 	}
 
 }
