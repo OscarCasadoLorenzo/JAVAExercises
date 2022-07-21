@@ -66,6 +66,8 @@ public class PersonService implements PersonInterface{
 
     @Override
     public PersonaOutputDTO deletePerson(int id) {
-        return null;
+        PersonaOutputDTO personaOutputDTO = getPersonByID(id);
+        personRepository.deleteById(id);
+        return personaOutputDTO;
     }
 }

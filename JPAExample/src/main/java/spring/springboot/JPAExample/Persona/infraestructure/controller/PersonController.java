@@ -48,10 +48,13 @@ public class PersonController {
     }
 
     @DeleteMapping("/person/{id}")
-    public PersonaOutputDTO deletePersonRoute(@PathVariable int id){
-        return null;
-
+    public ResponseEntity<?> deletePersonRoute(@PathVariable int id){
+        //If ID doesnt exists then return 404
+        if(!personService.existsPerson(id)){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        PersonaOutputDTO personaOutputDTO = personService.deletePerson(id);
+        return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
     }
-
 
 }
