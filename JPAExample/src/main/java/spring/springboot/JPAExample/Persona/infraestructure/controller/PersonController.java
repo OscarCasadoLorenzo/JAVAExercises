@@ -1,52 +1,56 @@
 package spring.springboot.JPAExample.Persona.infraestructure.controller;
 
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import spring.springboot.JPAExample.Persona.domain.PersonService;
 import spring.springboot.JPAExample.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.JPAExample.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
 
 import java.util.List;
 
-@Slf4j
 @RestController
 public class PersonController {
+    @Autowired
+    PersonService personService;
 
-    @GetMapping("/persona")
-    public List<PersonaOutputDTO> getPersons(){
+    @GetMapping("/persons")
+    public ResponseEntity<?> getPersonsRoute(){
+        List<PersonaOutputDTO> personaOutputDTOList = personService.getAllPersons();
+        return new ResponseEntity<>(personaOutputDTOList, HttpStatus.OK);
+    }
 
-        List<PersonaOutputDTO> personaListOutputDTO;
-        return personaListOutputDTO;
+    @GetMapping("/person/name/{name}")
+    public List<PersonaOutputDTO> getPersonByNameRoute(@PathVariable String name){
+         return personService.getPersonsByName(name);
     }
 
     @GetMapping("/person/{id}")
-    public PersonaOutputDTO getPerson(@PathVariable int id){
+    public ResponseEntity<?> getPersonByIDRoute(@PathVariable int id){
         //If ID doesnt exists then return 404
-        PersonaOutputDTO personaOutputDTO;
-        return personaOutputDTO;
+        if(!personService.existsPerson(id)){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        PersonaOutputDTO personaOutputDTO = personService.getPersonByID(id);
+        return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
     }
 
-    @PostMapping("/persona")
-    public PersonaOutputDTO postPerson(@RequestBody PersonaInputDTO personaInputDTO){
-
-        PersonaOutputDTO personaOutputDTO;
-        return personaOutputDTO;
-
+    @PostMapping("/person")
+    public PersonaOutputDTO postPersonRoute(@RequestBody PersonaInputDTO personaInputDTO){
+        return personService.postPerson(personaInputDTO);
     }
 
     @PutMapping("/person/{id}")
-    public PersonaOutputDTO updatePerson(@PathVariable int id){
+    public PersonaOutputDTO updatePersonRoute(@PathVariable int id){
         //If ID doesnt exists then return 404
-
-        PersonaOutputDTO personaOutputDTO;
-        return personaOutputDTO;
+        return null;
     }
 
     @DeleteMapping("/person/{id}")
-    public PersonaOutputDTO updatePerson(@PathVariable int id){
-        //If ID doesnt exists then return 404
+    public PersonaOutputDTO deletePersonRoute(@PathVariable int id){
+        return null;
 
-        PersonaOutputDTO personaOutputDTO;
-        return personaOutputDTO;
     }
 
 

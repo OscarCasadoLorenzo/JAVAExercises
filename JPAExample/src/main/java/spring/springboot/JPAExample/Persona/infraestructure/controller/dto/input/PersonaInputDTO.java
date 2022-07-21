@@ -1,12 +1,11 @@
 package spring.springboot.JPAExample.Persona.infraestructure.controller.dto.input;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class PersonaInputDTO {
-    private int id_person;
     private String usuario;
     private String password;
     private String name;
