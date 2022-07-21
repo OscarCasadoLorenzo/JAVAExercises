@@ -18,7 +18,7 @@ public interface PersonInterface {
 
     PersonaOutputDTO postPerson(PersonaInputDTO personInputDTO);
 
-    PersonaOutputDTO updatePerson(int id);
+    PersonaOutputDTO updatePerson(int id, PersonaInputDTO personaInputDTO);
 
     PersonaOutputDTO deletePerson(int id);
 }

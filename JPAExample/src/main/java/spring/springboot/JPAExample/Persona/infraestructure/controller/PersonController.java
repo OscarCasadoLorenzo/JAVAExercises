@@ -16,9 +16,9 @@ public class PersonController {
     PersonService personService;
 
     @GetMapping("/persons")
-    public ResponseEntity<?> getPersonsRoute(){
+    public List<PersonaOutputDTO> getPersonsRoute(){
         List<PersonaOutputDTO> personaOutputDTOList = personService.getAllPersons();
-        return new ResponseEntity<>(personaOutputDTOList, HttpStatus.OK);
+        return personaOutputDTOList;
     }
 
     @GetMapping("/person/name/{name}")
@@ -42,16 +42,20 @@ public class PersonController {
     }
 
     @PutMapping("/person/{id}")
-    public PersonaOutputDTO updatePersonRoute(@PathVariable int id){
+    public ResponseEntity<?> updatePersonRoute(@PathVariable int id, @RequestBody PersonaInputDTO personaInputDTO){
         //If ID doesnt exists then return 404
-        return null;
+        if(!personService.existsPerson(id)){
+            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+        }
+        PersonaOutputDTO personaOutputDTO = personService.updatePerson(id, personaInputDTO);
+        return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/person/{id}")
     public ResponseEntity<?> deletePersonRoute(@PathVariable int id){
         //If ID doesnt exists then return 404
         if(!personService.existsPerson(id)){
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
         }
         PersonaOutputDTO personaOutputDTO = personService.deletePerson(id);
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
