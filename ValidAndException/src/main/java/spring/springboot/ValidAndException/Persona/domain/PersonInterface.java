@@ -1,7 +1,7 @@
 package spring.springboot.ValidAndException.Persona.domain;
 
-import spring.springboot.JPAExample.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
-import spring.springboot.JPAExample.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
+import spring.springboot.ValidAndException.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
+import spring.springboot.ValidAndException.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
 
 import java.util.List;
 

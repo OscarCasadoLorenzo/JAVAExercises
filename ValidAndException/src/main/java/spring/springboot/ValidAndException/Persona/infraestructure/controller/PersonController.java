@@ -4,11 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import spring.springboot.JPAExample.Persona.domain.PersonService;
-import spring.springboot.JPAExample.Persona.exception.NotFoundException;
-import spring.springboot.JPAExample.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
-import spring.springboot.JPAExample.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
+import spring.springboot.ValidAndException.Persona.domain.PersonService;
+import spring.springboot.ValidAndException.Persona.exception.NotFoundException;
+import spring.springboot.ValidAndException.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
+import spring.springboot.ValidAndException.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -39,7 +40,7 @@ public class PersonController {
     }
 
     @PostMapping("/person")
-    public PersonaOutputDTO postPersonRoute(@RequestBody PersonaInputDTO personaInputDTO){
+    public PersonaOutputDTO postPersonRoute( @Valid @RequestBody PersonaInputDTO personaInputDTO){
         return personService.postPerson(personaInputDTO);
     }
 

@@ -2,9 +2,9 @@ package spring.springboot.ValidAndException.Persona.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spring.springboot.JPAExample.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
-import spring.springboot.JPAExample.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
-import spring.springboot.JPAExample.Persona.infraestructure.repository.jpa.PersonRepository;
+import spring.springboot.ValidAndException.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
+import spring.springboot.ValidAndException.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
+import spring.springboot.ValidAndException.Persona.infraestructure.repository.jpa.PersonRepository;
 
 import java.util.ArrayList;
 import java.util.List;

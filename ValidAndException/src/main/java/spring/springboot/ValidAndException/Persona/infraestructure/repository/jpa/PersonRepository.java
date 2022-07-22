@@ -2,7 +2,7 @@ package spring.springboot.ValidAndException.Persona.infraestructure.repository.j
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
-import spring.springboot.JPAExample.Persona.domain.PersonEntity;
+import spring.springboot.ValidAndException.Persona.domain.PersonEntity;
 
 import java.util.List;
 

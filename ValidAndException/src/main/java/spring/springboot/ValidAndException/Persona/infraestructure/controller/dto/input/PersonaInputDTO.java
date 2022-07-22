@@ -3,20 +3,39 @@ package spring.springboot.ValidAndException.Persona.infraestructure.controller.d
 import lombok.Data;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.Date;
 
 @Data
 public class PersonaInputDTO {
-    @Valid
+    @NotBlank
     private String usuario;
+
+    @NotBlank
     private String password;
+
+    @NotBlank
     private String name;
+
     private String surname;
+
+    @NotBlank
     private String company_email;
+
+    @NotBlank
     private String personal_email;
+
+    @NotBlank
     private String city;
+
+    @NotNull
     private boolean active;
+
     private Date created_date;
+
     private String image_url;
+
     private Date termination_date;
 }
