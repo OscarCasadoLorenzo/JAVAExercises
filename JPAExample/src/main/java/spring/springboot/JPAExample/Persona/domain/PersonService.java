@@ -66,17 +66,7 @@ public class PersonService implements PersonInterface{
             make the change, and use the save() method as before.
          */
         PersonEntity personInDB = personRepository.findById(id).orElse(null);
-        personInDB.setUsuario(personaInputDTO.getUsuario());
-        personInDB.setPassword(personaInputDTO.getPassword());
-        personInDB.setName(personaInputDTO.getName());
-        personInDB.setSurname(personaInputDTO.getSurname());
-        personInDB.setCompany_email(personaInputDTO.getCompany_email());
-        personInDB.setPersonal_email(personaInputDTO.getPersonal_email());
-        personInDB.setCity(personaInputDTO.getCity());
-        personInDB.setActive(personaInputDTO.isActive());
-        personInDB.setCreated_date(personaInputDTO.getCreated_date());
-        personInDB.setImage_url(personaInputDTO.getImage_url());
-        personInDB.setTermination_date(personaInputDTO.getTermination_date());
+        personInDB.updateEntity(personaInputDTO);
         personRepository.save(personInDB);
 
         PersonaOutputDTO personaOutputDTO = new PersonaOutputDTO(personInDB);

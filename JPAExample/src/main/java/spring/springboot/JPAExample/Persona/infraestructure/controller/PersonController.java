@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import spring.springboot.JPAExample.Persona.domain.PersonService;
+import spring.springboot.JPAExample.Persona.exception.NotFoundException;
 import spring.springboot.JPAExample.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.JPAExample.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
 
@@ -26,11 +27,12 @@ public class PersonController {
          return personService.getPersonsByName(name);
     }
 
+
     @GetMapping("/person/{id}")
     public ResponseEntity<?> getPersonByIDRoute(@PathVariable int id){
         //If ID doesnt exists then return 404
         if(!personService.existsPerson(id)){
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            throw new NotFoundException("Bean with id: " + id + " was not found.");
         }
         PersonaOutputDTO personaOutputDTO = personService.getPersonByID(id);
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
@@ -45,7 +47,7 @@ public class PersonController {
     public ResponseEntity<?> updatePersonRoute(@PathVariable int id, @RequestBody PersonaInputDTO personaInputDTO){
         //If ID doesnt exists then return 404
         if(!personService.existsPerson(id)){
-            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+            throw new NotFoundException("Bean with id: " + id + " was not found.");
         }
         PersonaOutputDTO personaOutputDTO = personService.updatePerson(id, personaInputDTO);
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
@@ -55,7 +57,7 @@ public class PersonController {
     public ResponseEntity<?> deletePersonRoute(@PathVariable int id){
         //If ID doesnt exists then return 404
         if(!personService.existsPerson(id)){
-                return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+            throw new NotFoundException("Bean with id: " + id + " was not found.");
         }
         PersonaOutputDTO personaOutputDTO = personService.deletePerson(id);
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
