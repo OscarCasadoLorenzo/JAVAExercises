@@ -1,4 +1,4 @@
-package spring.springboot.JPAExample.Persona.exception;
+package spring.springboot.ValidAndException.Persona.exception;
 
 public class UnprocesableException extends RuntimeException{
 
