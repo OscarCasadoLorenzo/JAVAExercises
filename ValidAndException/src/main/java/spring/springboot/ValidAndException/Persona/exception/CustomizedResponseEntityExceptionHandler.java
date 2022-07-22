@@ -18,7 +18,13 @@ import java.util.Date;
 @RestControllerAdvice
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    // @ExceptionHandler tag execute this functions when BeanNotFoundException is thrown
+
+    /*
+        - Not allowed to implement @ExceptionHandler to same classes
+        - Not allowed to @Override super classes methods
+     */
+
+    // @ExceptionHandler tag execute this functions when BeanNotFoundException is threw
     @ExceptionHandler(NotFoundException.class)
     public final ResponseEntity<CustomError> handleNotFoundException(NotFoundException ex, WebRequest request) {
         CustomError customError = new CustomError(new Date(), ex.getMessage(), 404);
@@ -27,7 +33,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
     //@ExceptionHandler(UnprocesableException.class)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public final ResponseEntity<CustomError> handleUnprocesableException(NotFoundException ex, WebRequest request) {
+    public final ResponseEntity<CustomError> handleUnprocesableException(UnprocesableException ex, WebRequest request) {
         CustomError customError = new CustomError(new Date(), ex.getMessage(), 422);
         return new ResponseEntity<>(customError, HttpStatus.UNPROCESSABLE_ENTITY);
     }
