@@ -1,5 +1,6 @@
 package spring.springboot.ValidAndException.Persona.domain;
 
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import spring.springboot.ValidAndException.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.ValidAndException.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
 
@@ -15,7 +16,7 @@ public interface PersonInterface {
 
     List<PersonaOutputDTO> getPersonsByName(String name);
 
-    PersonaOutputDTO postPerson(PersonaInputDTO personInputDTO);
+    PersonaOutputDTO postPerson(PersonaInputDTO personInputDTO) throws MethodArgumentNotValidException;
 
     PersonaOutputDTO updatePerson(int id, PersonaInputDTO personaInputDTO);
 

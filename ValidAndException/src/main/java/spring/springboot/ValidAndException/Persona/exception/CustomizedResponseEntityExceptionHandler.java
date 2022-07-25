@@ -2,6 +2,7 @@ package spring.springboot.ValidAndException.Persona.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -16,7 +17,7 @@ import java.util.Date;
     Is used for exception classes
  */
 @RestControllerAdvice
-public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+public abstract class CustomizedResponseEntityExceptionHandler{
 
 
     /*
@@ -25,17 +26,19 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
      */
 
     // @ExceptionHandler tag execute this functions when BeanNotFoundException is threw
-    @ExceptionHandler(NotFoundException.class)
-    public final ResponseEntity<CustomError> handleNotFoundException(NotFoundException ex, WebRequest request) {
-        CustomError customError = new CustomError(new Date(), ex.getMessage(), 404);
-        return new ResponseEntity<>(customError, HttpStatus.NOT_FOUND);
+    @ExceptionHandler({NotFoundException.class, UnprocesableException.class})
+    @Nullable
+    public final ResponseEntity<CustomError> handleException(Exception ex, WebRequest request){
+        if(ex instanceof NotFoundException subEx){
+            CustomError customError = new CustomError(new Date(), ex.getMessage(), 404);
+            return new ResponseEntity<>(customError, HttpStatus.NOT_FOUND);
+        }
+        if(ex instanceof UnprocesableException subEx){
+            CustomError customError = new CustomError(new Date(), ex.getMessage(), 422);
+            return new ResponseEntity<>(customError, HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+        else return null;
     }
 
-    //@ExceptionHandler(UnprocesableException.class)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public final ResponseEntity<CustomError> handleUnprocesableException(UnprocesableException ex, WebRequest request) {
-        CustomError customError = new CustomError(new Date(), ex.getMessage(), 422);
-        return new ResponseEntity<>(customError, HttpStatus.UNPROCESSABLE_ENTITY);
-    }
 
 }

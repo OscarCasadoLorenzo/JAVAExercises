@@ -1,13 +1,19 @@
 package spring.springboot.ValidAndException.Persona.domain;
 
+import org.hibernate.loader.plan.exec.process.spi.ReturnReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import spring.springboot.ValidAndException.Persona.exception.UnprocesableException;
 import spring.springboot.ValidAndException.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.ValidAndException.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
 import spring.springboot.ValidAndException.Persona.infraestructure.repository.jpa.PersonRepository;
 
+import javax.validation.Valid;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class PersonService implements PersonInterface{
@@ -52,15 +58,17 @@ public class PersonService implements PersonInterface{
     }
 
     @Override
-    public PersonaOutputDTO postPerson(PersonaInputDTO personInputDTO) {
-        PersonEntity personEntity = new PersonEntity(personInputDTO);
-        personRepository.save(personEntity);
-        PersonaOutputDTO personaOutputDTO = new PersonaOutputDTO(personEntity);
-        return personaOutputDTO;
+    public PersonaOutputDTO postPerson(PersonaInputDTO personInputDTO){
+
+            PersonEntity personEntity = new PersonEntity(personInputDTO);
+            personRepository.save(personEntity);
+            PersonaOutputDTO personaOutputDTO = new PersonaOutputDTO(personEntity);
+            return personaOutputDTO;
+
     }
 
     @Override
-    public PersonaOutputDTO updatePerson(int id, PersonaInputDTO personaInputDTO) {
+    public PersonaOutputDTO updatePerson(int id, @Valid PersonaInputDTO personaInputDTO){
         /*
             We could then simply get the entity from the database,
             make the change, and use the save() method as before.

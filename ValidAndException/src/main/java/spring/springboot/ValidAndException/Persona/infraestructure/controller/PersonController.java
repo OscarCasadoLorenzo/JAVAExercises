@@ -3,6 +3,7 @@ package spring.springboot.ValidAndException.Persona.infraestructure.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.SmartValidator;
 import org.springframework.web.bind.annotation.*;
 import spring.springboot.ValidAndException.Persona.domain.PersonService;
 import spring.springboot.ValidAndException.Persona.exception.NotFoundException;
@@ -16,6 +17,9 @@ import java.util.List;
 public class PersonController {
     @Autowired
     PersonService personService;
+
+    @Autowired
+    SmartValidator validator;
 
     @GetMapping("/persons")
     public List<PersonaOutputDTO> getPersonsRoute(){
@@ -40,7 +44,8 @@ public class PersonController {
     }
 
     @PostMapping("/person")
-    public PersonaOutputDTO postPersonRoute( @Valid @RequestBody PersonaInputDTO personaInputDTO){
+    public PersonaOutputDTO postPersonRoute(@Valid @RequestBody PersonaInputDTO personaInputDTO){
+
         return personService.postPerson(personaInputDTO);
     }
 
@@ -50,8 +55,11 @@ public class PersonController {
         if(!personService.existsPerson(id)){
             throw new NotFoundException("Bean with id: " + id + " was not found.");
         }
+
         PersonaOutputDTO personaOutputDTO = personService.updatePerson(id, personaInputDTO);
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
+
+
     }
 
     @DeleteMapping("/person/{id}")
