@@ -1,15 +1,13 @@
-package spring.springboot.TableRelations.Persona.domain;
+package spring.springboot.TableRelations.Person.domain;
 
 import lombok.Data;
-import spring.springboot.TableRelations.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
+import spring.springboot.TableRelations.Person.infraestructure.controller.dto.input.PersonaInputDTO;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "PERSONS")
 @Data
 public class PersonEntity {
     @Id

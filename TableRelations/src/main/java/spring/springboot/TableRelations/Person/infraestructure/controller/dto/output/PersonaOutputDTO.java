@@ -1,7 +1,7 @@
-package spring.springboot.TableRelations.Persona.infraestructure.controller.dto.output;
+package spring.springboot.TableRelations.Person.infraestructure.controller.dto.output;
 
 import lombok.Data;
-import spring.springboot.TableRelations.Persona.domain.PersonEntity;
+import spring.springboot.TableRelations.Person.domain.PersonEntity;
 
 import java.util.Date;
 

@@ -1,10 +1,10 @@
-package spring.springboot.TableRelations.Persona.domain;
+package spring.springboot.TableRelations.Person.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spring.springboot.TableRelations.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
-import spring.springboot.TableRelations.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
-import spring.springboot.TableRelations.Persona.infraestructure.repository.jpa.PersonRepository;
+import spring.springboot.TableRelations.Person.infraestructure.controller.dto.input.PersonaInputDTO;
+import spring.springboot.TableRelations.Person.infraestructure.controller.dto.output.PersonaOutputDTO;
+import spring.springboot.TableRelations.Person.infraestructure.repository.jpa.PersonRepository;
 
 import javax.validation.Valid;
 import java.util.ArrayList;

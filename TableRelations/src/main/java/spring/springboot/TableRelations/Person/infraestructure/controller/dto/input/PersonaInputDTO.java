@@ -1,4 +1,4 @@
-package spring.springboot.TableRelations.Persona.infraestructure.controller.dto.input;
+package spring.springboot.TableRelations.Person.infraestructure.controller.dto.input;
 
 import lombok.Data;
 

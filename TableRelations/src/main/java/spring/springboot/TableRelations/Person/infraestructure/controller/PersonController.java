@@ -1,13 +1,13 @@
-package spring.springboot.TableRelations.Persona.infraestructure.controller;
+package spring.springboot.TableRelations.Person.infraestructure.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.SmartValidator;
 import org.springframework.web.bind.annotation.*;
-import spring.springboot.TableRelations.Persona.domain.PersonService;
-import spring.springboot.TableRelations.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
-import spring.springboot.TableRelations.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
+import spring.springboot.TableRelations.Person.domain.PersonService;
+import spring.springboot.TableRelations.Person.infraestructure.controller.dto.input.PersonaInputDTO;
+import spring.springboot.TableRelations.Person.infraestructure.controller.dto.output.PersonaOutputDTO;
 
 import javax.validation.Valid;
 import java.util.List;

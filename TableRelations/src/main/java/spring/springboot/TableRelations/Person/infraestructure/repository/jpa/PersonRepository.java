@@ -1,8 +1,8 @@
-package spring.springboot.TableRelations.Persona.infraestructure.repository.jpa;
+package spring.springboot.TableRelations.Person.infraestructure.repository.jpa;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
-import spring.springboot.TableRelations.Persona.domain.PersonEntity;
+import spring.springboot.TableRelations.Person.domain.PersonEntity;
 
 import java.util.List;
 

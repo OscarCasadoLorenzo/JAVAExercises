@@ -1,8 +1,8 @@
-package spring.springboot.TableRelations.Persona.domain;
+package spring.springboot.TableRelations.Person.domain;
 
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import spring.springboot.TableRelations.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
-import spring.springboot.TableRelations.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
+import spring.springboot.TableRelations.Person.infraestructure.controller.dto.input.PersonaInputDTO;
+import spring.springboot.TableRelations.Person.infraestructure.controller.dto.output.PersonaOutputDTO;
 
 import java.util.List;
 
