@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.SmartValidator;
 import org.springframework.web.bind.annotation.*;
 import spring.springboot.TableRelations.Persona.domain.PersonService;
-import spring.springboot.TableRelations.Persona.exception.NotFoundException;
 import spring.springboot.TableRelations.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.TableRelations.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
 
@@ -37,7 +36,7 @@ public class PersonController {
     public ResponseEntity<?> getPersonByIDRoute(@PathVariable int id){
         //If ID doesnt exists then return 404
         if(!personService.existsPerson(id)){
-            throw new NotFoundException("Bean with id: " + id + " was not found.");
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
         PersonaOutputDTO personaOutputDTO = personService.getPersonByID(id);
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
@@ -53,20 +52,18 @@ public class PersonController {
     public ResponseEntity<?> updatePersonRoute(@PathVariable int id, @RequestBody PersonaInputDTO personaInputDTO){
         //If ID doesnt exists then return 404
         if(!personService.existsPerson(id)){
-            throw new NotFoundException("Bean with id: " + id + " was not found.");
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
 
         PersonaOutputDTO personaOutputDTO = personService.updatePerson(id, personaInputDTO);
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
-
-
     }
 
     @DeleteMapping("/person/{id}")
     public ResponseEntity<?> deletePersonRoute(@PathVariable int id){
         //If ID doesnt exists then return 404
         if(!personService.existsPerson(id)){
-            throw new NotFoundException("Bean with id: " + id + " was not found.");
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
         PersonaOutputDTO personaOutputDTO = personService.deletePerson(id);
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
