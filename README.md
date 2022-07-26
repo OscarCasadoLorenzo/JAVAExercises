@@ -2,7 +2,7 @@
 # Backend Formation 
 > A naive repository with the solutions of Oscar Casado Lorenzo.
 
-[HERE]() there are the exercises.
+[HERE](https://github.com/OscarCasadoLorenzo/JAVAExercises/blob/main/Java%20exercises.pdf) there are the exercises.
 
 ## Exercises
 
