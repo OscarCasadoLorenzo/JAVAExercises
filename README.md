@@ -1,6 +1,9 @@
 ![Bosonit](https://cdn.bosonit.com/n-content/uploads/2021/12/bosonit_web.png)
 # Backend Formation 
 > A naive repository with the solutions of Oscar Casado Lorenzo.
+
+[HERE]() there are the exercises.
+
 ## Exercises
 
 - [JV2. Optional & Streams](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/StreamAndOptional)
