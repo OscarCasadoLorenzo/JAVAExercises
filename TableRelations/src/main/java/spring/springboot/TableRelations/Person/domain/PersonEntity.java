@@ -2,6 +2,7 @@ package spring.springboot.TableRelations.Person.domain;
 
 import lombok.Data;
 import spring.springboot.TableRelations.Person.infraestructure.controller.dto.input.PersonaInputDTO;
+import spring.springboot.TableRelations.Student.domain.StudentEntity;
 
 import javax.persistence.*;
 import java.util.Date;

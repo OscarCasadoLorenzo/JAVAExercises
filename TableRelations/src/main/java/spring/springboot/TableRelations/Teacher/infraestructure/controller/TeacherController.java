@@ -8,6 +8,8 @@ import spring.springboot.TableRelations.Teacher.infraestructure.controller.dto.o
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/teacher")
 public class TeacherController {
 
     @Autowired

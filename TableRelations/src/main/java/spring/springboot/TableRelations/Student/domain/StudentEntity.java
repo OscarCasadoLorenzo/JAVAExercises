@@ -2,7 +2,7 @@ package spring.springboot.TableRelations.Student.domain;
 
 import lombok.Data;
 import spring.springboot.TableRelations.Person.domain.PersonEntity;
-import spring.springboot.TableRelations.Teacher.domain.TeacherEntity;
+import spring.springboot.TableRelations.Student.infraestructure.controller.dto.input.StudentInputDTO;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,7 +16,7 @@ public class StudentEntity {
     Integer id;
 
     @OneToOne
-    @JoinColumn
+    @JoinColumn(name = "personID")
     PersonEntity person;
 
     @Column
@@ -26,13 +26,20 @@ public class StudentEntity {
     @Column
     String coments;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    TeacherEntity teacher;
-
     @Column
     String branch;
 
-    @ManyToMany
-    List<Alumnos_Estudios> estudios;
+    public StudentEntity(){
+
+    }
+
+    public StudentEntity(StudentInputDTO studentInputDTO, PersonEntity personEntity){
+        if (studentInputDTO == null)
+            return;
+
+        num_hours_week = studentInputDTO.getNum_hours_week();
+        coments = studentInputDTO.getComents();
+        branch = studentInputDTO.getBranch();
+        person = personEntity;
+    }
 }

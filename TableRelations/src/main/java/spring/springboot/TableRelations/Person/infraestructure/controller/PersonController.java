@@ -13,26 +13,24 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping("/person")
 public class PersonController {
     @Autowired
     PersonService personService;
 
-    @Autowired
-    SmartValidator validator;
-
-    @GetMapping("/persons")
+    @GetMapping
     public List<PersonaOutputDTO> getPersonsRoute(){
         List<PersonaOutputDTO> personaOutputDTOList = personService.getAllPersons();
         return personaOutputDTOList;
     }
 
-    @GetMapping("/person/name/{name}")
+    @GetMapping("/name/{name}")
     public List<PersonaOutputDTO> getPersonByNameRoute(@PathVariable String name){
          return personService.getPersonsByName(name);
     }
 
 
-    @GetMapping("/person/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getPersonByIDRoute(@PathVariable int id){
         //If ID doesnt exists then return 404
         if(!personService.existsPerson(id)){
@@ -42,13 +40,13 @@ public class PersonController {
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
     }
 
-    @PostMapping("/person")
+    @PostMapping
     public PersonaOutputDTO postPersonRoute(@Valid @RequestBody PersonaInputDTO personaInputDTO){
 
         return personService.postPerson(personaInputDTO);
     }
 
-    @PutMapping("/person/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updatePersonRoute(@PathVariable int id, @RequestBody PersonaInputDTO personaInputDTO){
         //If ID doesnt exists then return 404
         if(!personService.existsPerson(id)){
@@ -59,7 +57,7 @@ public class PersonController {
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
     }
 
-    @DeleteMapping("/person/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePersonRoute(@PathVariable int id){
         //If ID doesnt exists then return 404
         if(!personService.existsPerson(id)){
