@@ -31,9 +31,10 @@ public class TeacherEntity {
     @Column @NotNull
     String branch;
 
-    public TeacherEntity(TeacherInputDTO teacherInputDTO, List<StudentEntity> studentsList){
+    public TeacherEntity(TeacherInputDTO teacherInputDTO, PersonEntity personEntity, List<StudentEntity> studentsList){
         coments = teacherInputDTO.getComents();
         branch = teacherInputDTO.getBranch();
+        person = personEntity;
         students = studentsList;
     }
 }

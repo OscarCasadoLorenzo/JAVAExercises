@@ -2,6 +2,8 @@ package spring.springboot.TableRelations.Teacher.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import spring.springboot.TableRelations.Person.domain.PersonEntity;
+import spring.springboot.TableRelations.Person.infraestructure.repository.jpa.PersonRepository;
 import spring.springboot.TableRelations.Student.domain.StudentEntity;
 import spring.springboot.TableRelations.Student.infraestructure.repository.StudentRepository;
 import spring.springboot.TableRelations.Teacher.infraestructure.controller.dto.input.TeacherInputDTO;
@@ -20,6 +22,9 @@ public class TeacherService implements TeacherInterface{
     @Autowired
     StudentRepository studentRepository;
 
+    @Autowired
+    PersonRepository personRepository;
+
     @Override
     public List<TeacherOutputDTO> getAllTeachers() {
         List<TeacherOutputDTO> teacherOutputDTOList = null;
@@ -31,12 +36,15 @@ public class TeacherService implements TeacherInterface{
 
     @Override
     public TeacherOutputDTO getTeacherByID(Integer id) {
-        TeacherOutputDTO teacherOutputDTO = new TeacherOutputDTO(teacherRepository.findById(id).get());
+        TeacherOutputDTO teacherOutputDTO = new TeacherOutputDTO(teacherRepository.findById(id).orElse(null));
         return teacherOutputDTO;
     }
 
     @Override
     public TeacherOutputDTO postTeacher(TeacherInputDTO teacherInputDTO) throws  RuntimeException{
+        //Fon
+        PersonEntity personEntity = personRepository.findById(teacherInputDTO.getPersonID()).orElse(null);
+
         //Check if exists all the students and create a list with them
         List<StudentEntity> studentEntityList = new ArrayList<>();
         teacherInputDTO.getStudentsIDs().stream().forEach(
@@ -47,7 +55,7 @@ public class TeacherService implements TeacherInterface{
                 }
         );
 
-        TeacherEntity teacherEntity = new TeacherEntity(teacherInputDTO, studentEntityList);
+        TeacherEntity teacherEntity = new TeacherEntity(teacherInputDTO, personEntity, studentEntityList);
         teacherRepository.save(teacherEntity);
 
         return new TeacherOutputDTO(teacherEntity);
