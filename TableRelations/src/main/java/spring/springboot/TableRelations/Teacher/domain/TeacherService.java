@@ -31,6 +31,7 @@ public class TeacherService implements TeacherInterface{
 
     @Override
     public TeacherOutputDTO postTeacher(TeacherInputDTO teacherInputDTO) {
+        System.out.println(teacherInputDTO.getStudentsIDs());
         return null;
     }
 

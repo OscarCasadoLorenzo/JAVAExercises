@@ -20,7 +20,20 @@ public class StudentEntity {
     @JoinColumn(name = "personID")
     PersonEntity person;
 
-    @OneToMany
+    /*  INCORRECT COLLECTION DECLARATION IN RELATIONSHIPS
+         @ManyToMany
+         private Teacher teacher;
+
+         @OneToMany
+         private Teacher teacher;
+
+         @OneToOne
+         private List<Teacher> teachers;
+
+         @ManyToOne
+         private List<Teacher> teachers;
+     */
+    @ManyToOne
     @JoinColumn(name= "teacherID")
     TeacherEntity teacher;
 

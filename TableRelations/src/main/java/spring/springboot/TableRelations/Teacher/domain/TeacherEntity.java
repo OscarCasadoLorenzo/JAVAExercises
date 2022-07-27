@@ -6,6 +6,7 @@ import spring.springboot.TableRelations.Student.domain.StudentEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "TEACHERS")
@@ -19,9 +20,9 @@ public class TeacherEntity {
     @JoinColumn(name = "personID")
     PersonEntity person;
 
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "studentID")
-    StudentEntity student;
+    List<StudentEntity> students;
 
     @Column
     String coments;
