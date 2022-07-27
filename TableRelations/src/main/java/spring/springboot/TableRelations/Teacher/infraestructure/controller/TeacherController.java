@@ -23,8 +23,12 @@ public class TeacherController {
     }
 
     @GetMapping("/{id}")
-    public TeacherOutputDTO getTeacherByIDRoute(@PathVariable Integer id){
-        return teacherService.getTeacherByID(id);
+    public ResponseEntity<?> getTeacherByIDRoute(@PathVariable Integer id){
+        try{
+            return new ResponseEntity<>(teacherService.getTeacherByID(id), HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping

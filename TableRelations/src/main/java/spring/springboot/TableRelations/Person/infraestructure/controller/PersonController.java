@@ -32,12 +32,13 @@ public class PersonController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getPersonByIDRoute(@PathVariable int id){
-        //If ID doesnt exists then return 404
-        if(!personService.existsPerson(id)){
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-        PersonaOutputDTO personaOutputDTO = personService.getPersonByID(id);
-        return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
+     try{
+         return new ResponseEntity<>(personService.getPersonByID(id), HttpStatus.OK);
+     } catch (Exception e){
+         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+     }
+
+
     }
 
     @PostMapping

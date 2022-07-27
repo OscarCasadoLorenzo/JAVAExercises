@@ -1,6 +1,7 @@
 package spring.springboot.TableRelations.Student.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import spring.springboot.TableRelations.Person.domain.PersonEntity;
 import spring.springboot.TableRelations.Person.infraestructure.repository.jpa.PersonRepository;
@@ -35,6 +36,9 @@ public class StudentService implements StudentInterface{
 
     @Override
     public StudentOutputDTO getStudentByID(int id, String outputType) {
+        if(!studentRepository.existsById(id))
+            throw new RuntimeException("Student with id: " + id + " doesnt exists.");
+
         StudentEntity studentEntity = studentRepository.findById(id).orElse(null);
         StudentOutputDTO studentOutputDTO;
 

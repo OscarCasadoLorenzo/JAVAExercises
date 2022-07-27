@@ -36,13 +36,15 @@ public class TeacherService implements TeacherInterface{
 
     @Override
     public TeacherOutputDTO getTeacherByID(Integer id) {
+        if(!teacherRepository.existsById(id))
+            throw new RuntimeException("Teacher with id: " + id + " doesnt exists.");
+
         TeacherOutputDTO teacherOutputDTO = new TeacherOutputDTO(teacherRepository.findById(id).orElse(null));
         return teacherOutputDTO;
     }
 
     @Override
     public TeacherOutputDTO postTeacher(TeacherInputDTO teacherInputDTO) throws  RuntimeException{
-        //Fon
         PersonEntity personEntity = personRepository.findById(teacherInputDTO.getPersonID()).orElse(null);
 
         //Check if exists all the students and create a list with them
