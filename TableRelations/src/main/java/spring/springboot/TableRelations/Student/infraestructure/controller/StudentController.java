@@ -19,7 +19,7 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping
-    public List<StudentEntity> getAllStudentsRoute(){
+    public List<SimpleStudentOutputDTO> getAllStudentsRoute(){
         return studentService.getAllStudents();
     }
 
@@ -29,7 +29,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public StudentEntity postStudentRoute(@RequestBody StudentInputDTO studentInputDTO){
+    public StudentOutputDTO postStudentRoute(@RequestBody StudentInputDTO studentInputDTO){
         return studentService.postStudent(studentInputDTO);
     }
 

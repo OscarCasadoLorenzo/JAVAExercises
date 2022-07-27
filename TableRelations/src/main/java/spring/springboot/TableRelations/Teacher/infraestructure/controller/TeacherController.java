@@ -1,6 +1,8 @@
 package spring.springboot.TableRelations.Teacher.infraestructure.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import spring.springboot.TableRelations.Teacher.domain.TeacherService;
 import spring.springboot.TableRelations.Teacher.infraestructure.controller.dto.input.TeacherInputDTO;
@@ -26,8 +28,13 @@ public class TeacherController {
     }
 
     @PostMapping
-    public TeacherOutputDTO postTeacherRoute(@RequestBody TeacherInputDTO teacherInputDTO){
-        return teacherService.postTeacher(teacherInputDTO);
+    public ResponseEntity<TeacherOutputDTO> postTeacherRoute(@RequestBody TeacherInputDTO teacherInputDTO){
+        try{
+            return new ResponseEntity<>(teacherService.postTeacher(teacherInputDTO), HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @PutMapping("/{id}")

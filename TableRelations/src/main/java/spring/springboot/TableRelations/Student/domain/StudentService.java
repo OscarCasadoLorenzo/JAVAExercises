@@ -23,11 +23,11 @@ public class StudentService implements StudentInterface{
     PersonRepository personRepository;
 
     @Override
-    public List<StudentEntity> getAllStudents() {
-        List<StudentEntity> simpleStudentOutputDTOS = new ArrayList<>();
+    public List<SimpleStudentOutputDTO> getAllStudents() {
+        List<SimpleStudentOutputDTO> simpleStudentOutputDTOS = new ArrayList<>();
 
         for (StudentEntity studentEntity : studentRepository.findAll()){
-            simpleStudentOutputDTOS.add(studentEntity);
+            simpleStudentOutputDTOS.add(new SimpleStudentOutputDTO(studentEntity));
         }
 
         return simpleStudentOutputDTOS;
@@ -46,13 +46,13 @@ public class StudentService implements StudentInterface{
     }
 
     @Override
-    public StudentEntity postStudent(StudentInputDTO studentInputDTO) {
+    public FullStudentOutputDTO postStudent(StudentInputDTO studentInputDTO) {
         //First we need to recover the PersonEntity linked to the InputDTO's personID
         PersonEntity personEntity = personRepository.findById(studentInputDTO.getPersonID()).orElse(null);
 
         StudentEntity studentEntity = new StudentEntity(studentInputDTO, personEntity);
         studentRepository.save(studentEntity);
-        return studentEntity;
+        return new FullStudentOutputDTO(studentEntity);
     }
 
     @Override
