@@ -22,7 +22,7 @@ public class TeacherEntity {
     @ManyToOne
     @JoinColumn(name = "studentID")
     StudentEntity student;
-    
+
     @Column
     String coments;
 

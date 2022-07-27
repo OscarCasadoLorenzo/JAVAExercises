@@ -16,12 +16,17 @@ public class TeacherService implements TeacherInterface{
 
     @Override
     public List<TeacherOutputDTO> getAllTeachers() {
-        return null;
+        List<TeacherOutputDTO> teacherOutputDTOList = null;
+        for(TeacherEntity teacherEntity : teacherRepository.findAll()){
+            teacherOutputDTOList.add(new TeacherOutputDTO(teacherEntity));
+        }
+        return teacherOutputDTOList;
     }
 
     @Override
     public TeacherOutputDTO getTeacherByID(String id) {
-        return null;
+        TeacherOutputDTO teacherOutputDTO = new TeacherOutputDTO(teacherRepository.findById(id).orElse(null));
+        return teacherOutputDTO;
     }
 
     @Override
