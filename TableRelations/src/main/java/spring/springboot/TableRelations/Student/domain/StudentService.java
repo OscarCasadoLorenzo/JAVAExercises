@@ -27,7 +27,6 @@ public class StudentService implements StudentInterface{
         List<StudentEntity> simpleStudentOutputDTOS = new ArrayList<>();
 
         for (StudentEntity studentEntity : studentRepository.findAll()){
-            SimpleStudentOutputDTO auxOutputDTO = new SimpleStudentOutputDTO(studentEntity);
             simpleStudentOutputDTOS.add(studentEntity);
         }
 

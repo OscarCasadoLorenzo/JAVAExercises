@@ -2,6 +2,7 @@ package spring.springboot.TableRelations.Teacher.domain;
 
 import lombok.Data;
 import spring.springboot.TableRelations.Person.domain.PersonEntity;
+import spring.springboot.TableRelations.Student.domain.StudentEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,6 +19,10 @@ public class TeacherEntity {
     @JoinColumn(name = "personID")
     PersonEntity person;
 
+    @ManyToOne
+    @JoinColumn(name = "studentID")
+    StudentEntity student;
+    
     @Column
     String coments;
 
