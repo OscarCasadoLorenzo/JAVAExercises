@@ -28,13 +28,12 @@ public class TeacherController {
     }
 
     @PostMapping
-    public ResponseEntity<TeacherOutputDTO> postTeacherRoute(@RequestBody TeacherInputDTO teacherInputDTO){
+    public ResponseEntity<?> postTeacherRoute(@RequestBody TeacherInputDTO teacherInputDTO){
         try{
             return new ResponseEntity<>(teacherService.postTeacher(teacherInputDTO), HttpStatus.OK);
         } catch (Exception e){
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
-
     }
 
     @PutMapping("/{id}")
