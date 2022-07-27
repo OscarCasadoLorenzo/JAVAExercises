@@ -9,11 +9,11 @@ public interface TeacherInterface {
 
     List<TeacherOutputDTO> getAllTeachers();
 
-    TeacherOutputDTO getTeacherByID(String id);
+    TeacherOutputDTO getTeacherByID(Integer id);
 
     TeacherOutputDTO postTeacher(TeacherInputDTO teacherInputDTO);
 
-    TeacherOutputDTO updateTeacher(String id, TeacherInputDTO teacherInputDTO);
+    TeacherOutputDTO updateTeacher(Integer id, TeacherInputDTO teacherInputDTO);
 
-    TeacherOutputDTO deleteTeacher(String id);
+    TeacherOutputDTO deleteTeacher(Integer id);
 }

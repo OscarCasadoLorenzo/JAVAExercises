@@ -23,7 +23,7 @@ public class TeacherController {
     }
 
     @GetMapping("/{id}")
-    public TeacherOutputDTO getTeacherByIDRoute(@PathVariable String id){
+    public TeacherOutputDTO getTeacherByIDRoute(@PathVariable Integer id){
         return teacherService.getTeacherByID(id);
     }
 
@@ -38,12 +38,12 @@ public class TeacherController {
     }
 
     @PutMapping("/{id}")
-    public TeacherOutputDTO updateTeacherRoute(@PathVariable String id, @RequestBody TeacherInputDTO teacherInputDTO){
+    public TeacherOutputDTO updateTeacherRoute(@PathVariable Integer id, @RequestBody TeacherInputDTO teacherInputDTO){
         return teacherService.updateTeacher(id, teacherInputDTO);
     }
 
     @DeleteMapping("/{id}")
-    public TeacherOutputDTO deleteTeacherRoute(@PathVariable String id){
+    public TeacherOutputDTO deleteTeacherRoute(@PathVariable Integer id){
         return teacherService.deleteTeacher(id);
     }
 

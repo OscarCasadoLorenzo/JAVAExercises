@@ -8,6 +8,7 @@ import spring.springboot.TableRelations.Teacher.infraestructure.controller.dto.i
 import spring.springboot.TableRelations.Teacher.infraestructure.controller.dto.output.TeacherOutputDTO;
 import spring.springboot.TableRelations.Teacher.repository.TeacherRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,7 +30,7 @@ public class TeacherService implements TeacherInterface{
     }
 
     @Override
-    public TeacherOutputDTO getTeacherByID(String id) {
+    public TeacherOutputDTO getTeacherByID(Integer id) {
         TeacherOutputDTO teacherOutputDTO = new TeacherOutputDTO(teacherRepository.findById(id).get());
         return teacherOutputDTO;
     }
@@ -37,7 +38,7 @@ public class TeacherService implements TeacherInterface{
     @Override
     public TeacherOutputDTO postTeacher(TeacherInputDTO teacherInputDTO) throws  RuntimeException{
         //Check if exists all the students and create a list with them
-        List<StudentEntity> studentEntityList = null;
+        List<StudentEntity> studentEntityList = new ArrayList<>();
         teacherInputDTO.getStudentsIDs().stream().forEach(
                 id -> {
                     if(!studentRepository.existsById(id))
@@ -53,12 +54,12 @@ public class TeacherService implements TeacherInterface{
     }
 
     @Override
-    public TeacherOutputDTO updateTeacher(String id, TeacherInputDTO teacherInputDTO) {
+    public TeacherOutputDTO updateTeacher(Integer id, TeacherInputDTO teacherInputDTO) {
         return null;
     }
 
     @Override
-    public TeacherOutputDTO deleteTeacher(String id) {
+    public TeacherOutputDTO deleteTeacher(Integer id) {
         return null;
     }
 }

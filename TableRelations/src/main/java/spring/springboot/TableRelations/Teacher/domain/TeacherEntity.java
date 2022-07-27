@@ -15,7 +15,7 @@ import java.util.List;
 public class TeacherEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    String id;
+    Integer id;
 
     @OneToOne
     @JoinColumn(name = "personID")
