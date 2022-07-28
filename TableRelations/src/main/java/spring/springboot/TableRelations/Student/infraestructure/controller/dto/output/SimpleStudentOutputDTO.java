@@ -8,12 +8,6 @@ public class SimpleStudentOutputDTO extends StudentOutputDTO{
 
 
     public SimpleStudentOutputDTO(StudentEntity studentEntity){
-        if (studentEntity == null)
-            return;
-
-        this.setIdStudent(studentEntity.getId());
-        this.setNumHoursWeek(studentEntity.getNum_hours_week());
-        this.setComments(studentEntity.getComents());
-        this.setBranch(studentEntity.getBranch());
+        super(studentEntity);
     }
 }

@@ -51,7 +51,14 @@ public class StudentService implements StudentInterface{
 
     @Override
     public FullStudentOutputDTO postStudent(StudentInputDTO studentInputDTO) {
-        //First we need to recover the PersonEntity linked to the InputDTO's personID
+        //Check if personID is being used for other student
+        /*
+        if(studentRepository.isPersonIDBeingUsedByOtherStudent(studentInputDTO.getPersonID()) == null)
+            throw new RuntimeException("MENUDA LIADA");
+         */
+
+
+        //We need to recover the PersonEntity linked to the InputDTO's personID
         PersonEntity personEntity = personRepository.findById(studentInputDTO.getPersonID()).orElse(null);
 
         StudentEntity studentEntity = new StudentEntity(studentInputDTO, personEntity);

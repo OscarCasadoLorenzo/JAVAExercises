@@ -10,11 +10,11 @@ public interface SubjectInterface {
 
     List<SubjectOutputDTO> getAllSubjects();
 
-    SubjectOutputDTO getSubjectByID(int id, String outputType);
+    SubjectOutputDTO addSubject(SubjectInputDTO subjectInputDTO);
 
-    SubjectOutputDTO postSubject(SubjectInputDTO subjectInputDTO);
+    List<SubjectOutputDTO> getSubjectsByStudent(String id);
 
-    SubjectOutputDTO updateSubject(int id, SubjectInputDTO subjectInputDTO);
+    List<SubjectOutputDTO> addSubjectsToStudent(List<SubjectInputDTO> newSubjects);
 
-    SubjectOutputDTO deleteSubject(int id);
+    List<SubjectOutputDTO> deleteSubjectsToStudent(List<SubjectEntity> oldSubjects);
 }

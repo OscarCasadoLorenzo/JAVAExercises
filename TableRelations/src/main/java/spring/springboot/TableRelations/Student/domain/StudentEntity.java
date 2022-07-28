@@ -3,10 +3,12 @@ package spring.springboot.TableRelations.Student.domain;
 import lombok.Data;
 import spring.springboot.TableRelations.Person.domain.PersonEntity;
 import spring.springboot.TableRelations.Student.infraestructure.controller.dto.input.StudentInputDTO;
+import spring.springboot.TableRelations.Subject.domain.SubjectEntity;
 import spring.springboot.TableRelations.Teacher.domain.TeacherEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "STUDENTS")
@@ -33,9 +35,13 @@ public class StudentEntity {
          @ManyToOne
          private List<Teacher> teachers;
      */
+
     @ManyToOne
     @JoinColumn(name= "teacherID")
     TeacherEntity teacher;
+
+    @ManyToMany(mappedBy = "students")
+    List<SubjectEntity> subjects;
 
     @Column
     @NotNull

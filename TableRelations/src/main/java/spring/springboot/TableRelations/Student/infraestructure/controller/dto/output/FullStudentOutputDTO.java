@@ -12,13 +12,7 @@ public class FullStudentOutputDTO extends StudentOutputDTO{
     private PersonaOutputDTO person;
 
     public FullStudentOutputDTO(StudentEntity studentEntity){
-        if (studentEntity == null)
-            return;
-
-        this.setIdStudent(studentEntity.getId());
-        this.setNumHoursWeek(studentEntity.getNum_hours_week());
-        this.setComments(studentEntity.getComents());
-        this.setBranch(studentEntity.getBranch());
+        super(studentEntity);
         this.setPerson(new PersonaOutputDTO(studentEntity.getPerson()));
     }
 }
