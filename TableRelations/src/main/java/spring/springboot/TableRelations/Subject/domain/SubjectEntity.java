@@ -46,7 +46,8 @@ public class SubjectEntity {
 
     }
 
-    public SubjectEntity(SubjectInputDTO subjectInputDTO){
+    public SubjectEntity(SubjectInputDTO subjectInputDTO, TeacherEntity teacherEntity){
+        teacher = teacherEntity;
         name = subjectInputDTO.getName();
         comment = subjectInputDTO.getComment();
     }

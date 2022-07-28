@@ -10,6 +10,8 @@ import spring.springboot.TableRelations.Subject.infraestructure.controller.dto.i
 import spring.springboot.TableRelations.Subject.infraestructure.controller.dto.input.SubjectsIdsInputDTO;
 import spring.springboot.TableRelations.Subject.infraestructure.controller.dto.output.SubjectOutputDTO;
 import spring.springboot.TableRelations.Subject.infraestructure.repository.SubjectRepository;
+import spring.springboot.TableRelations.Teacher.domain.TeacherEntity;
+import spring.springboot.TableRelations.Teacher.repository.TeacherRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,9 @@ public class SubjectService implements SubjectInterface{
     @Autowired
     StudentRepository studentRepository;
 
+    @Autowired
+    TeacherRepository teacherRepository;
+
 
     @Override
     public List<SubjectOutputDTO> getAllSubjects() {
@@ -35,7 +40,8 @@ public class SubjectService implements SubjectInterface{
 
     @Override
     public SubjectOutputDTO addSubject(SubjectInputDTO subjectInputDTO) {
-        SubjectEntity subjectEntity = new SubjectEntity(subjectInputDTO);
+        TeacherEntity teacherEntity = teacherRepository.findById(subjectInputDTO.getTeacherID()).get();
+        SubjectEntity subjectEntity = new SubjectEntity(subjectInputDTO, teacherEntity);
         subjectRepository.save(subjectEntity);
         return new SubjectOutputDTO(subjectEntity);
     }

@@ -4,12 +4,9 @@ import lombok.Getter;
 
 @Getter
 public class SubjectInputDTO {
-    //TeacherEntity teacher;
-
-    //List<StudentEntity> students;
+    Integer teacherID;
 
     private String name;
 
     private String comment;
-
 }
