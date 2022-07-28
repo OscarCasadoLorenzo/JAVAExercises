@@ -10,7 +10,6 @@ import spring.springboot.TableRelations.Student.domain.StudentEntity;
 public class FullStudentOutputDTO extends StudentOutputDTO{
 
     private PersonaOutputDTO person;
-
     public FullStudentOutputDTO(StudentEntity studentEntity){
         super(studentEntity);
         this.setPerson(new PersonaOutputDTO(studentEntity.getPerson()));

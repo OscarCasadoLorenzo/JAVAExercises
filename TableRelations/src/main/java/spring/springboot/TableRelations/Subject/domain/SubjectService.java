@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.springboot.TableRelations.Student.domain.StudentEntity;
 import spring.springboot.TableRelations.Student.infraestructure.controller.dto.output.FullStudentOutputDTO;
+import spring.springboot.TableRelations.Student.infraestructure.controller.dto.output.StudentOutputDTO;
+import spring.springboot.TableRelations.Student.infraestructure.repository.StudentRepository;
 import spring.springboot.TableRelations.Subject.infraestructure.controller.dto.input.SubjectInputDTO;
+import spring.springboot.TableRelations.Subject.infraestructure.controller.dto.input.SubjectsIdsInputDTO;
 import spring.springboot.TableRelations.Subject.infraestructure.controller.dto.output.SubjectOutputDTO;
 import spring.springboot.TableRelations.Subject.infraestructure.repository.SubjectRepository;
 
@@ -16,6 +19,9 @@ public class SubjectService implements SubjectInterface{
 
     @Autowired
     SubjectRepository subjectRepository;
+
+    @Autowired
+    StudentRepository studentRepository;
 
 
     @Override
@@ -45,8 +51,17 @@ public class SubjectService implements SubjectInterface{
     }
 
     @Override
-    public List<SubjectOutputDTO> addSubjectsToStudent(List<SubjectInputDTO> newSubjects) {
-        return null;
+    public StudentOutputDTO addSubjectsToStudent(SubjectsIdsInputDTO subjectsIdsInputDTO, String studentID) {
+        //Take Student
+        StudentEntity studentEntity = studentRepository.findById(Integer.parseInt(studentID)).get();
+        //Take Subjects
+        for (int subjectID : subjectsIdsInputDTO.getSubjects()){
+            SubjectEntity subjectEntity = subjectRepository.findById(subjectID).get();
+            subjectEntity.enrollStudent(studentEntity);
+            subjectRepository.save(subjectEntity);
+        }
+
+        return new FullStudentOutputDTO(studentEntity);
     }
 
     @Override

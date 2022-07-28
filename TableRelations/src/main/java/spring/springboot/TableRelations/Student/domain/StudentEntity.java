@@ -8,6 +8,7 @@ import spring.springboot.TableRelations.Teacher.domain.TeacherEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -41,7 +42,7 @@ public class StudentEntity {
     TeacherEntity teacher;
 
     @ManyToMany(mappedBy = "students")
-    List<SubjectEntity> subjects;
+    List<SubjectEntity> subjects = new ArrayList<>();
 
     @Column
     @NotNull

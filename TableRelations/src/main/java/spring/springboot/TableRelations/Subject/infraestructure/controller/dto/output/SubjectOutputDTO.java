@@ -18,8 +18,6 @@ public class SubjectOutputDTO {
 
     private TeacherEntity teacher;
 
-    private StudentEntity student;
-
     private String name;
 
     private String comment;
@@ -35,7 +33,6 @@ public class SubjectOutputDTO {
     public SubjectOutputDTO(SubjectEntity subjectEntity){
         id_study = subjectEntity.getId_study();
         teacher = subjectEntity.getTeacher();
-       // student = subjectEntity.getStudent();
         name = subjectEntity.getName();
         comment = subjectEntity.getComment();
         initial_date = subjectEntity.getInitial_date();
