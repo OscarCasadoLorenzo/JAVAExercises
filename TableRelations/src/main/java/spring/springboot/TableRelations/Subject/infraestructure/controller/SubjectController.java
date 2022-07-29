@@ -2,6 +2,8 @@ package spring.springboot.TableRelations.Subject.infraestructure.controller;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import spring.springboot.TableRelations.Student.infraestructure.controller.dto.output.StudentOutputDTO;
 import spring.springboot.TableRelations.Subject.domain.SubjectService;
@@ -9,7 +11,6 @@ import spring.springboot.TableRelations.Subject.infraestructure.controller.dto.i
 import spring.springboot.TableRelations.Subject.infraestructure.controller.dto.input.SubjectsIdsInputDTO;
 import spring.springboot.TableRelations.Subject.infraestructure.controller.dto.output.SubjectOutputDTO;
 
-import javax.security.auth.Subject;
 import java.util.List;
 
 @RestController
@@ -25,8 +26,13 @@ public class SubjectController {
     }
 
     @PostMapping
-    public SubjectOutputDTO addSubjectsRoute(@RequestBody SubjectInputDTO subjectInputDTO){
-        return subjectService.addSubject(subjectInputDTO);
+    public ResponseEntity<?> addSubjectsRoute(@RequestBody SubjectInputDTO subjectInputDTO){
+        try{
+            return new ResponseEntity<>(subjectService.addSubject(subjectInputDTO), HttpStatus.OK);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/{id}")

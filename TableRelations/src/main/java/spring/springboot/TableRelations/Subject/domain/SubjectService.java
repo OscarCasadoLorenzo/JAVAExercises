@@ -40,7 +40,10 @@ public class SubjectService implements SubjectInterface{
 
     @Override
     public SubjectOutputDTO addSubject(SubjectInputDTO subjectInputDTO) {
-        TeacherEntity teacherEntity = teacherRepository.findById(subjectInputDTO.getTeacherID()).get();
+        TeacherEntity teacherEntity = teacherRepository.findById(subjectInputDTO.getTeacherID()).orElse(null);
+        if(teacherEntity == null)
+            throw new RuntimeException("Subject must have a property teacher reference");
+
         SubjectEntity subjectEntity = new SubjectEntity(subjectInputDTO, teacherEntity);
         subjectRepository.save(subjectEntity);
         return new SubjectOutputDTO(subjectEntity);
@@ -60,6 +63,8 @@ public class SubjectService implements SubjectInterface{
     public StudentOutputDTO addSubjectsToStudent(SubjectsIdsInputDTO subjectsIdsInputDTO, String studentID) {
         //Take Student
         StudentEntity studentEntity = studentRepository.findById(Integer.parseInt(studentID)).get();
+
+
         //Take Subjects
         for (int subjectID : subjectsIdsInputDTO.getSubjects()){
             SubjectEntity subjectEntity = subjectRepository.findById(subjectID).get();

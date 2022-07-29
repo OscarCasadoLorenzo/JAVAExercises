@@ -35,8 +35,13 @@ public class StudentController {
     }
 
     @PostMapping
-    public StudentOutputDTO postStudentRoute(@RequestBody StudentInputDTO studentInputDTO){
-        return studentService.postStudent(studentInputDTO);
+    public ResponseEntity<?> postStudentRoute(@RequestBody StudentInputDTO studentInputDTO){
+        try{
+            return new ResponseEntity<>(studentService.postStudent(studentInputDTO), HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @PutMapping("/{id}")

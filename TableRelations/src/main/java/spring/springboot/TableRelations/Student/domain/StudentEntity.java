@@ -16,11 +16,11 @@ import java.util.List;
 @Data
 public class StudentEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
 
     @OneToOne
-    @JoinColumn(name = "personID")
+    @JoinColumn(name = "Personid")
     PersonEntity person;
 
     /*  INCORRECT COLLECTION DECLARATION IN RELATIONSHIPS
@@ -36,10 +36,6 @@ public class StudentEntity {
          @ManyToOne
          private List<Teacher> teachers;
      */
-
-    @ManyToOne
-    @JoinColumn(name= "teacherID")
-    TeacherEntity teacher;
 
     @ManyToMany(mappedBy = "students")
     List<SubjectEntity> subjects = new ArrayList<>();

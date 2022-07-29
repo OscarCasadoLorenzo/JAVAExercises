@@ -21,7 +21,7 @@ public class SubjectEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id_study;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "teacherID")
     TeacherEntity teacher;
 

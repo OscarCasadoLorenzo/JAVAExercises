@@ -3,6 +3,7 @@ package spring.springboot.TableRelations.Teacher.domain;
 import lombok.Data;
 import spring.springboot.TableRelations.Person.domain.PersonEntity;
 import spring.springboot.TableRelations.Student.domain.StudentEntity;
+import spring.springboot.TableRelations.Subject.domain.SubjectEntity;
 import spring.springboot.TableRelations.Teacher.infraestructure.controller.dto.input.TeacherInputDTO;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import java.util.List;
 @Data
 public class TeacherEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
 
     @OneToOne
@@ -22,8 +23,8 @@ public class TeacherEntity {
     PersonEntity person;
 
     @OneToMany
-    @JoinColumn(name = "studentID")
-    List<StudentEntity> students;
+    @JoinColumn(name = "subjectID")
+    List<SubjectEntity>  subjects;
 
     @Column
     String coments;
@@ -35,10 +36,9 @@ public class TeacherEntity {
 
     }
 
-    public TeacherEntity(TeacherInputDTO teacherInputDTO, PersonEntity personEntity, List<StudentEntity> studentsList){
+    public TeacherEntity(TeacherInputDTO teacherInputDTO, PersonEntity personEntity){
         coments = teacherInputDTO.getComents();
         branch = teacherInputDTO.getBranch();
         person = personEntity;
-        students = studentsList;
     }
 }

@@ -7,7 +7,9 @@ import java.util.Date;
 
 @Data
 public class PersonaOutputDTO {
-    //We delete id & password attributes for security
+
+    private Integer id;
+    //We delete password attribute for security
     private String usuario;
     private String name;
     private String surname;
@@ -23,6 +25,7 @@ public class PersonaOutputDTO {
         if (personEntity == null)
             return;
 
+        id = personEntity.getId_person();
         usuario = personEntity.getUsuario();
         name = personEntity.getName();
         surname = personEntity.getSurname();

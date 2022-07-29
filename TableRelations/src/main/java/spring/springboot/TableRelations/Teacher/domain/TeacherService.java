@@ -27,7 +27,7 @@ public class TeacherService implements TeacherInterface{
 
     @Override
     public List<TeacherOutputDTO> getAllTeachers() {
-        List<TeacherOutputDTO> teacherOutputDTOList = null;
+        List<TeacherOutputDTO> teacherOutputDTOList = new ArrayList<>();
         for(TeacherEntity teacherEntity : teacherRepository.findAll()){
             teacherOutputDTOList.add(new TeacherOutputDTO(teacherEntity));
         }
@@ -47,17 +47,13 @@ public class TeacherService implements TeacherInterface{
     public TeacherOutputDTO postTeacher(TeacherInputDTO teacherInputDTO) throws  RuntimeException{
         PersonEntity personEntity = personRepository.findById(teacherInputDTO.getPersonID()).orElse(null);
 
-        //Check if exists all the students and create a list with them
-        List<StudentEntity> studentEntityList = new ArrayList<>();
-        teacherInputDTO.getStudentsIDs().stream().forEach(
-                id -> {
-                    if(!studentRepository.existsById(id))
-                        throw new RuntimeException("Student with id: " + id + " doesnt exists.");
-                    studentEntityList.add(studentRepository.findById(id).get());
-                }
-        );
+        if(personEntity==null ||
+                teacherRepository.getPersonQuery(teacherInputDTO.getPersonID()) != null ||
+                studentRepository.getPersonQuery(teacherInputDTO.getPersonID()) != null
+        )
+            throw new RuntimeException("Teacher object must have a correct person reference.");
 
-        TeacherEntity teacherEntity = new TeacherEntity(teacherInputDTO, personEntity, studentEntityList);
+        TeacherEntity teacherEntity = new TeacherEntity(teacherInputDTO, personEntity);
         teacherRepository.save(teacherEntity);
 
         return new TeacherOutputDTO(teacherEntity);

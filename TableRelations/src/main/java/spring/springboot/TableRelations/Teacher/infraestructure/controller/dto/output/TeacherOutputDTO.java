@@ -12,6 +12,7 @@ import java.util.List;
 
 @Getter
 public class TeacherOutputDTO {
+    private Integer id;
     private String coments;
     private String branch;
     private PersonaOutputDTO personaOutputDTO;
@@ -19,11 +20,9 @@ public class TeacherOutputDTO {
     private List<StudentOutputDTO> students = new ArrayList<>();
 
     public TeacherOutputDTO(TeacherEntity teacherEntity){
+        id = teacherEntity.getId();
         coments = teacherEntity.getComents();
         branch = teacherEntity.getBranch();
         personaOutputDTO  = new PersonaOutputDTO(teacherEntity.getPerson());
-        for (StudentEntity studentEntity : teacherEntity.getStudents()){
-            students.add(new SimpleStudentOutputDTO(studentEntity));
-        }
     }
 }

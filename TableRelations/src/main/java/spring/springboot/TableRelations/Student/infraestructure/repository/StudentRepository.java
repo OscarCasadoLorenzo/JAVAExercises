@@ -4,14 +4,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import spring.springboot.TableRelations.Student.domain.StudentEntity;
 
-import java.util.Optional;
 
 public interface StudentRepository extends CrudRepository<StudentEntity, Integer> {
 
-    /*
-     @Query("SELECT personID FROM STUDENTS WHERE personID = ?1")
-    public Integer isPersonIDBeingUsedByOtherStudent(int idPerson);
-     */
+
+         @Query(value = "SELECT * FROM STUDENTS s WHERE s.PERSONID= ?", nativeQuery = true)
+          public StudentEntity getPersonQuery(Integer personID);
+
 
 
 }

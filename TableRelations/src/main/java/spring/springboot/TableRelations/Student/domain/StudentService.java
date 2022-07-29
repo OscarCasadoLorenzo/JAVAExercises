@@ -10,6 +10,7 @@ import spring.springboot.TableRelations.Student.infraestructure.controller.dto.o
 import spring.springboot.TableRelations.Student.infraestructure.controller.dto.output.SimpleStudentOutputDTO;
 import spring.springboot.TableRelations.Student.infraestructure.controller.dto.output.StudentOutputDTO;
 import spring.springboot.TableRelations.Student.infraestructure.repository.StudentRepository;
+import spring.springboot.TableRelations.Teacher.repository.TeacherRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,9 @@ public class StudentService implements StudentInterface{
 
     @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    TeacherRepository teacherRepository;
 
     @Override
     public List<SimpleStudentOutputDTO> getAllStudents() {
@@ -60,6 +64,11 @@ public class StudentService implements StudentInterface{
 
         //We need to recover the PersonEntity linked to the InputDTO's personID
         PersonEntity personEntity = personRepository.findById(studentInputDTO.getPersonID()).orElse(null);
+        if (personEntity==null ||
+                studentRepository.getPersonQuery(studentInputDTO.getPersonID()) != null ||
+                teacherRepository.getPersonQuery(studentInputDTO.getPersonID()) != null
+        )
+            throw new RuntimeException("Student object must have a correct person reference.");
 
         StudentEntity studentEntity = new StudentEntity(studentInputDTO, personEntity);
         studentRepository.save(studentEntity);
