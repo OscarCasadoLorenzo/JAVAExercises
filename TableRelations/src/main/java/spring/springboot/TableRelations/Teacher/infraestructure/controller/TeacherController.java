@@ -40,14 +40,4 @@ public class TeacherController {
         }
     }
 
-    @PutMapping("/{id}")
-    public TeacherOutputDTO updateTeacherRoute(@PathVariable Integer id, @RequestBody TeacherInputDTO teacherInputDTO){
-        return teacherService.updateTeacher(id, teacherInputDTO);
-    }
-
-    @DeleteMapping("/{id}")
-    public TeacherOutputDTO deleteTeacherRoute(@PathVariable Integer id){
-        return teacherService.deleteTeacher(id);
-    }
-
 }

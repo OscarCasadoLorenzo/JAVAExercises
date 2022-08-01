@@ -58,14 +58,4 @@ public class TeacherService implements TeacherInterface{
 
         return new TeacherOutputDTO(teacherEntity);
     }
-
-    @Override
-    public TeacherOutputDTO updateTeacher(Integer id, TeacherInputDTO teacherInputDTO) {
-        return null;
-    }
-
-    @Override
-    public TeacherOutputDTO deleteTeacher(Integer id) {
-        return null;
-    }
 }

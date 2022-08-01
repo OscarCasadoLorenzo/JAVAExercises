@@ -13,7 +13,4 @@ public interface TeacherInterface {
 
     TeacherOutputDTO postTeacher(TeacherInputDTO teacherInputDTO);
 
-    TeacherOutputDTO updateTeacher(Integer id, TeacherInputDTO teacherInputDTO);
-
-    TeacherOutputDTO deleteTeacher(Integer id);
 }

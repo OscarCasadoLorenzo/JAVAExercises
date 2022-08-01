@@ -34,14 +34,4 @@ public class SubjectController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
-
-    @PostMapping("/{id}")
-    public StudentOutputDTO addSubjectsToStudentRoute(@RequestBody SubjectsIdsInputDTO subjectsIDs, @PathVariable String id){
-        return subjectService.addSubjectsToStudent(subjectsIDs, id);
-    }
-
-    @GetMapping("/{id}")
-    public List<SubjectOutputDTO> getSubjectsOfStudentRoute(@PathVariable String id){
-        return subjectService.getSubjectsByStudent(id);
-    }
 }

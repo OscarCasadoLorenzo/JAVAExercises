@@ -74,14 +74,4 @@ public class StudentService implements StudentInterface{
         studentRepository.save(studentEntity);
         return new FullStudentOutputDTO(studentEntity);
     }
-
-    @Override
-    public StudentEntity updateStudent(int id, StudentInputDTO studentInputDTO) {
-        return null;
-    }
-
-    @Override
-    public StudentEntity deleteStudent(int id) {
-        return null;
-    }
 }

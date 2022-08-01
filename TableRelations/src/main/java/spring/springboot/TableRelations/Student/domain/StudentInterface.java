@@ -14,8 +14,4 @@ public interface StudentInterface {
     StudentOutputDTO getStudentByID(int id, String outputType);
 
     FullStudentOutputDTO postStudent(StudentInputDTO studentInputDTO);
-
-    StudentEntity updateStudent(int id, StudentInputDTO studentInputDTO);
-
-    StudentEntity deleteStudent(int id);
 }
