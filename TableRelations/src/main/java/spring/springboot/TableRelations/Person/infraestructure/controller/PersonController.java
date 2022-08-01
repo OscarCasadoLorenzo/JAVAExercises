@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import spring.springboot.TableRelations.Person.domain.PersonService;
 import spring.springboot.TableRelations.Person.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.TableRelations.Person.infraestructure.controller.dto.output.PersonaOutputDTO;
+import spring.springboot.TableRelations.Person.proxy.TeacherServiceProxy;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -16,6 +17,9 @@ import java.util.List;
 public class PersonController {
     @Autowired
     PersonService personService;
+
+    @Autowired
+    TeacherServiceProxy teacherServiceProxy;
 
     @GetMapping
     public List<PersonaOutputDTO> getPersonsRoute(){
@@ -67,12 +71,21 @@ public class PersonController {
 
     @GetMapping("RESTemplate/teacher/{id}")
     public ResponseEntity<?> getTeacherWithTemplateRoute(@PathVariable int id){
-        return personService.getTeacherWithTemplate(id);
+        try {
+            return personService.getTeacherWithTemplate(id);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("Feign/teacher/{id}")
     public ResponseEntity<?> getTeacherWithFeignRoute(@PathVariable int id){
-        return personService.getTeacherWithFeign(id);
+        try {
+            return teacherServiceProxy.getTeacher(id);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+
     }
 
 }
