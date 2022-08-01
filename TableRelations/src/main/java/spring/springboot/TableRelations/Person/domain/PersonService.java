@@ -92,7 +92,7 @@ public class PersonService implements PersonInterface{
         return personaOutputDTO;
     }
 
-    public ResponseEntity<?> getTeacher(int id){
+    public ResponseEntity<?> getTeacherWithTemplate(int id){
         ResponseEntity<?> responseEntity;
         try{
             responseEntity = new RestTemplate().getForEntity("http://localhost:8080/teacher/"+id, TeacherOutputDTO.class);
@@ -103,5 +103,4 @@ public class PersonService implements PersonInterface{
         }
         return responseEntity;
     }
-
 }

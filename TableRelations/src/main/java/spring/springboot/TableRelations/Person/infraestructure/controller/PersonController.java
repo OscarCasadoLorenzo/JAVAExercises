@@ -3,12 +3,10 @@ package spring.springboot.TableRelations.Person.infraestructure.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.SmartValidator;
 import org.springframework.web.bind.annotation.*;
 import spring.springboot.TableRelations.Person.domain.PersonService;
 import spring.springboot.TableRelations.Person.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.TableRelations.Person.infraestructure.controller.dto.output.PersonaOutputDTO;
-import spring.springboot.TableRelations.Teacher.infraestructure.controller.dto.output.TeacherOutputDTO;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -33,13 +31,11 @@ public class PersonController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getPersonByIDRoute(@PathVariable int id){
-     try{
-         return new ResponseEntity<>(personService.getPersonByID(id), HttpStatus.OK);
-     } catch (Exception e){
-         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-     }
-
-
+         try{
+             return new ResponseEntity<>(personService.getPersonByID(id), HttpStatus.OK);
+         } catch (Exception e){
+             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+         }
     }
 
     @PostMapping
@@ -69,9 +65,14 @@ public class PersonController {
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
     }
 
-    @GetMapping("teacher/{id}")
-    public ResponseEntity<?> getTeacherRoute(@PathVariable int id){
-        return personService.getTeacher(id);
+    @GetMapping("RESTemplate/teacher/{id}")
+    public ResponseEntity<?> getTeacherWithTemplateRoute(@PathVariable int id){
+        return personService.getTeacherWithTemplate(id);
+    }
+
+    @GetMapping("Feign/teacher/{id}")
+    public ResponseEntity<?> getTeacherWithFeignRoute(@PathVariable int id){
+        return personService.getTeacherWithFeign(id);
     }
 
 }
