@@ -18,4 +18,4 @@
 - [BS5. Logging](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/Logger)
 - [EJ2. Validated CRUD + BP1. Hexagonal architecture](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/JPAExample)
 - [BS8. Custom responses](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/ValidAndException)
-- [EJ3-1. Entities relationship](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/TableRelations)
+- [EJ3-1. Relationships + BS9 + BS12. CORS](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/TableRelations)
