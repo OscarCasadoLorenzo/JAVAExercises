@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import spring.springboot.TableRelations.Person.domain.PersonService;
 import spring.springboot.TableRelations.Person.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.TableRelations.Person.infraestructure.controller.dto.output.PersonaOutputDTO;
+import spring.springboot.TableRelations.Teacher.infraestructure.controller.dto.output.TeacherOutputDTO;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -66,6 +67,11 @@ public class PersonController {
         }
         PersonaOutputDTO personaOutputDTO = personService.deletePerson(id);
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("teacher/{id}")
+    public ResponseEntity<?> getTeacherRoute(@PathVariable int id){
+        return personService.getTeacher(id);
     }
 
 }

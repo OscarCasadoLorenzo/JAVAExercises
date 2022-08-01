@@ -1,10 +1,16 @@
 package spring.springboot.TableRelations.Person.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
 import spring.springboot.TableRelations.Person.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.TableRelations.Person.infraestructure.controller.dto.output.PersonaOutputDTO;
 import spring.springboot.TableRelations.Person.infraestructure.repository.jpa.PersonRepository;
+import spring.springboot.TableRelations.Teacher.infraestructure.controller.dto.output.TeacherOutputDTO;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -85,4 +91,17 @@ public class PersonService implements PersonInterface{
         personRepository.deleteById(id);
         return personaOutputDTO;
     }
+
+    public ResponseEntity<?> getTeacher(int id){
+        ResponseEntity<?> responseEntity;
+        try{
+            responseEntity = new RestTemplate().getForEntity("http://localhost:8080/teacher/"+id, TeacherOutputDTO.class);
+        }catch (HttpClientErrorException e1) {
+            responseEntity = new ResponseEntity<>("HTTP code is not 2XX. Server responded: " + e1.getResponseBodyAsString(), e1.getStatusCode());
+        }catch (RestClientException e){
+            responseEntity = new ResponseEntity<>("Server didnt respond: ", HttpStatus.I_AM_A_TEAPOT);
+        }
+        return responseEntity;
+    }
+
 }
