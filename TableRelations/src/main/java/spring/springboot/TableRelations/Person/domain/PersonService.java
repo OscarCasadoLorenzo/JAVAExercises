@@ -42,7 +42,7 @@ public class PersonService implements PersonInterface{
     @Override
     public PersonaOutputDTO getPersonByID(int id) {
         if(!personRepository.existsById(id))
-            throw new RuntimeException("Person with id: " + id + " doesnt exists.");
+            throw new RuntimeException("Person with id: " + id + " does not exists.");
 
         PersonEntity personEntity = personRepository.findById(id).orElse(null);
         PersonaOutputDTO personaOutputDTO = new PersonaOutputDTO(personEntity);
