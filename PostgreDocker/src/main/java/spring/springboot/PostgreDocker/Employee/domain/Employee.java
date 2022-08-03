@@ -1,15 +1,14 @@
 package spring.springboot.PostgreDocker.Employee.domain;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import spring.springboot.PostgreDocker.Employee.infraestructure.controller.dto.input.EmployeeInputDTO;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.*;
 @Entity
+@Table(name = "EMPLOYEE")
 @Data
+@NoArgsConstructor
 public class Employee {
 
     @Id

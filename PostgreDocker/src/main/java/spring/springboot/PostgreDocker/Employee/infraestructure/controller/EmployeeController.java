@@ -2,6 +2,8 @@ package spring.springboot.PostgreDocker.Employee.infraestructure.controller;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import spring.springboot.PostgreDocker.Employee.domain.EmployeeService;
 import spring.springboot.PostgreDocker.Employee.infraestructure.controller.dto.input.EmployeeInputDTO;
@@ -22,8 +24,12 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public EmployeeOutputDTO getEmployeeRoute(@PathVariable int id) throws RuntimeException{
-        return employeeService.getEmployee(id);
+    public ResponseEntity<?> getEmployeeRoute(@PathVariable int id){
+        try{
+            return new ResponseEntity<>(employeeService.getEmployee(id), HttpStatus.OK) ;
+        }catch (RuntimeException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND) ;
+        }
     }
 
     @PostMapping
@@ -32,12 +38,20 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public EmployeeOutputDTO putEmployeeRoute(@PathVariable int id, @RequestBody EmployeeInputDTO employeeInputDTO) throws RuntimeException{
-        return employeeService.putEmployee(id, employeeInputDTO);
+    public ResponseEntity<?> putEmployeeRoute(@PathVariable int id, @RequestBody EmployeeInputDTO employeeInputDTO) throws RuntimeException{
+        try{
+            return new ResponseEntity<>(employeeService.putEmployee(id, employeeInputDTO), HttpStatus.OK) ;
+        }catch (RuntimeException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND) ;
+        }
     }
 
     @DeleteMapping("/{id}")
-    public EmployeeOutputDTO deleteEmployeeRoute(@PathVariable int id) throws RuntimeException{
-        return employeeService.deleteEmployee(id);
+    public ResponseEntity<?> deleteEmployeeRoute(@PathVariable int id) throws RuntimeException{
+        try{
+            return new ResponseEntity<>(employeeService.deleteEmployee(id), HttpStatus.OK) ;
+        }catch (RuntimeException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND) ;
+        }
     }
 }

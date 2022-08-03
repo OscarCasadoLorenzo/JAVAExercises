@@ -28,7 +28,7 @@ public class EmployeeService implements IEmployee{
     @Override
     public EmployeeOutputDTO getEmployee(int id) throws RuntimeException{
         if(!employeeRepository.existsById(id))
-            throw new RuntimeException("Employee with id: " + id + "does not exists.");
+            throw new RuntimeException("Employee with id: " + id + " does not exists.");
 
         return new EmployeeOutputDTO(employeeRepository.findById(id).get());
     }
@@ -44,18 +44,18 @@ public class EmployeeService implements IEmployee{
     @Override
     public EmployeeOutputDTO putEmployee(int id, EmployeeInputDTO employeeInputDTO) throws RuntimeException {
         if(!employeeRepository.existsById(id))
-            throw new RuntimeException("Employee with id: " + id + "does not exists.");
+            throw new RuntimeException("Employee with id: " + id + " does not exists.");
         Employee updatedEmployee = employeeRepository.findById(id).get();
         updatedEmployee.setName(employeeInputDTO.getName());
         updatedEmployee.setDepartment(employeeInputDTO.getDepartment());
-
+        employeeRepository.save(updatedEmployee);
         return new EmployeeOutputDTO(updatedEmployee);
     }
 
     @Override
     public EmployeeOutputDTO deleteEmployee(int id) throws RuntimeException {
         if(!employeeRepository.existsById(id))
-            throw new RuntimeException("Employee with id: " + id + "does not exists.");
+            throw new RuntimeException("Employee with id: " + id + " does not exists.");
 
         Employee deletedEmployee = employeeRepository.findById(id).get();
         employeeRepository.deleteById(id);
