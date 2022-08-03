@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface IEmployee {
     List<EmployeeOutputDTO> getEmployees();
-    EmployeeOutputDTO getEmployee(int id);
+    EmployeeOutputDTO getEmployee(int id) throws RuntimeException;
     EmployeeOutputDTO postEmployee(EmployeeInputDTO employeeInputDTO);
-    EmployeeOutputDTO putEmployee(int id, EmployeeInputDTO employeeInputDTO);
-    EmployeeOutputDTO deleteEmployee(int id);
+    EmployeeOutputDTO putEmployee(int id, EmployeeInputDTO employeeInputDTO) throws RuntimeException;
+    EmployeeOutputDTO deleteEmployee(int id) throws RuntimeException;
 }

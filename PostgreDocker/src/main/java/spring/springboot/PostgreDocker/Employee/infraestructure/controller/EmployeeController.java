@@ -22,7 +22,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public EmployeeOutputDTO getEmployeeRoute(@PathVariable int id){
+    public EmployeeOutputDTO getEmployeeRoute(@PathVariable int id) throws RuntimeException{
         return employeeService.getEmployee(id);
     }
 
@@ -32,12 +32,12 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public EmployeeOutputDTO putEmployeeRoute(@PathVariable int id, @RequestBody EmployeeInputDTO employeeInputDTO){
+    public EmployeeOutputDTO putEmployeeRoute(@PathVariable int id, @RequestBody EmployeeInputDTO employeeInputDTO) throws RuntimeException{
         return employeeService.putEmployee(id, employeeInputDTO);
     }
 
     @DeleteMapping("/{id}")
-    public EmployeeOutputDTO deleteEmployeeRoute(@PathVariable int id){
+    public EmployeeOutputDTO deleteEmployeeRoute(@PathVariable int id) throws RuntimeException{
         return employeeService.deleteEmployee(id);
     }
 }
