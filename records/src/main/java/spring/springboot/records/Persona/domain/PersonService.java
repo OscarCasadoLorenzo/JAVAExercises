@@ -2,9 +2,9 @@ package spring.springboot.records.Persona.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spring.springboot.JPAExample.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
-import spring.springboot.JPAExample.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
-import spring.springboot.JPAExample.Persona.infraestructure.repository.jpa.PersonRepository;
+import spring.springboot.records.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
+import spring.springboot.records.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
+import spring.springboot.records.Persona.infraestructure.repository.jpa.PersonRepository;
 
 import java.util.ArrayList;
 import java.util.List;

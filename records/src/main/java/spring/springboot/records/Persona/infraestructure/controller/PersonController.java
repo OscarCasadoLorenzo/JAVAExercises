@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import spring.springboot.JPAExample.Persona.domain.PersonService;
-import spring.springboot.JPAExample.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
-import spring.springboot.JPAExample.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
+import spring.springboot.records.Persona.domain.PersonService;
+import spring.springboot.records.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
+import spring.springboot.records.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
 
 import java.util.List;
 

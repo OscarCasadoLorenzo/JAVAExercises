@@ -1,7 +1,7 @@
 package spring.springboot.records.Persona.domain;
 
 import lombok.Data;
-import spring.springboot.JPAExample.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
+import spring.springboot.records.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

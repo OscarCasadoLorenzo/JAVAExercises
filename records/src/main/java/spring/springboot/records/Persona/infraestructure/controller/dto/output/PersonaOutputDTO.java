@@ -1,7 +1,7 @@
 package spring.springboot.records.Persona.infraestructure.controller.dto.output;
 
 import lombok.Data;
-import spring.springboot.JPAExample.Persona.domain.PersonEntity;
+import spring.springboot.records.Persona.domain.PersonEntity;
 
 import java.util.Date;
 

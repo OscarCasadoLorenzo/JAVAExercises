@@ -2,7 +2,7 @@ package spring.springboot.records.Persona.infraestructure.repository.jpa;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
-import spring.springboot.JPAExample.Persona.domain.PersonEntity;
+import spring.springboot.records.Persona.domain.PersonEntity;
 
 import java.util.List;
 
