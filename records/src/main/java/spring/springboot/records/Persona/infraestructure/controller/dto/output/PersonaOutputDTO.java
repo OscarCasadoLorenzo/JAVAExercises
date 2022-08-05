@@ -5,7 +5,6 @@ import spring.springboot.records.Persona.domain.PersonEntity;
 
 import java.util.Date;
 
-@Data
 public record PersonaOutputDTO(
         //We delete id & password attributes for security
         String usuario,

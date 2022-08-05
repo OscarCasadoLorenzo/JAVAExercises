@@ -53,30 +53,30 @@ public class PersonEntity {
         if (personaInputDTO == null)
             return;
 
-        usuario = personaInputDTO.getUsuario();
-        password = personaInputDTO.getPassword();
-        name = personaInputDTO.getName();
-        surname = personaInputDTO.getSurname();
-        company_email = personaInputDTO.getCompany_email();
-        personal_email = personaInputDTO.getPersonal_email();
-        city = personaInputDTO.getCity();
-        active = personaInputDTO.isActive();
-        created_date = personaInputDTO.getCreated_date();
-        image_url = personaInputDTO.getImage_url();
-        termination_date = personaInputDTO.getTermination_date();
+        usuario = personaInputDTO.usuario();
+        password = personaInputDTO.password();
+        name = personaInputDTO.name();
+        surname = personaInputDTO.surname();
+        company_email = personaInputDTO.company_email();
+        personal_email = personaInputDTO.personal_email();
+        city = personaInputDTO.city();
+        active = personaInputDTO.active();
+        created_date = personaInputDTO.created_date();
+        image_url = personaInputDTO.image_url();
+        termination_date = personaInputDTO.termination_date();
     }
 
     public void updateEntity(PersonaInputDTO personaInputDTO){
-        setUsuario(personaInputDTO.getUsuario());
-        setPassword(personaInputDTO.getPassword());
-        setName(personaInputDTO.getName());
-        setSurname(personaInputDTO.getSurname());
-        setCompany_email(personaInputDTO.getCompany_email());
-        setPersonal_email(personaInputDTO.getPersonal_email());
-        setCity(personaInputDTO.getCity());
-        setActive(personaInputDTO.isActive());
-        setCreated_date(personaInputDTO.getCreated_date());
-        setImage_url(personaInputDTO.getImage_url());
-        setTermination_date(personaInputDTO.getTermination_date());
+        setUsuario(personaInputDTO.usuario());
+        setPassword(personaInputDTO.password());
+        setName(personaInputDTO.name());
+        setSurname(personaInputDTO.surname());
+        setCompany_email(personaInputDTO.company_email());
+        setPersonal_email(personaInputDTO.personal_email());
+        setCity(personaInputDTO.city());
+        setActive(personaInputDTO.active());
+        setCreated_date(personaInputDTO.created_date());
+        setImage_url(personaInputDTO.image_url());
+        setTermination_date(personaInputDTO.termination_date());
     }
 }
