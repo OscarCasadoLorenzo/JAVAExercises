@@ -5,16 +5,18 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class PersonaInputDTO {
-    private String usuario;
-    private String password;
-    private String name;
-    private String surname;
-    private String company_email;
-    private String personal_email;
-    private String city;
-    private boolean active;
-    private Date created_date;
-    private String image_url;
-    private Date termination_date;
+public record PersonaInputDTO(
+        String usuario,
+        String password,
+        String name,
+        String surname,
+        String company_email,
+        String personal_email,
+        String city,
+        boolean active,
+        Date created_date,
+        String image_url,
+        Date termination_date
+) {
+
 }
