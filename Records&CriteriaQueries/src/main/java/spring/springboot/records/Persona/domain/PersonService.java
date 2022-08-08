@@ -1,20 +1,31 @@
 package spring.springboot.records.Persona.domain;
 
+import ch.qos.logback.core.pattern.parser.OptionTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.springboot.records.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.records.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
 import spring.springboot.records.Persona.infraestructure.repository.jpa.PersonRepository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonService implements PersonInterface{
 
     @Autowired
     PersonRepository personRepository;
+
+    @PersistenceContext
+    EntityManager entityManager;
 
     @Override
     public List<PersonaOutputDTO> getAllPersons() {
@@ -53,10 +64,28 @@ public class PersonService implements PersonInterface{
     }
 
     @Override
-    public List<PersonaOutputDTO> getPersonsWithCriteriaQuery(String name, String user, Date creation_date) {
+    public List<PersonaOutputDTO> getPersonsWithCriteriaQuery(
+            Optional<String> name,
+            Optional<String> user,
+            Optional<Date> creation_date) {
         List<PersonaOutputDTO> personaOutputDTOList = new ArrayList<>();
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery query = cb.createQuery(PersonEntity.class);
+        Root root = query.from(PersonEntity.class);
 
+        List<Predicate> predicates = new ArrayList<>();
+        if (name.isPresent())
+            predicates.add(cb.like(root.get("name"), name.get()));
+        if (user.isPresent())
+            predicates.add(cb.like(root.get("usuario"), user.get()));
+        if (creation_date.isPresent())
+            predicates.add(cb.equal(root.get("creation_date"), creation_date.get()));
 
+        query.select(root).where(predicates.toArray(new Predicate[predicates.size()]));
+
+        entityManager.createQuery(query).getResultList().forEach( personEntity -> {
+            personaOutputDTOList.add(new PersonaOutputDTO((PersonEntity) personEntity));
+        });
         return personaOutputDTOList;
     }
 

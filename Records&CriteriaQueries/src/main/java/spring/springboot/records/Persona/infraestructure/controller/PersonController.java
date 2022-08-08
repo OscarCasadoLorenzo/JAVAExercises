@@ -10,6 +10,7 @@ import spring.springboot.records.Persona.infraestructure.controller.dto.output.P
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class PersonController {
@@ -29,9 +30,9 @@ public class PersonController {
 
     @GetMapping("/variableEndpoint")
     public List<PersonaOutputDTO> getPersonWithCriteriaQueryRoute(
-        @PathVariable(required = false) String name,
-        @PathVariable(required = false) String user,
-        @PathVariable(required = false) Date creation_date
+            @PathVariable(required = false) Optional<String> name,
+            @PathVariable(required = false) Optional<String>  user,
+            @PathVariable(required = false) Optional<Date> creation_date
         ){
         return personService.getPersonsWithCriteriaQuery(name, user, creation_date);
     }
