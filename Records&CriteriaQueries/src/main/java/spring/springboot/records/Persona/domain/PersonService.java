@@ -70,18 +70,18 @@ public class PersonService implements PersonInterface{
             Optional<Date> creation_date) {
         List<PersonaOutputDTO> personaOutputDTOList = new ArrayList<>();
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery query = cb.createQuery(PersonEntity.class);
-        Root root = query.from(PersonEntity.class);
+        CriteriaQuery<PersonEntity> query = cb.createQuery(PersonEntity.class);
+        Root<PersonEntity> personaEntityRoot = query.from(PersonEntity.class);
 
         List<Predicate> predicates = new ArrayList<>();
         if (name.isPresent())
-            predicates.add(cb.like(root.get("name"), name.get()));
+            predicates.add(cb.like(personaEntityRoot.get("name"), name.get()));
         if (user.isPresent())
-            predicates.add(cb.like(root.get("usuario"), user.get()));
+            predicates.add(cb.like(personaEntityRoot.get("usuario"), user.get()));
         if (creation_date.isPresent())
-            predicates.add(cb.equal(root.get("creation_date"), creation_date.get()));
+            predicates.add(cb.equal(personaEntityRoot.get("creation_date"), creation_date.get()));
 
-        query.select(root).where(predicates.toArray(new Predicate[predicates.size()]));
+        query.select(personaEntityRoot).where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
 
         entityManager.createQuery(query).getResultList().forEach( personEntity -> {
             personaOutputDTOList.add(new PersonaOutputDTO((PersonEntity) personEntity));

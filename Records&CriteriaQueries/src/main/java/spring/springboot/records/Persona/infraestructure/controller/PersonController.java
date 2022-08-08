@@ -31,9 +31,9 @@ public class PersonController {
 
     @GetMapping("/criteriaquery")
     public List<PersonaOutputDTO> getPersonWithCriteriaQueryRoute(
-            @PathVariable(required = false) Optional<String> name,
-            @PathVariable(required = false) Optional<String>  user,
-            @PathVariable(required = false) Optional<Date> creation_date
+            @RequestParam(required = false) Optional<String> name,
+            @RequestParam(required = false) Optional<String>  user,
+            @RequestParam(required = false) Optional<Date> creation_date
         ){
         return personService.getPersonsWithCriteriaQuery(name, user, creation_date);
     }
