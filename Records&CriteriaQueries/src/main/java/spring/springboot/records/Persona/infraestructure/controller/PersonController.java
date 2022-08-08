@@ -34,9 +34,10 @@ public class PersonController {
     public List<PersonaOutputDTO> getPersonWithCriteriaQueryRoute(
             @RequestParam(required = false) Optional<String> name,
             @RequestParam(required = false) Optional<String>  user,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Optional<Date> creation_date
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Optional<Date> creation_date,
+            @RequestParam(defaultValue = "equal") String dateCondition
         ){
-        return personService.getPersonsWithCriteriaQuery(name, user, creation_date);
+        return personService.getPersonsWithCriteriaQuery(name, user, creation_date, dateCondition);
     }
 
 

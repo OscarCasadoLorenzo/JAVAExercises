@@ -17,7 +17,11 @@ public interface PersonInterface {
 
     List<PersonaOutputDTO> getPersonsByName(String name);
 
-    List<PersonaOutputDTO> getPersonsWithCriteriaQuery( Optional<String> name, Optional<String> user, Optional<Date> creation_date);
+    List<PersonaOutputDTO> getPersonsWithCriteriaQuery(
+            Optional<String> name,
+            Optional<String> user,
+            Optional<Date> creation_date,
+            String dateCondition);
 
     PersonaOutputDTO postPerson(PersonaInputDTO personInputDTO);
 
