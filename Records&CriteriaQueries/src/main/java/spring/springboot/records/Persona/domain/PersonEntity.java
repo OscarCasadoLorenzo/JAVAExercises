@@ -3,10 +3,7 @@ package spring.springboot.records.Persona.domain;
 import lombok.Data;
 import spring.springboot.records.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -39,11 +36,10 @@ public class PersonEntity {
     @Column(nullable = false)
     boolean active;
 
+    @Temporal(TemporalType.DATE)
     Date created_date;
 
     String image_url;
-
-    Date termination_date;
 
     public PersonEntity(){
 
@@ -63,7 +59,6 @@ public class PersonEntity {
         active = personaInputDTO.active();
         created_date = personaInputDTO.created_date();
         image_url = personaInputDTO.image_url();
-        termination_date = personaInputDTO.termination_date();
     }
 
     public void updateEntity(PersonaInputDTO personaInputDTO){
@@ -77,6 +72,5 @@ public class PersonEntity {
         setActive(personaInputDTO.active());
         setCreated_date(personaInputDTO.created_date());
         setImage_url(personaInputDTO.image_url());
-        setTermination_date(personaInputDTO.termination_date());
     }
 }

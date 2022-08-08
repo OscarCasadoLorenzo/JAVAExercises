@@ -1,6 +1,7 @@
 package spring.springboot.records.Persona.infraestructure.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class PersonController {
     public List<PersonaOutputDTO> getPersonWithCriteriaQueryRoute(
             @RequestParam(required = false) Optional<String> name,
             @RequestParam(required = false) Optional<String>  user,
-            @RequestParam(required = false) Optional<Date> creation_date
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Optional<Date> creation_date
         ){
         return personService.getPersonsWithCriteriaQuery(name, user, creation_date);
     }

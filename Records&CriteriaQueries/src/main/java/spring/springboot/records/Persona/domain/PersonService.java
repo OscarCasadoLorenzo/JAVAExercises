@@ -79,7 +79,7 @@ public class PersonService implements PersonInterface{
         if (user.isPresent())
             predicates.add(cb.like(personaEntityRoot.get("usuario"), user.get()));
         if (creation_date.isPresent())
-            predicates.add(cb.equal(personaEntityRoot.get("creation_date"), creation_date.get()));
+            predicates.add(cb.equal(personaEntityRoot.get("created_date"), creation_date.get()));
 
         query.select(personaEntityRoot).where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
 

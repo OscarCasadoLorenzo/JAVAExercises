@@ -15,8 +15,7 @@ public record PersonaOutputDTO(
         String city,
         boolean active,
         Date created_date,
-        String image_url,
-        Date termination_date
+        String image_url
 ) {
 
 
@@ -30,8 +29,7 @@ public record PersonaOutputDTO(
             personEntity.getCity(),
             personEntity.isActive(),
             personEntity.getCreated_date(),
-            personEntity.getImage_url(),
-            personEntity.getTermination_date()
+            personEntity.getImage_url()
         );
     }
 }
