@@ -20,8 +20,8 @@ public class PersonController {
     PersonService personService;
 
     @GetMapping
-    public List<PersonaOutputDTO> getPersonsRoute(){
-        List<PersonaOutputDTO> personaOutputDTOList = personService.getAllPersons();
+    public List<PersonaOutputDTO> getPersonsRoute(@RequestParam int pageNumber){
+        List<PersonaOutputDTO> personaOutputDTOList = personService.getAllPersons(pageNumber);
         return personaOutputDTOList;
     }
 

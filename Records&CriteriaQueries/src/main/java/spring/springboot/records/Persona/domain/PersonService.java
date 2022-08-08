@@ -9,6 +9,8 @@ import spring.springboot.records.Persona.infraestructure.repository.jpa.PersonRe
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -21,6 +23,8 @@ import java.util.Optional;
 @Service
 public class PersonService implements PersonInterface{
 
+    static final int pageSize = 10;
+
     @Autowired
     PersonRepository personRepository;
 
@@ -28,14 +32,23 @@ public class PersonService implements PersonInterface{
     EntityManager entityManager;
 
     @Override
-    public List<PersonaOutputDTO> getAllPersons() {
+    public List<PersonaOutputDTO> getAllPersons(int pageNumber) {
         List<PersonaOutputDTO> personaOutputDTOList = new ArrayList<>();
 
-        for (PersonEntity personEntity : personRepository.findAll()){
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<PersonEntity> query = cb.createQuery(PersonEntity.class);
+        Root<PersonEntity> personaEntityRoot = query.from(PersonEntity.class);
+        CriteriaQuery<PersonEntity> select = query.select(personaEntityRoot);
+        TypedQuery<PersonEntity> typedQuery = entityManager.createQuery(select);
+        typedQuery.setFirstResult((pageNumber*10)-10);
+        typedQuery.setMaxResults(pageSize);
+        List<PersonEntity> paginatedPersons = typedQuery.getResultList();
+
+
+        for (PersonEntity personEntity : paginatedPersons){
             PersonaOutputDTO auxOutputDTO = new PersonaOutputDTO(personEntity);
             personaOutputDTOList.add(auxOutputDTO);
         }
-
         return personaOutputDTOList;
     }
 

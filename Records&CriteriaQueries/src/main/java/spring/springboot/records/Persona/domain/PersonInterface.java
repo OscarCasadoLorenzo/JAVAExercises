@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface PersonInterface {
 
-    List<PersonaOutputDTO> getAllPersons();
+    List<PersonaOutputDTO> getAllPersons(int pageNumber);
 
     boolean existsPerson(int id);
 
