@@ -8,6 +8,7 @@ import spring.springboot.records.Persona.domain.PersonService;
 import spring.springboot.records.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.records.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -24,6 +25,15 @@ public class PersonController {
     @GetMapping("/person/name/{name}")
     public List<PersonaOutputDTO> getPersonByNameRoute(@PathVariable String name){
          return personService.getPersonsByName(name);
+    }
+
+    @GetMapping("/variableEndpoint")
+    public List<PersonaOutputDTO> getPersonWithCriteriaQueryRoute(
+        @PathVariable(required = false) String name,
+        @PathVariable(required = false) String user,
+        @PathVariable(required = false) Date creation_date
+        ){
+        return personService.getPersonsWithCriteriaQuery(name, user, creation_date);
     }
 
 

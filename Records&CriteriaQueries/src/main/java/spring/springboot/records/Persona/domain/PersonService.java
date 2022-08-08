@@ -7,6 +7,7 @@ import spring.springboot.records.Persona.infraestructure.controller.dto.output.P
 import spring.springboot.records.Persona.infraestructure.repository.jpa.PersonRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -47,6 +48,14 @@ public class PersonService implements PersonInterface{
             PersonaOutputDTO auxOutputDTO = new PersonaOutputDTO(personEntity);
             personaOutputDTOList.add(auxOutputDTO);
         }
+
+        return personaOutputDTOList;
+    }
+
+    @Override
+    public List<PersonaOutputDTO> getPersonsWithCriteriaQuery(String name, String user, Date creation_date) {
+        List<PersonaOutputDTO> personaOutputDTOList = new ArrayList<>();
+
 
         return personaOutputDTOList;
     }
