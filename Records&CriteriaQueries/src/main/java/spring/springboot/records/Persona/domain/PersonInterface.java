@@ -5,6 +5,7 @@ import spring.springboot.records.Persona.infraestructure.controller.dto.output.P
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface PersonInterface {
 
@@ -16,7 +17,7 @@ public interface PersonInterface {
 
     List<PersonaOutputDTO> getPersonsByName(String name);
 
-    List<PersonaOutputDTO> getPersonsWithCriteriaQuery(String name, String user, Date creation_date);
+    List<PersonaOutputDTO> getPersonsWithCriteriaQuery( Optional<String> name, Optional<String> user, Optional<Date> creation_date);
 
     PersonaOutputDTO postPerson(PersonaInputDTO personInputDTO);
 
