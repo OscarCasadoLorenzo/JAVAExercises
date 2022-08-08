@@ -20,3 +20,4 @@
 - [BS8. Custom responses](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/ValidAndException)
 - [EJ3-1. Relationships + BS9 + BS12. CORS](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/TableRelations)
 - [Docker](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/PostgreDocker)
+- [DB1. Records & CriteriaQueries](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/Records%26CriteriaQueries)
