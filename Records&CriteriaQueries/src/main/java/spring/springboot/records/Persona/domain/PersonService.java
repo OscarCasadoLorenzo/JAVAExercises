@@ -68,7 +68,9 @@ public class PersonService implements PersonInterface{
             Optional<String> name,
             Optional<String> user,
             Optional<Date> creation_date,
-            String dateCondition) {
+            String dateCondition,
+            Optional<String> sorting) {
+
         List<PersonaOutputDTO> personaOutputDTOList = new ArrayList<>();
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<PersonEntity> query = cb.createQuery(PersonEntity.class);
@@ -95,7 +97,19 @@ public class PersonService implements PersonInterface{
             }
         }
 
-        query.select(personaEntityRoot).where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
+        if(sorting.isPresent()){
+            switch (sorting.get()){
+                case "name":
+                    query.select(personaEntityRoot).where(cb.and(predicates.toArray(new Predicate[predicates.size()]))).orderBy(cb.asc(personaEntityRoot.get("name")));
+                break;
+
+                case "user":
+                    query.select(personaEntityRoot).where(cb.and(predicates.toArray(new Predicate[predicates.size()]))).orderBy(cb.asc(personaEntityRoot.get("usuario")));
+                break;
+            }
+        } else query.select(personaEntityRoot).where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
+
+
 
         entityManager.createQuery(query).getResultList().forEach( personEntity -> {
             personaOutputDTOList.add(new PersonaOutputDTO((PersonEntity) personEntity));

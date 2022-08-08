@@ -35,9 +35,10 @@ public class PersonController {
             @RequestParam(required = false) Optional<String> name,
             @RequestParam(required = false) Optional<String>  user,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Optional<Date> creation_date,
-            @RequestParam(defaultValue = "equal") String dateCondition
+            @RequestParam(defaultValue = "equal") String dateCondition,
+            @RequestParam(required = false) Optional<String> sorting
         ){
-        return personService.getPersonsWithCriteriaQuery(name, user, creation_date, dateCondition);
+        return personService.getPersonsWithCriteriaQuery(name, user, creation_date, dateCondition, sorting);
     }
 
 

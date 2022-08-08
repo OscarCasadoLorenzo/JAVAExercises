@@ -21,7 +21,8 @@ public interface PersonInterface {
             Optional<String> name,
             Optional<String> user,
             Optional<Date> creation_date,
-            String dateCondition);
+            String dateCondition,
+            Optional<String> sorting);
 
     PersonaOutputDTO postPerson(PersonaInputDTO personInputDTO);
 
