@@ -16,14 +16,6 @@ public class PersonEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id_person;
 
-    @OneToOne
-    @JoinColumn(name = "teacherid")
-    TeacherEntity teacher;
-
-    @OneToOne
-    @JoinColumn(name = "studentid")
-    StudentEntity student;
-
     @Column(nullable = false)
     String usuario;
 
