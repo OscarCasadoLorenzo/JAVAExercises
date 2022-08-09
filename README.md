@@ -22,3 +22,4 @@
 - [Docker](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/PostgreDocker)
 - [DB1. Records & CriteriaQueries](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/Records%26CriteriaQueries)
 - [DB2. MongoRepository](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/MongoTemplate)
+- [SA1. WebSockets](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/WebSockets)
