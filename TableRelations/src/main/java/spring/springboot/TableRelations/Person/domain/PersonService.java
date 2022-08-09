@@ -87,8 +87,8 @@ public class PersonService implements PersonInterface{
         List<PersonaOutputDTO> personaOutputDTOList = new ArrayList<>();
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<PersonEntity> query = cb.createQuery(PersonEntity.class);
-        Root<PersonEntity> personaEntityRoot = query.from(PersonEntity.class);
-
+        Root<PersonEntity> personEntityTable = query.from(PersonEntity.class);
+        Join<PersonEntity, StudentEntity> studentJoin = personEntityTable.join(StudentEntity_.person);
         List<Predicate> predicates = new ArrayList<>();
         if (name.isPresent())
             predicates.add(cb.like(personaEntityRoot.get("name"), name.get()));
@@ -96,6 +96,9 @@ public class PersonService implements PersonInterface{
             predicates.add(cb.like(personaEntityRoot.get("surname"), surname.get()));
         if (company.isPresent())
             predicates.add(cb.like(personaEntityRoot.get("company_email"), company.get()));
+
+        query.select(personaEntityRoot).where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
+
 
 
         entityManager.createQuery(query).getResultList().forEach( personEntity -> {
@@ -106,20 +109,7 @@ public class PersonService implements PersonInterface{
 
     @Override
     public PersonaOutputDTO postPerson(PersonaInputDTO personInputDTO) throws RuntimeException{
-
             PersonEntity personEntity = new PersonEntity(personInputDTO);
-
-            if(personInputDTO.getStudentID().isPresent() && personInputDTO.getTeacherID().isPresent())
-                throw new RuntimeException("A person cant be student and teacher at the same time.");
-            if(personInputDTO.getStudentID().isPresent()) {
-                StudentEntity student = studentRepository.findById(personInputDTO.getStudentID().get())
-                        .orElseThrow(() -> new RuntimeException("Student with id: " + personInputDTO.getStudentID().get() + " doesnt exists."));
-            }
-            if(personInputDTO.getTeacherID().isPresent()){
-                TeacherEntity teacher = teacherRepository.findById(personInputDTO.getTeacherID().get())
-                        .orElseThrow(() -> new RuntimeException("Teacher with id: " + personInputDTO.getTeacherID().get() + " doesnt exists."));
-
-            }
 
             personRepository.save(personEntity);
             PersonaOutputDTO personaOutputDTO = new PersonaOutputDTO(personEntity);
