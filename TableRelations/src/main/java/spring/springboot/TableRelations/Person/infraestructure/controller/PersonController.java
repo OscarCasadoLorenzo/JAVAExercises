@@ -1,5 +1,6 @@
 package spring.springboot.TableRelations.Person.infraestructure.controller;
 
+import com.sun.source.tree.TryTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import spring.springboot.TableRelations.Person.proxy.TeacherServiceProxy;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/person")
@@ -43,10 +45,24 @@ public class PersonController {
          }
     }
 
-    @PostMapping
-    public PersonaOutputDTO postPersonRoute(@Valid @RequestBody PersonaInputDTO personaInputDTO){
+    @GetMapping("/criteriaquery")
+    public List<PersonaOutputDTO> getPersonWithCriteriaQueryRoute(
+            @RequestParam(required = false) Optional<String> name,
+            @RequestParam(required = false) Optional<String>  surname,
+            @RequestParam(required = false) Optional<String>  company,
+            @RequestParam(required = false) Optional<String>  teacherName
+    ){
+        return personService.getPersonWithCriteriaQuery(name, surname, company, teacherName);
+    }
 
-        return personService.postPerson(personaInputDTO);
+    @PostMapping
+    public ResponseEntity<?> postPersonRoute(@Valid @RequestBody PersonaInputDTO personaInputDTO){
+        try {
+            return new ResponseEntity<>(personService.postPerson(personaInputDTO), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @PutMapping("/{id}")

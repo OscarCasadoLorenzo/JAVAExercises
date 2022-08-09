@@ -6,6 +6,7 @@ import spring.springboot.TableRelations.Person.infraestructure.controller.dto.ou
 import spring.springboot.TableRelations.Teacher.infraestructure.controller.dto.output.TeacherOutputDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PersonInterface {
 
@@ -16,6 +17,12 @@ public interface PersonInterface {
     PersonaOutputDTO getPersonByID(int id);
 
     List<PersonaOutputDTO> getPersonsByName(String name);
+
+    List<PersonaOutputDTO> getPersonWithCriteriaQuery (
+            Optional<String> name,
+            Optional<String>  surname,
+            Optional<String>  company,
+            Optional<String>  teacherName);
 
     PersonaOutputDTO postPerson(PersonaInputDTO personInputDTO) throws MethodArgumentNotValidException;
 

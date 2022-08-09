@@ -10,17 +10,33 @@ import org.springframework.web.client.RestTemplate;
 import spring.springboot.TableRelations.Person.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.TableRelations.Person.infraestructure.controller.dto.output.PersonaOutputDTO;
 import spring.springboot.TableRelations.Person.infraestructure.repository.jpa.PersonRepository;
+import spring.springboot.TableRelations.Student.domain.StudentEntity;
+import spring.springboot.TableRelations.Student.infraestructure.repository.StudentRepository;
+import spring.springboot.TableRelations.Teacher.domain.TeacherEntity;
 import spring.springboot.TableRelations.Teacher.infraestructure.controller.dto.output.TeacherOutputDTO;
+import spring.springboot.TableRelations.Teacher.repository.TeacherRepository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.criteria.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonService implements PersonInterface{
 
     @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    StudentRepository studentRepository;
+
+    @Autowired
+    TeacherRepository teacherRepository;
+
+    @Autowired
+    EntityManager entityManager;
 
     @Override
     public List<PersonaOutputDTO> getAllPersons() {
@@ -62,13 +78,52 @@ public class PersonService implements PersonInterface{
     }
 
     @Override
-    public PersonaOutputDTO postPerson(PersonaInputDTO personInputDTO){
+    public List<PersonaOutputDTO> getPersonWithCriteriaQuery(
+            Optional<String> name,
+            Optional<String>  surname,
+            Optional<String>  company,
+            Optional<String>  teacherName) {
+
+        List<PersonaOutputDTO> personaOutputDTOList = new ArrayList<>();
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<PersonEntity> query = cb.createQuery(PersonEntity.class);
+        Root<PersonEntity> personaEntityRoot = query.from(PersonEntity.class);
+
+        List<Predicate> predicates = new ArrayList<>();
+        if (name.isPresent())
+            predicates.add(cb.like(personaEntityRoot.get("name"), name.get()));
+        if (surname.isPresent())
+            predicates.add(cb.like(personaEntityRoot.get("surname"), surname.get()));
+        if (company.isPresent())
+            predicates.add(cb.like(personaEntityRoot.get("company_email"), company.get()));
+
+
+        entityManager.createQuery(query).getResultList().forEach( personEntity -> {
+            personaOutputDTOList.add(new PersonaOutputDTO((PersonEntity) personEntity));
+        });
+        return personaOutputDTOList;
+    }
+
+    @Override
+    public PersonaOutputDTO postPerson(PersonaInputDTO personInputDTO) throws RuntimeException{
 
             PersonEntity personEntity = new PersonEntity(personInputDTO);
+
+            if(personInputDTO.getStudentID().isPresent() && personInputDTO.getTeacherID().isPresent())
+                throw new RuntimeException("A person cant be student and teacher at the same time.");
+            if(personInputDTO.getStudentID().isPresent()) {
+                StudentEntity student = studentRepository.findById(personInputDTO.getStudentID().get())
+                        .orElseThrow(() -> new RuntimeException("Student with id: " + personInputDTO.getStudentID().get() + " doesnt exists."));
+            }
+            if(personInputDTO.getTeacherID().isPresent()){
+                TeacherEntity teacher = teacherRepository.findById(personInputDTO.getTeacherID().get())
+                        .orElseThrow(() -> new RuntimeException("Teacher with id: " + personInputDTO.getTeacherID().get() + " doesnt exists."));
+
+            }
+
             personRepository.save(personEntity);
             PersonaOutputDTO personaOutputDTO = new PersonaOutputDTO(personEntity);
             return personaOutputDTO;
-
     }
 
     @Override

@@ -3,6 +3,7 @@ package spring.springboot.TableRelations.Person.domain;
 import lombok.Data;
 import spring.springboot.TableRelations.Person.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.TableRelations.Student.domain.StudentEntity;
+import spring.springboot.TableRelations.Teacher.domain.TeacherEntity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,6 +15,14 @@ public class PersonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id_person;
+
+    @OneToOne
+    @JoinColumn(name = "teacherid")
+    TeacherEntity teacher;
+
+    @OneToOne
+    @JoinColumn(name = "studentid")
+    StudentEntity student;
 
     @Column(nullable = false)
     String usuario;
