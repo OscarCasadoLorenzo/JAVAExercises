@@ -17,6 +17,7 @@ public class FileEntity {
 
     private String type;
 
+    @Lob
     private byte[] data;
 
     String name;

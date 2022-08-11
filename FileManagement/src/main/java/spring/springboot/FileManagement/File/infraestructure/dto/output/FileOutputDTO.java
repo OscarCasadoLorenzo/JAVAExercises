@@ -10,7 +10,7 @@ import java.util.Date;
 public class FileOutputDTO {
     Integer id;
 
-    MultipartFile file;
+    byte[] data;
 
     String name;
 
@@ -19,6 +19,7 @@ public class FileOutputDTO {
     public FileOutputDTO(FileEntity fileEntity){
         this.id = fileEntity.getId();
         this.name = fileEntity.getName();
+        this.data = fileEntity.getData();
         this.upload_date = fileEntity.getUpload_date();
     }
 }
