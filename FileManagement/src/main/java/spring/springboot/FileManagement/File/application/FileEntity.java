@@ -2,11 +2,9 @@ package spring.springboot.FileManagement.File.application;
 
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
+import spring.springboot.FileManagement.File.infraestructure.dto.input.FileInputDTO;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.File;
 import java.util.Date;
 
@@ -17,8 +15,18 @@ public class FileEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
 
-    MultipartFile file;
+    private String type;
+
+    private byte[] data;
+
+    String name;
 
     Date upload_date;
 
+    public FileEntity(byte[] data, String name, String type){
+        this.data = data;
+        this.name = name;
+        this.type = type;
+        this.upload_date = new Date(System.currentTimeMillis());
+    }
 }
