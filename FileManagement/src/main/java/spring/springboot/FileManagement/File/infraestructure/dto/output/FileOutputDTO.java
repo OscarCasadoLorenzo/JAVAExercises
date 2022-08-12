@@ -1,7 +1,6 @@
 package spring.springboot.FileManagement.File.infraestructure.dto.output;
 
 import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
 import spring.springboot.FileManagement.File.application.FileEntity;
 
 import java.util.Date;

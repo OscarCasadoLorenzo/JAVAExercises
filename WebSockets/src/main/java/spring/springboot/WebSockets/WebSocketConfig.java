@@ -15,6 +15,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         /*  Enable a simple memory-based message broker to carry the
             greeting messages back to the client on destinations prefixed with /topic */
         config.enableSimpleBroker("/topic");
+
          /*  It also designates the /app prefix for messages that are bound
             for methods annotated with @MessageMapping */
         config.setApplicationDestinationPrefixes("/app");

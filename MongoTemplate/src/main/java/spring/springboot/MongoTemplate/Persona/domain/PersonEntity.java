@@ -11,7 +11,6 @@ import java.util.Date;
 @Document
 @Data
 public class PersonEntity {
-    @Id
     int id_person;
 
     String usuario;

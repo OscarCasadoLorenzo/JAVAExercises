@@ -6,6 +6,7 @@ import spring.springboot.FileManagement.File.infraestructure.dto.input.FileInput
 
 import javax.persistence.*;
 import java.io.File;
+import java.security.PublicKey;
 import java.util.Date;
 
 @Entity
@@ -23,6 +24,10 @@ public class FileEntity {
     String name;
 
     Date upload_date;
+
+    public FileEntity(){
+
+    }
 
     public FileEntity(byte[] data, String name, String type){
         this.data = data;

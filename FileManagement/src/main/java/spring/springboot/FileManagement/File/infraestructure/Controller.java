@@ -20,10 +20,14 @@ public class Controller {
     FileService fileService;
 
     @GetMapping("/{id}")
-    public FileOutputDTO getFileByIDRoute(
+    public ResponseEntity<?> getFileByIDRoute(
             @PathVariable int id
     ){
-        return fileService.getFileByID(id);
+        try {
+            return fileService.getFileByID(id);
+        } catch (RuntimeException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/name/{name}")

@@ -2,7 +2,11 @@ package spring.springboot.FileManagement.File.application;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,8 +25,14 @@ public class FileService implements FileInterface{
     FileRepository fileRepository;
 
     @Override
-    public FileOutputDTO getFileByID(int id) {
-        return null;
+    public ResponseEntity<Resource> getFileByID(int id) {
+        FileEntity fileEntity = fileRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("File with id: " + id + " doesnt exist."));
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(fileEntity.getType()))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileEntity.getName() + "\"")
+                .body(new ByteArrayResource(fileEntity.getData()));
     }
 
     @Override
