@@ -30,19 +30,13 @@ public class Controller {
         }
     }
 
-    @GetMapping("/name/{name}")
-    public FileOutputDTO getFileByNameRoute(
-            @PathVariable String name
-    ){
-        return fileService.getFileByName(name);
-    }
-
-    @PostMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    @PostMapping("/upload/{type}")
     public ResponseEntity<?> postFileRoute(
-            @ModelAttribute FileInputDTO fileInputDTO
+            @ModelAttribute FileInputDTO fileInputDTO,
+            @PathVariable String type
             ){
         try{
-            return new ResponseEntity<>(fileService.postFile(fileInputDTO), HttpStatus.OK);
+            return new ResponseEntity<>(fileService.postFile(type, fileInputDTO), HttpStatus.OK);
         }catch (IOException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }

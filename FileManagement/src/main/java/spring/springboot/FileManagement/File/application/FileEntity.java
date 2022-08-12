@@ -21,6 +21,7 @@ public class FileEntity {
     @Lob
     private byte[] data;
 
+    @Column(unique = true)
     String name;
 
     Date upload_date;

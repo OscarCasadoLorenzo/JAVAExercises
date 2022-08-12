@@ -36,13 +36,9 @@ public class FileService implements FileInterface{
     }
 
     @Override
-    public FileOutputDTO getFileByName(String name) {
-        return null;
-    }
-
-    @Override
-    public FileOutputDTO postFile(FileInputDTO fileInputDTO) throws IOException {
-        String fileName = StringUtils.cleanPath(fileInputDTO.getFile().getOriginalFilename());
+    public FileOutputDTO postFile(String type, FileInputDTO fileInputDTO) throws IOException {
+        //String fileName = StringUtils.cleanPath(fileInputDTO.getFile().getOriginalFilename());
+        String fileName = fileInputDTO.getName()+"."+type;
         byte[] data = fileInputDTO.getFile().getBytes();
         String fileType = fileInputDTO.getFile().getContentType();
 

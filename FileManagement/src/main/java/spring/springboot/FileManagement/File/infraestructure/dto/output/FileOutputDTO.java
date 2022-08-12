@@ -9,7 +9,9 @@ import java.util.Date;
 public class FileOutputDTO {
     Integer id;
 
-    byte[] data;
+    String type;
+
+    String downloadURL;
 
     String name;
 
@@ -18,7 +20,8 @@ public class FileOutputDTO {
     public FileOutputDTO(FileEntity fileEntity){
         this.id = fileEntity.getId();
         this.name = fileEntity.getName();
-        this.data = fileEntity.getData();
+        this.type = fileEntity.getType();
+        this.downloadURL = "http://localhost:8080/file/"+this.id;
         this.upload_date = fileEntity.getUpload_date();
     }
 }
