@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "4a90410d-f814-4b8a-93ec-2ba532393c49",
+		"name": "FileManagement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21914220"
+	},
+	"item": [
+		{
+			"name": "/file/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/file/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"file",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/file",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/oscar.clorenzo/Downloads/Curriculum.pdf"
+						},
+						{
+							"key": "name",
+							"value": "NombreFichero",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/file",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"file"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
