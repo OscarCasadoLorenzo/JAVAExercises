@@ -7,7 +7,7 @@ import spring.springboot.FileManagement.File.infraestructure.dto.output.FileOutp
 import java.io.IOException;
 
 public interface FileInterface {
-    ResponseEntity<?> getFileByID(int id);
+    ResponseEntity<?> getFileByID(int id, String path) throws IOException;
 
     FileOutputDTO postFile(String type, FileInputDTO fileInputDTO) throws IOException;
 }

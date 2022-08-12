@@ -14,6 +14,8 @@ import spring.springboot.FileManagement.File.infraestructure.dto.input.FileInput
 import spring.springboot.FileManagement.File.infraestructure.dto.output.FileOutputDTO;
 import spring.springboot.FileManagement.File.repository.FileRepository;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.stream.Stream;
@@ -25,14 +27,25 @@ public class FileService implements FileInterface{
     FileRepository fileRepository;
 
     @Override
-    public ResponseEntity<Resource> getFileByID(int id) {
+    public ResponseEntity<Resource> getFileByID(int id, String path) throws IOException {
         FileEntity fileEntity = fileRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("File with id: " + id + " doesnt exist."));
 
+        File newFile = new File( path + fileEntity.getName());
+        newFile.createNewFile();
+        FileOutputStream output = new FileOutputStream(newFile);
+        output.write(fileEntity.getData());
+        output.close();
+        return null;
+        /*
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(fileEntity.getType()))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileEntity.getName() + "\"")
                 .body(new ByteArrayResource(fileEntity.getData()));
+
+         */
+
+
     }
 
     @Override
