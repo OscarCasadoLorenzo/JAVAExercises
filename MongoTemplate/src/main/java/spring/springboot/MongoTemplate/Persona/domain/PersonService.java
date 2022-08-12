@@ -54,7 +54,7 @@ public class PersonService implements PersonInterface{
     @Override
     public PersonaOutputDTO postPerson(PersonaInputDTO personInputDTO) {
         PersonEntity personEntity = new PersonEntity(personInputDTO);
-        personRepository.save(personEntity);
+        personRepository.insert(personEntity);
         PersonaOutputDTO personaOutputDTO = new PersonaOutputDTO(personEntity);
         return personaOutputDTO;
     }
