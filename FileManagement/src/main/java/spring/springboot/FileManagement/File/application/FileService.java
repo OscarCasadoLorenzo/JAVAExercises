@@ -32,20 +32,12 @@ public class FileService implements FileInterface{
                 .orElseThrow(() -> new RuntimeException("File with id: " + id + " doesnt exist."));
 
         File newFile = new File( path + fileEntity.getName());
+        System.out.println("File absolute path: " + newFile.getAbsolutePath());
         newFile.createNewFile();
         FileOutputStream output = new FileOutputStream(newFile);
         output.write(fileEntity.getData());
         output.close();
         return null;
-        /*
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(fileEntity.getType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileEntity.getName() + "\"")
-                .body(new ByteArrayResource(fileEntity.getData()));
-
-         */
-
-
     }
 
     @Override

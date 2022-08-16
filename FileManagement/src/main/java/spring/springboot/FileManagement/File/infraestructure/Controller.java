@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import spring.springboot.FileManagement.File.application.FileService;
 import spring.springboot.FileManagement.File.infraestructure.dto.input.FileInputDTO;
+import spring.springboot.FileManagement.FileManagementApplication;
 
 import java.io.IOException;
 
@@ -16,13 +17,17 @@ public class Controller {
     @Autowired
     FileService fileService;
 
+    private String fileRoute = FileManagementApplication.fileRoute;
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getFileByIDRoute(
             @PathVariable int id,
             @RequestParam(defaultValue = "C:\\Users\\oscar.clorenzo\\IdeaProjects\\FileManagement\\src\\main\\resources\\downloads\\") String path
     ){
         try {
-            return fileService.getFileByID(id, path);
+            if(!fileRoute.equals(""))
+                return fileService.getFileByID(id, fileRoute);
+            else return fileService.getFileByID(id, path);
         } catch (RuntimeException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         } catch (IOException i){
