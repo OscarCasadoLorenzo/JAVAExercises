@@ -32,7 +32,7 @@ public class FileService implements FileInterface{
                 .orElseThrow(() -> new RuntimeException("File with id: " + id + " doesnt exist."));
 
         File newFile = new File( path + fileEntity.getName());
-        System.out.println("File absolute path: " + newFile.getAbsolutePath());
+        System.out.println( "File absolute path: " + newFile.getAbsolutePath());
         newFile.createNewFile();
         FileOutputStream output = new FileOutputStream(newFile);
         output.write(fileEntity.getData());

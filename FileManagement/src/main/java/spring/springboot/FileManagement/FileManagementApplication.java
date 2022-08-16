@@ -8,7 +8,7 @@ public class FileManagementApplication {
 
 	public static String fileRoute = "";
 
-	public static void main(String[] args) {
+	public static void main(String [] args) {
 		if(args.length > 0)
 			fileRoute = args[0];
 

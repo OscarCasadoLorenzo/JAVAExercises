@@ -22,7 +22,7 @@ public class Controller {
     @GetMapping("/{id}")
     public ResponseEntity<?> getFileByIDRoute(
             @PathVariable int id,
-            @RequestParam(defaultValue = "C:\\Users\\oscar.clorenzo\\IdeaProjects\\FileManagement\\src\\main\\resources\\downloads\\") String path
+            @RequestParam(defaultValue =  "C:\\Users\\oscar.clorenzo\\IdeaProjects\\FileManagement\\src\\main\\resources\\downloads\\") String path
     ){
         try {
             if(!fileRoute.equals(""))
