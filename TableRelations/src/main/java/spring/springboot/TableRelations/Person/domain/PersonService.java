@@ -87,8 +87,7 @@ public class PersonService implements PersonInterface{
         List<PersonaOutputDTO> personaOutputDTOList = new ArrayList<>();
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<PersonEntity> query = cb.createQuery(PersonEntity.class);
-        Root<PersonEntity> personEntityTable = query.from(PersonEntity.class);
-        Join<PersonEntity, StudentEntity> studentJoin = personEntityTable.join(StudentEntity_.person);
+        Root<PersonEntity> personaEntityRoot = query.from(PersonEntity.class);
         List<Predicate> predicates = new ArrayList<>();
         if (name.isPresent())
             predicates.add(cb.like(personaEntityRoot.get("name"), name.get()));
@@ -98,8 +97,6 @@ public class PersonService implements PersonInterface{
             predicates.add(cb.like(personaEntityRoot.get("company_email"), company.get()));
 
         query.select(personaEntityRoot).where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
-
-
 
         entityManager.createQuery(query).getResultList().forEach( personEntity -> {
             personaOutputDTOList.add(new PersonaOutputDTO((PersonEntity) personEntity));
