@@ -23,3 +23,4 @@
 - [DB1. Records & CriteriaQueries](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/Records%26CriteriaQueries)
 - [DB2. MongoRepository](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/MongoTemplate)
 - [SA1. WebSockets](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/WebSockets)
+- [SA2. File Management](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/FileManagement)
