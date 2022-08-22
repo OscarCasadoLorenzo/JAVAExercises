@@ -33,24 +33,24 @@ public class PersonRepositoryTest {
     @Order(2)
     public void getPersonTest(){
 
-        PersonEntity persona = personRepository.findById(1).get();
-        Assertions.assertThat(persona.getId_person()).isEqualTo(1);
+        PersonEntity person = personRepository.findById(1).get();
+        Assertions.assertThat(person.getId_person()).isEqualTo(1);
     }
 
     @Test
     @Order(3)
     public void getPersonByUser(){
 
-        Optional<PersonEntity> optionalPersona = personRepository.findByUsuario("Vicente");
-        Assertions.assertThat(optionalPersona.get().getUsuario()).isEqualTo("Vicente");
+        Optional<PersonEntity> optionalPerson = personRepository.findByUsuario("Vicente");
+        Assertions.assertThat(optionalPerson.get().getUsuario()).isEqualTo("Vicente");
     }
 
     @Test
     @Order(4)
     public void getListOfPersonsTest(){
 
-        List<PersonEntity> personas = personRepository.findAll();
-        Assertions.assertThat(personas.size()).isPositive();
+        List<PersonEntity> persons = personRepository.findAll();
+        Assertions.assertThat(persons.size()).isPositive();
     }
 
     @Test
@@ -60,8 +60,8 @@ public class PersonRepositoryTest {
 
         PersonEntity persona = personRepository.findById(1).get();
         persona.setUsuario("NuevoUsuarioTest");
-        PersonEntity personaActualizada =  personRepository.save(persona);
-        Assertions.assertThat(personaActualizada.getUsuario()).isEqualTo("NuevoUsuarioTest");
+        PersonEntity updatedPerson =  personRepository.save(persona);
+        Assertions.assertThat(updatedPerson.getUsuario()).isEqualTo("NuevoUsuarioTest");
     }
 
     @Test
@@ -71,12 +71,12 @@ public class PersonRepositoryTest {
 
         PersonEntity persona = personRepository.findById(1).get();
         personRepository.delete(persona);
-        PersonEntity personaNull = null;
+        PersonEntity nullPerson = null;
         Optional<PersonEntity> optionalPersona = personRepository.findByUsuario("Vicente");
 
         if(optionalPersona.isPresent()){
-            personaNull = optionalPersona.get();
+            nullPerson = optionalPersona.get();
         }
-        Assertions.assertThat(personaNull).isNull();
+        Assertions.assertThat(nullPerson).isNull();
     }
 }
