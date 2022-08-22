@@ -14,33 +14,31 @@ public class PersonEntity {
     @GeneratedValue
     int id_person;
 
-    @Column(nullable = false)
     String usuario;
 
-    @Column(nullable = false)
     String password;
 
-    @Column(nullable = false)
-    String name;
+    public int getId_person() {
+        return id_person;
+    }
 
-    String surname;
+    public void setId_person(int id_person) {
+        this.id_person = id_person;
+    }
 
-    @Column(nullable = false)
-    String company_email;
+    public String getUsuario() {
+        return usuario;
+    }
 
-    @Column(nullable = false)
-    String personal_email;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
 
-    @Column(nullable = false)
-    String city;
+    public String getPassword() {
+        return password;
+    }
 
-    @Column(nullable = false)
-    boolean active;
-
-    Date created_date;
-
-    String image_url;
-
-    Date termination_date;
-
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
