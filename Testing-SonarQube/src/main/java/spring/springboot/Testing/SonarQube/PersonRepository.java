@@ -1,8 +1,8 @@
-package spring.springboot.Testing.SonarQube.Persona.infraestructure.repository.jpa;
+package spring.springboot.Testing.SonarQube;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
-import spring.springboot.Testing.SonarQube.Persona.domain.PersonEntity;
+import spring.springboot.Testing.SonarQube.PersonEntity;
 
 import java.util.List;
 
