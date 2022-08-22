@@ -24,3 +24,4 @@
 - [DB2. MongoRepository](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/MongoTemplate)
 - [SA1. WebSockets](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/WebSockets)
 - [SA2. File Management](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/FileManagement)
+- [EJTE1. Testing and SonarQube](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/main/Testing-SonarQube)
