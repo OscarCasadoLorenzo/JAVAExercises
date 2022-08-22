@@ -1,12 +1,8 @@
 package spring.springboot.Testing.SonarQube;
 
-import lombok.Data;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Date;
 
 @Entity
 public class PersonEntity {
@@ -17,6 +13,21 @@ public class PersonEntity {
     String usuario;
 
     String password;
+
+    public PersonEntity(int id, String usuario, String password) {
+        this.id_person=id;
+        this.usuario = usuario;
+        this.password = password;
+    }
+
+    public PersonEntity(String usuario, String password) {
+        this.usuario = usuario;
+        this.password = password;
+    }
+
+    public PersonEntity(){
+
+    }
 
     public int getId_person() {
         return id_person;
@@ -30,8 +41,8 @@ public class PersonEntity {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setUsuario(String user) {
+        this.usuario = user;
     }
 
     public String getPassword() {
