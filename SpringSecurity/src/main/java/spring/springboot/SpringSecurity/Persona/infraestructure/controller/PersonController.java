@@ -16,6 +16,14 @@ public class PersonController {
     @Autowired
     PersonService personService;
 
+    @PostMapping("/login")
+    public String loginRoute(
+            @RequestParam String user,
+            @RequestParam String pass,
+    ){
+
+    }
+
     @GetMapping
     public List<PersonaOutputDTO> getPersonsRoute(){
         List<PersonaOutputDTO> personaOutputDTOList = personService.getAllPersons();

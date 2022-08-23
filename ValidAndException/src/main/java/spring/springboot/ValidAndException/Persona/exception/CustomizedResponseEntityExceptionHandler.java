@@ -17,7 +17,7 @@ import java.util.Date;
     Is used for exception classes
  */
 @RestControllerAdvice
-public abstract class CustomizedResponseEntityExceptionHandler{
+public class CustomizedResponseEntityExceptionHandler{
 
 
     /*
@@ -26,19 +26,16 @@ public abstract class CustomizedResponseEntityExceptionHandler{
      */
 
     // @ExceptionHandler tag execute this functions when BeanNotFoundException is threw
-    @ExceptionHandler({NotFoundException.class, UnprocesableException.class})
-    @Nullable
-    public final ResponseEntity<CustomError> handleException(Exception ex, WebRequest request){
-        if(ex instanceof NotFoundException subEx){
-            CustomError customError = new CustomError(new Date(), ex.getMessage(), 404);
-            return new ResponseEntity<>(customError, HttpStatus.NOT_FOUND);
-        }
-        if(ex instanceof UnprocesableException subEx){
-            CustomError customError = new CustomError(new Date(), ex.getMessage(), 422);
-            return new ResponseEntity<>(customError, HttpStatus.UNPROCESSABLE_ENTITY);
-        }
-        else return null;
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<CustomError> idNotFound(NotFoundException ex) {
+        return new ResponseEntity<>(new CustomError(new Date(), ex.getMessage(), HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
     }
 
-
+    @ExceptionHandler(UnprocesableException.class)
+    public ResponseEntity<CustomError> invalidArguments(UnprocesableException ex) {
+        return new ResponseEntity<>(new CustomError(new Date(), ex.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY.value()), HttpStatus.UNPROCESSABLE_ENTITY);
+    }
 }
+
+
+

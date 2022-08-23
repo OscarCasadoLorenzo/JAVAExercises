@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface PersonInterface {
 
+    String login(String user, String password);
+
     List<PersonaOutputDTO> getAllPersons();
 
     boolean existsPerson(int id);

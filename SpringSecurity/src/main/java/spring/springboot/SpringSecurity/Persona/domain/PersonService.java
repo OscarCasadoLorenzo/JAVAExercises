@@ -16,6 +16,11 @@ public class PersonService implements PersonInterface{
     PersonRepository personRepository;
 
     @Override
+    public String login(String user, String password) {
+        if()
+    }
+
+    @Override
     public List<PersonaOutputDTO> getAllPersons() {
         List<PersonaOutputDTO> personaOutputDTOList = new ArrayList<>();
 

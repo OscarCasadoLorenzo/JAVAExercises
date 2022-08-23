@@ -3,10 +3,12 @@ package spring.springboot.ValidAndException.Persona.infraestructure.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.SmartValidator;
 import org.springframework.web.bind.annotation.*;
 import spring.springboot.ValidAndException.Persona.domain.PersonService;
 import spring.springboot.ValidAndException.Persona.exception.NotFoundException;
+import spring.springboot.ValidAndException.Persona.exception.UnprocesableException;
 import spring.springboot.ValidAndException.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.ValidAndException.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
 
@@ -44,9 +46,10 @@ public class PersonController {
     }
 
     @PostMapping("/person")
-    public PersonaOutputDTO postPersonRoute(@Valid @RequestBody PersonaInputDTO personaInputDTO){
-
-        return personService.postPerson(personaInputDTO);
+    public PersonaOutputDTO postPersonRoute(@Valid @RequestBody PersonaInputDTO personaInputDTO, BindingResult errors){
+        if(errors.hasErrors())
+            throw new UnprocesableException("Hola");
+        else return personService.postPerson(personaInputDTO);
     }
 
     @PutMapping("/person/{id}")
