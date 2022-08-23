@@ -11,23 +11,24 @@ import spring.springboot.SpringSecurity.Persona.infraestructure.controller.dto.o
 import java.util.List;
 
 @RestController
+@RequestMapping("/person")
 public class PersonController {
     @Autowired
     PersonService personService;
 
-    @GetMapping("/persons")
+    @GetMapping
     public List<PersonaOutputDTO> getPersonsRoute(){
         List<PersonaOutputDTO> personaOutputDTOList = personService.getAllPersons();
         return personaOutputDTOList;
     }
 
-    @GetMapping("/person/name/{name}")
+    @GetMapping("/name/{name}")
     public List<PersonaOutputDTO> getPersonByNameRoute(@PathVariable String name){
          return personService.getPersonsByName(name);
     }
 
 
-    @GetMapping("/person/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getPersonByIDRoute(@PathVariable int id){
         //If ID doesnt exists then return 404
         if(!personService.existsPerson(id)){
@@ -37,12 +38,12 @@ public class PersonController {
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
     }
 
-    @PostMapping("/person")
+    @PostMapping
     public PersonaOutputDTO postPersonRoute(@RequestBody PersonaInputDTO personaInputDTO){
         return personService.postPerson(personaInputDTO);
     }
 
-    @PutMapping("/person/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updatePersonRoute(@PathVariable int id, @RequestBody PersonaInputDTO personaInputDTO){
         //If ID doesnt exists then return 404
         if(!personService.existsPerson(id)){
@@ -52,7 +53,7 @@ public class PersonController {
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
     }
 
-    @DeleteMapping("/person/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePersonRoute(@PathVariable int id){
         //If ID doesnt exists then return 404
         if(!personService.existsPerson(id)){
@@ -61,5 +62,7 @@ public class PersonController {
         PersonaOutputDTO personaOutputDTO = personService.deletePerson(id);
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
     }
+
+
 
 }
