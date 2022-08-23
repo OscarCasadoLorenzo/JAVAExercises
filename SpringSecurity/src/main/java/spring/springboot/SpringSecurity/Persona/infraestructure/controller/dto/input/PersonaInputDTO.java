@@ -8,5 +8,5 @@ import java.util.Date;
 public class PersonaInputDTO {
     private String password;
     private String name;
-    private String role;
+    private String role = "user";
 }

@@ -17,7 +17,7 @@ public class WebSecurityConfiguration{
         httpSecurity.csrf().disable();
 
         httpSecurity.authorizeRequests().antMatchers(HttpMethod.POST, "/login").permitAll();
-        httpSecurity.authorizeRequests().anyRequest().authenticated();
+//      httpSecurity.authorizeRequests().anyRequest().authenticated();
 
         return httpSecurity.build();
     }

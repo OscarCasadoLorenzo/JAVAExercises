@@ -15,4 +15,6 @@ public interface PersonRepository extends CrudRepository<PersonEntity, Integer> 
     */
     List<PersonEntity> findByName(String name);
 
+    boolean existsByName(String name);
+
 }

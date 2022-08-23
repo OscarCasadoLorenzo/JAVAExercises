@@ -1,5 +1,7 @@
 package spring.springboot.SpringSecurity.Persona.infraestructure.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +20,9 @@ public class PersonController {
 
     @PostMapping("/login")
     public String loginRoute(
-            @RequestParam String user,
-            @RequestParam String pass,
+            @RequestBody ObjectNode request
     ){
-
+        return personService.login(request.get("user").asText(), request.get("password").asText());
     }
 
     @GetMapping

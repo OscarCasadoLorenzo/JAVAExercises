@@ -17,7 +17,14 @@ public class PersonService implements PersonInterface{
 
     @Override
     public String login(String user, String password) {
-        if()
+        PersonEntity userLogin = null;
+        if(personRepository.findByName(user).size() != 0){
+            userLogin = personRepository.findByName(user).get(0);
+            if(userLogin.getPassword().equals(password)){
+                return "Logged";
+            } else return "Incorrect password. Try again.";
+        } else return "User " + user + " doesnt exits.";
+
     }
 
     @Override
@@ -58,6 +65,7 @@ public class PersonService implements PersonInterface{
 
     @Override
     public PersonaOutputDTO postPerson(PersonaInputDTO personInputDTO) {
+
         PersonEntity personEntity = new PersonEntity(personInputDTO);
         personRepository.save(personEntity);
         PersonaOutputDTO personaOutputDTO = new PersonaOutputDTO(personEntity);
