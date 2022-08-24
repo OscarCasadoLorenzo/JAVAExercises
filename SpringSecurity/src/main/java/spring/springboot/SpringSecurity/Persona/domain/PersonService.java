@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import spring.springboot.SpringSecurity.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.SpringSecurity.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
 import spring.springboot.SpringSecurity.Persona.infraestructure.repository.jpa.PersonRepository;
+import spring.springboot.SpringSecurity.Util.JWTUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +16,18 @@ public class PersonService implements PersonInterface{
     @Autowired
     PersonRepository personRepository;
 
+    @Autowired
+    private JWTUtil jwtUtil;
+
+    private final String secretKey = "mySecretKey";
+
     @Override
     public String login(String user, String password) {
         PersonEntity userLogin = null;
         if(personRepository.findByName(user).size() != 0){
             userLogin = personRepository.findByName(user).get(0);
             if(userLogin.getPassword().equals(password)){
+
                 return "Logged";
             } else return "Incorrect password. Try again.";
         } else return "User " + user + " doesnt exits.";
