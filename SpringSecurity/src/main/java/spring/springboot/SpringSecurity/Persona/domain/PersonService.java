@@ -23,13 +23,15 @@ public class PersonService implements PersonInterface{
 
     private final String secretKey = "mySecretKey";
 
-    private String getJWTToken(String user){
-        List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-                .commaSeparatedStringToAuthorityList("ROLE_USER");
+    private String getJWTToken(Integer id, String user, String role){
+        List<GrantedAuthority> grantedAuthorities;
+        if(role.equals("admin"))
+            grantedAuthorities= AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN");
+        else grantedAuthorities= AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
 
         String token = Jwts
                 .builder()
-                .setId("softtekJWT")
+                .setId(id.toString())
                 .setSubject(user)
                 .claim("authorities",
                         grantedAuthorities.stream()
@@ -49,7 +51,7 @@ public class PersonService implements PersonInterface{
         if(personRepository.findByName(user).size() != 0){
             userLogin = personRepository.findByName(user).get(0);
             if(userLogin.getPassword().equals(password)){
-                return getJWTToken(user);
+                return getJWTToken(userLogin.getId_person(), userLogin.getName(), userLogin.getRole());
             } else return "Incorrect password. Try again.";
         } else return "User " + user + " doesnt exits.";
 

@@ -47,7 +47,7 @@ public class PersonController {
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/signup")
     public PersonaOutputDTO postPersonRoute(@RequestBody PersonaInputDTO personaInputDTO){
         return personService.postPerson(personaInputDTO);
     }
