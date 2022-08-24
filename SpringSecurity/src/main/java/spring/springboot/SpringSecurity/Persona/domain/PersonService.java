@@ -1,14 +1,19 @@
 package spring.springboot.SpringSecurity.Persona.domain;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Service;
 import spring.springboot.SpringSecurity.Persona.infraestructure.controller.dto.input.PersonaInputDTO;
 import spring.springboot.SpringSecurity.Persona.infraestructure.controller.dto.output.PersonaOutputDTO;
 import spring.springboot.SpringSecurity.Persona.infraestructure.repository.jpa.PersonRepository;
-import spring.springboot.SpringSecurity.Util.JWTUtil;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonService implements PersonInterface{
@@ -16,19 +21,35 @@ public class PersonService implements PersonInterface{
     @Autowired
     PersonRepository personRepository;
 
-    @Autowired
-    private JWTUtil jwtUtil;
-
     private final String secretKey = "mySecretKey";
 
+    private String getJWTToken(String user){
+        List<GrantedAuthority> grantedAuthorities = AuthorityUtils
+                .commaSeparatedStringToAuthorityList("ROLE_USER");
+
+        String token = Jwts
+                .builder()
+                .setId("softtekJWT")
+                .setSubject(user)
+                .claim("authorities",
+                        grantedAuthorities.stream()
+                                .map(GrantedAuthority::getAuthority)
+                                .collect(Collectors.toList()))
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 600000))
+                .signWith(SignatureAlgorithm.HS512,
+                        secretKey.getBytes()).compact();
+
+        return "Bearer " + token;
+    }
+    
     @Override
     public String login(String user, String password) {
         PersonEntity userLogin = null;
         if(personRepository.findByName(user).size() != 0){
             userLogin = personRepository.findByName(user).get(0);
             if(userLogin.getPassword().equals(password)){
-
-                return "Logged";
+                return getJWTToken(user);
             } else return "Incorrect password. Try again.";
         } else return "User " + user + " doesnt exits.";
 
