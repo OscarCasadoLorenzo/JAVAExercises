@@ -71,7 +71,4 @@ public class PersonController {
         PersonaOutputDTO personaOutputDTO = personService.deletePerson(id);
         return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
     }
-
-
-
 }
