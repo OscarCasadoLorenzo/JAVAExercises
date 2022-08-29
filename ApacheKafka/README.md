@@ -16,5 +16,3 @@ Start the ZooKeeper service
 
 #### STEP 5:  READ THE EVENTS
 .\bin\windows\kafka-console-consumer.bat --topic topic_demo --from-beginning --bootstrap-server localhost:9092
-hello world
-topic demo
