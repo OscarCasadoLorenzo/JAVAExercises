@@ -10,13 +10,13 @@ public interface PersonInterface {
 
     List<PersonOutputDTO> getAllPersons();
 
-    boolean existsPerson(int id);
+    boolean existsPerson(String dni);
 
-    PersonOutputDTO getPersonByID(int id);
+    PersonOutputDTO getPersonByID(String dni);
 
     PersonOutputDTO postPerson(PersonInputDTO personInputDTO);
 
-    PersonOutputDTO updatePerson(int id, PersonInputDTO personaInputDTO);
+    PersonOutputDTO updatePerson(String dni, PersonInputDTO personaInputDTO);
 
-    PersonOutputDTO deletePerson(int id);
+    PersonOutputDTO deletePerson(String dni);
 }

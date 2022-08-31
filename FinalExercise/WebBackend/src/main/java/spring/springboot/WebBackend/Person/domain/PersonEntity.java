@@ -44,6 +44,20 @@ public class PersonEntity {
     }
 
     public PersonEntity(PersonInputDTO personInputDTO) {
+        this.dni = personInputDTO.getDni();
+        this.email = personInputDTO.getEmail();
+        this.password = personInputDTO.getPassword();
+        this.name = personInputDTO.getName();
+        this.surname = personInputDTO.getSurname();
+        this.phone = personInputDTO.getPhone();
+    }
 
+    public void updateEntity(PersonInputDTO personaInputDTO) {
+        this.dni = personaInputDTO.getDni();
+        this.email = personaInputDTO.getEmail();
+        this.password = personaInputDTO.getPassword();
+        this.name = personaInputDTO.getName();
+        this.surname = personaInputDTO.getSurname();
+        this.phone = personaInputDTO.getPhone();
     }
 }

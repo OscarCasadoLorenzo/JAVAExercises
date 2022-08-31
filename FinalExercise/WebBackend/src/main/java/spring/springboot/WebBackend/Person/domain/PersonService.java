@@ -6,7 +6,6 @@ import spring.springboot.WebBackend.Person.infraestructure.controller.dto.input.
 import spring.springboot.WebBackend.Person.infraestructure.controller.dto.output.PersonOutputDTO;
 import spring.springboot.WebBackend.Person.infraestructure.repository.PersonRepository;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,13 +27,13 @@ public class PersonService implements PersonInterface{
     }
 
     @Override
-    public boolean existsPerson(int id) {
-        return personRepository.existsById(id);
+    public boolean existsPerson(String dni) {
+        return personRepository.existsById(dni);
     }
 
     @Override
-    public PersonOutputDTO getPersonByID(int id) {
-        PersonEntity personEntity = personRepository.findById(id).orElse(null);
+    public PersonOutputDTO getPersonByID(String dni) {
+        PersonEntity personEntity = personRepository.findById(dni).orElse(null);
         PersonOutputDTO personaOutputDTO = new PersonOutputDTO(personEntity);
         return personaOutputDTO;
     }
@@ -50,12 +49,12 @@ public class PersonService implements PersonInterface{
     }
 
     @Override
-    public PersonOutputDTO updatePerson(int id, @Valid PersonInputDTO personaInputDTO){
+    public PersonOutputDTO updatePerson(String dni, PersonInputDTO personaInputDTO){
         /*
             We could then simply get the entity from the database,
             make the change, and use the save() method as before.
          */
-        PersonEntity personInDB = personRepository.findById(id).orElse(null);
+        PersonEntity personInDB = personRepository.findById(dni).orElse(null);
         personInDB.updateEntity(personaInputDTO);
         personRepository.save(personInDB);
 
@@ -64,9 +63,9 @@ public class PersonService implements PersonInterface{
     }
 
     @Override
-    public PersonOutputDTO deletePerson(int id) {
-        PersonOutputDTO personaOutputDTO = getPersonByID(id);
-        personRepository.deleteById(id);
+    public PersonOutputDTO deletePerson(String dni) {
+        PersonOutputDTO personaOutputDTO = getPersonByID(dni);
+        personRepository.deleteById(dni);
         return personaOutputDTO;
     }
 }

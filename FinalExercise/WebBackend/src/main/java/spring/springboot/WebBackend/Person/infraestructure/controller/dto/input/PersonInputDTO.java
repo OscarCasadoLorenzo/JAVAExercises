@@ -27,6 +27,4 @@ public class PersonInputDTO {
     @NotBlank(message = "Phone number property is required.")
     @Pattern(regexp="^[0-9]{9}", message = "Phone property dont have correct syntax.")
     private String phone;
-
-
 }
