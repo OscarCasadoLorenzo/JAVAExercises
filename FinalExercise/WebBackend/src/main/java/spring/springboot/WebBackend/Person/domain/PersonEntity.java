@@ -1,7 +1,7 @@
 package spring.springboot.WebBackend.Person.domain;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import org.hibernate.annotations.ColumnDefault;
 import spring.springboot.WebBackend.Ticket.domain.TicketEntity;
 
 import javax.persistence.*;
@@ -28,12 +28,13 @@ public class PersonEntity {
     @Column(name = "phone")
     Integer phone;
 
-    @Column(name = "roles")
-    List<String> roles = Arrays.asList("VOYAGERS");
+    @Column(name = "rol")
+    @ColumnDefault("USER")
+    String rol;
 
     @OneToMany
     @JoinColumn(name="ticketID")
-    TicketEntity tickets;
+    List<TicketEntity> tickets;
 
     PersonEntity(){
 

@@ -1,13 +1,11 @@
 package spring.springboot.WebBackend.Ticket.domain;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.Id;
 import spring.springboot.WebBackend.Person.domain.PersonEntity;
+import spring.springboot.WebBackend.Trip.domain.TripEntity;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.UUID;
 
 @Data
