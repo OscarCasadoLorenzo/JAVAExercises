@@ -5,11 +5,12 @@ import org.springframework.stereotype.Service;
 import spring.springboot.WebBackend.Person.infraestructure.controller.dto.input.PersonInputDTO;
 import spring.springboot.WebBackend.Person.infraestructure.controller.dto.output.PersonOutputDTO;
 import spring.springboot.WebBackend.Person.infraestructure.repository.PersonRepository;
+import spring.springboot.WebBackend.exceptions.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service("WebBackendPersonServiceBean")
 public class PersonService implements PersonInterface{
     @Autowired
     PersonRepository personRepository;
@@ -32,8 +33,10 @@ public class PersonService implements PersonInterface{
     }
 
     @Override
-    public PersonOutputDTO getPersonByID(String dni) {
-        PersonEntity personEntity = personRepository.findById(dni).orElse(null);
+    public PersonOutputDTO getPersonByID(String dni){
+        PersonEntity personEntity = personRepository.findById(dni)
+                .orElseThrow(() -> new NotFoundException("Person with id " + dni + " doesnt exists."));
+
         PersonOutputDTO personaOutputDTO = new PersonOutputDTO(personEntity);
         return personaOutputDTO;
     }

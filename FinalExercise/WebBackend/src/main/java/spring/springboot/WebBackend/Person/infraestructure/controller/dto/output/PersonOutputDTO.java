@@ -2,13 +2,7 @@ package spring.springboot.WebBackend.Person.infraestructure.controller.dto.outpu
 
 import spring.springboot.WebBackend.Person.domain.PersonEntity;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
 public class PersonOutputDTO {
-
     private String dni;
     private String email;
     private String password;

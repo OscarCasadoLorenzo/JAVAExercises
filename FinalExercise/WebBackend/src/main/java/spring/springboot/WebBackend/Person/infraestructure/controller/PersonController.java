@@ -14,7 +14,7 @@ import spring.springboot.WebBackend.exceptions.UnprocesableException;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
+@RestController("WebBackendPersonControllerBean")
 @RequestMapping("/api/v0/person")
 public class PersonController
 {
@@ -28,25 +28,21 @@ public class PersonController
     }
 
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getPersonByIDRoute(@PathVariable String dni){
-        //If ID doesnt exists then return 404
-        if(!personService.existsPerson(dni)){
-            throw new NotFoundException("Bean with id: " + dni + " was not found.");
-        }
+    @GetMapping("/{dni}")
+    public PersonOutputDTO getPersonByIDRoute(@PathVariable String dni){
         PersonOutputDTO personaOutputDTO = personService.getPersonByID(dni);
-        return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
+        return personaOutputDTO;
     }
 
     @PostMapping
     public PersonOutputDTO postPersonRoute(@Valid @RequestBody PersonInputDTO personaInputDTO, BindingResult errors){
         if(errors.hasErrors())
-            throw new UnprocesableException(errors.toString());
-        else return personService.postPerson(personaInputDTO);
+            throw new UnprocesableException(errors);
+        return personService.postPerson(personaInputDTO);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updatePersonRoute(@PathVariable String dni, @RequestBody PersonInputDTO personaInputDTO){
+    @PutMapping("/{dni}")
+    public ResponseEntity<?> updatePersonRoute(@PathVariable String dni, @Valid @RequestBody PersonInputDTO personaInputDTO){
         //If ID doesnt exists then return 404
         if(!personService.existsPerson(dni)){
             throw new NotFoundException("Bean with id: " + dni + " was not found.");
@@ -58,7 +54,7 @@ public class PersonController
 
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{dni}")
     public ResponseEntity<?> deletePersonRoute(@PathVariable String dni){
         //If ID doesnt exists then return 404
         if(!personService.existsPerson(dni)){

@@ -1,8 +1,10 @@
 package spring.springboot.WebBackend.exceptions;
 
+import org.springframework.validation.BindingResult;
+
 public class UnprocesableException extends RuntimeException{
 
-    public UnprocesableException(String message) {
-        super(message);
+    public UnprocesableException(BindingResult mismatchedValidations) {
+
     }
 }

@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Getter
 @AllArgsConstructor
-public class CustomError {
+public class NotFoundCustomError {
     private Date timestamp;
     private String message;
     private int HttpCode;
