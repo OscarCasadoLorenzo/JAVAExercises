@@ -31,6 +31,7 @@ public class CustomizedResponseEntityExceptionHandler{
     public ResponseEntity<UnprocesableCustomError> invalidArguments(UnprocesableException ex) {
         UnprocesableCustomError unprocesableCustomError = new UnprocesableCustomError();
 
+        unprocesableCustomError.setDniMismatch(ex.getMismatchedValidations().getFieldError("dni"));
         unprocesableCustomError.setEmailMismatch(ex.getMismatchedValidations().getFieldError("email"));
         unprocesableCustomError.setPasswordMismatch(ex.getMismatchedValidations().getFieldError("password"));
         unprocesableCustomError.setNameMismatch(ex.getMismatchedValidations().getFieldError("name"));

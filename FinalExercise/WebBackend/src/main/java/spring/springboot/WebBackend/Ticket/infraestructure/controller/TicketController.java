@@ -1,20 +1,31 @@
 package spring.springboot.WebBackend.Ticket.infraestructure.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import spring.springboot.WebBackend.Ticket.domain.TicketService;
 import spring.springboot.WebBackend.Ticket.infraestructure.controller.dto.input.TicketInputDTO;
 import spring.springboot.WebBackend.Ticket.infraestructure.controller.dto.output.TicketOutputDTO;
 
+import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/v0")
+@RequestMapping("/api/v0/ticket")
 public class TicketController {
 
-    @PostMapping("/ticket")
-    public TicketOutputDTO postTicketRoute(
-            TicketInputDTO ticketInputDTO
-    ){
-        return null;
+    @Autowired
+    TicketService ticketService;
+
+    @GetMapping
+    public List<TicketOutputDTO> getAllTicketsRoute(){
+        return ticketService.getAllTickets();
+    }
+
+    @PostMapping
+    public TicketOutputDTO postTicketRoute(@Valid @RequestBody TicketInputDTO ticketInputDTO, BindingResult errors){
+        r
     }
 
     @GetMapping("/availability/:destinationCity")

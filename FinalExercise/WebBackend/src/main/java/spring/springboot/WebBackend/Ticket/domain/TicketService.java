@@ -1,5 +1,40 @@
 package spring.springboot.WebBackend.Ticket.domain;
 
-public class TicketService {
+import spring.springboot.WebBackend.Ticket.infraestructure.controller.dto.input.TicketInputDTO;
+import spring.springboot.WebBackend.Ticket.infraestructure.controller.dto.output.TicketOutputDTO;
 
+import java.util.List;
+import java.util.UUID;
+
+public class TicketService implements TicketInterface {
+
+    @Override
+    public List<TicketOutputDTO> getAllTickets() {
+        return null;
+    }
+
+    @Override
+    public boolean existsTicket(UUID id) {
+        return false;
+    }
+
+    @Override
+    public TicketOutputDTO getTicketByID(UUID id) {
+        return null;
+    }
+
+    @Override
+    public TicketOutputDTO postTicket(TicketInputDTO ticketInputDTO) {
+        return null;
+    }
+
+    @Override
+    public TicketOutputDTO updateTicket(UUID id, TicketInputDTO ticketInputDTO) {
+        return null;
+    }
+
+    @Override
+    public TicketOutputDTO deleteTicket(UUID id) {
+        return null;
+    }
 }

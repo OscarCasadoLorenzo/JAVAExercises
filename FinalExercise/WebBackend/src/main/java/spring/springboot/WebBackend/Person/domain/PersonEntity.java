@@ -50,6 +50,7 @@ public class PersonEntity {
         this.name = personInputDTO.getName();
         this.surname = personInputDTO.getSurname();
         this.phone = personInputDTO.getPhone();
+        this.rol = "USER";
     }
 
     public void updateEntity(PersonInputDTO personaInputDTO) {

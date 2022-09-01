@@ -17,11 +17,17 @@ import java.util.Optional;
 @Getter
 public class UnprocesableCustomError{
 
+    private String dniMismatch;
     private String emailMismatch;
     private String nameMismatch;
     private String surnameMismatch;
     private String passwordMismatch;
     private String phoneMismatch;
+
+    public void setDniMismatch(FieldError dniMismatch) {
+        if(dniMismatch != null)
+            this.dniMismatch = dniMismatch.getDefaultMessage();
+    }
 
     public void setEmailMismatch(FieldError emailMismatch) {
         if(emailMismatch != null)

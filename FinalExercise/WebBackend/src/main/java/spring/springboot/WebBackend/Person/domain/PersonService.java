@@ -57,11 +57,13 @@ public class PersonService implements PersonInterface{
             We could then simply get the entity from the database,
             make the change, and use the save() method as before.
          */
-        PersonEntity personInDB = personRepository.findById(dni).orElse(null);
-        personInDB.updateEntity(personaInputDTO);
-        personRepository.save(personInDB);
+        PersonEntity personEntity = personRepository.findById(dni)
+                .orElseThrow(() -> new NotFoundException("Person with id " + dni + " doesnt exists."));
 
-        PersonOutputDTO personaOutputDTO = new PersonOutputDTO(personInDB);
+        personEntity.updateEntity(personaInputDTO);
+        personRepository.save(personEntity);
+
+        PersonOutputDTO personaOutputDTO = new PersonOutputDTO(personEntity);
         return personaOutputDTO;
     }
 

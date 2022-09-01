@@ -7,6 +7,7 @@ import javax.validation.constraints.*;
 @Data
 public class PersonInputDTO {
     @NotBlank(message = "DNI property is required.")
+    @Pattern(regexp = "[0-9]{8}[A-Za-z]{1}", message = "DNI property dont have correct syntax.")
     private String dni;
 
     @NotBlank(message = "Email property is required.")

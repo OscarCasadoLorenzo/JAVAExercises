@@ -1,7 +1,9 @@
 package spring.springboot.WebBackend.Person.infraestructure.controller.dto.output;
 
+import lombok.Data;
 import spring.springboot.WebBackend.Person.domain.PersonEntity;
 
+@Data
 public class PersonOutputDTO {
     private String dni;
     private String email;
