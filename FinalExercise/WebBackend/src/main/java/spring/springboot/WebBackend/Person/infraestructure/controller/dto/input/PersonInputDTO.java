@@ -13,7 +13,7 @@ public class PersonInputDTO {
     @Email(message = "Email property dont have correct syntax.")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "Password property is required.")
     private String password;
 
     @NotBlank(message = "Name property is required.")

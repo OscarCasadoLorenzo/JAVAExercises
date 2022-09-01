@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Date;
+import java.util.Optional;
 
 /*
     @ControllerAdvice tag extends @Component
@@ -22,13 +23,21 @@ public class CustomizedResponseEntityExceptionHandler{
 
     // @ExceptionHandler tag execute this functions when BeanNotFoundException is threw
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<CustomError> idNotFound(NotFoundException ex) {
-        return new ResponseEntity<>(new CustomError(new Date(), ex.getMessage(), HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
+    public ResponseEntity<NotFoundCustomError> idNotFound(NotFoundException ex) {
+        return new ResponseEntity<>(new NotFoundCustomError(new Date(), ex.getMessage(), HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(UnprocesableException.class)
-    public ResponseEntity<CustomError> invalidArguments(UnprocesableException ex) {
-        return new ResponseEntity<>(new CustomError(new Date(), ex.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY.value()), HttpStatus.UNPROCESSABLE_ENTITY);
+    public ResponseEntity<UnprocesableCustomError> invalidArguments(UnprocesableException ex) {
+        UnprocesableCustomError unprocesableCustomError = new UnprocesableCustomError();
+
+        unprocesableCustomError.setEmailMismatch(ex.getMismatchedValidations().getFieldError("email"));
+        unprocesableCustomError.setPasswordMismatch(ex.getMismatchedValidations().getFieldError("password"));
+        unprocesableCustomError.setNameMismatch(ex.getMismatchedValidations().getFieldError("name"));
+        unprocesableCustomError.setSurnameMismatch(ex.getMismatchedValidations().getFieldError("surname"));
+        unprocesableCustomError.setPhoneMismatch(ex.getMismatchedValidations().getFieldError("phone"));
+
+        return new ResponseEntity<>(unprocesableCustomError, HttpStatus.BAD_REQUEST);
     }
 }
 

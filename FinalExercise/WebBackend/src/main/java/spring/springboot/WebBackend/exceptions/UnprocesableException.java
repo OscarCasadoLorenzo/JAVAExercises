@@ -1,10 +1,15 @@
 package spring.springboot.WebBackend.exceptions;
 
+import lombok.Getter;
 import org.springframework.validation.BindingResult;
 
+@Getter
 public class UnprocesableException extends RuntimeException{
 
-    public UnprocesableException(BindingResult mismatchedValidations) {
+    private BindingResult mismatchedValidations;
 
+    public UnprocesableException(BindingResult mismatchedValidations) {
+        super();
+        this.mismatchedValidations = mismatchedValidations;
     }
 }
