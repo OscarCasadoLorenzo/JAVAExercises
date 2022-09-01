@@ -13,8 +13,6 @@ public interface TicketInterface {
 
     TicketOutputDTO getTicketByID(UUID id);
 
-    List<TicketOutputDTO>
-
     TicketOutputDTO postTicket(TicketInputDTO ticketInputDTO);
 
     TicketOutputDTO updateTicket(UUID id, TicketInputDTO ticketInputDTO);

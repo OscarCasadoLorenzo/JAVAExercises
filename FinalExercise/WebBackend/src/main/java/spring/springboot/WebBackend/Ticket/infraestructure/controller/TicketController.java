@@ -30,18 +30,6 @@ public class TicketController {
         return ticketService.getTicketByID(id);
     }
 
-
-    @GetMapping("/availability/:destinationCity")
-    public TicketOutputDTO getAvailabilityRoute(
-            @RequestParam Date inferiorDate,
-            @RequestParam(required = false) Date superiorDate,
-            @RequestParam(required = false) Date inferiorHour,
-            @RequestParam(required = false) Date superiorHour
-
-    ){
-        return null;
-    }
-
     @PostMapping
     public TicketOutputDTO postTicketRoute(@Valid @RequestBody TicketInputDTO ticketInputDTO, BindingResult errors){
         if(errors.hasErrors())
