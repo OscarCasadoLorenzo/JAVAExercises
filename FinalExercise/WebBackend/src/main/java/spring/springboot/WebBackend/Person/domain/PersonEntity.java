@@ -2,11 +2,13 @@ package spring.springboot.WebBackend.Person.domain;
 
 import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.GenericGenerator;
 import spring.springboot.WebBackend.Person.infraestructure.controller.dto.input.PersonInputDTO;
 import spring.springboot.WebBackend.Ticket.domain.TicketEntity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -14,30 +16,38 @@ import java.util.List;
 public class PersonEntity {
     @Column(name = "id")
     @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    private UUID id;
+
+    @Column(name = "dni")
     private String dni;
 
     @Column(name = "email")
-    String email;
+    private String email;
 
     @Column(name = "password")
-    String password;
+    private String password;
 
     @Column(name = "name")
-    String name;
+    private String name;
 
     @Column(name = "surname")
-    String surname;
+    private String surname;
 
     @Column(name = "phone")
-    String phone;
+    private String phone;
 
     @Column(name = "rol")
     @ColumnDefault("USER")
-    String rol;
+    private String rol;
 
     @OneToMany
     @JoinColumn(name="ticketID")
-    List<TicketEntity> tickets;
+    private List<TicketEntity> tickets;
 
     PersonEntity(){
 

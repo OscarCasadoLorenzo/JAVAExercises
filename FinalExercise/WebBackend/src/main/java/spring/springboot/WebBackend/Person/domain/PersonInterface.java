@@ -5,18 +5,19 @@ import spring.springboot.WebBackend.Person.infraestructure.controller.dto.input.
 import spring.springboot.WebBackend.Person.infraestructure.controller.dto.output.PersonOutputDTO;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface PersonInterface {
 
     List<PersonOutputDTO> getAllPersons();
 
-    boolean existsPerson(String dni);
+    boolean existsPerson(UUID id);
 
-    PersonOutputDTO getPersonByID(String dni);
+    PersonOutputDTO getPersonByID(UUID id);
 
     PersonOutputDTO postPerson(PersonInputDTO personInputDTO);
 
-    PersonOutputDTO updatePerson(String dni, PersonInputDTO personaInputDTO);
+    PersonOutputDTO updatePerson(UUID id, PersonInputDTO personaInputDTO);
 
-    PersonOutputDTO deletePerson(String dni);
+    PersonOutputDTO deletePerson(UUID id);
 }

@@ -1,12 +1,19 @@
 package spring.springboot.WebBackend.Ticket.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import spring.springboot.WebBackend.Ticket.infraestructure.controller.dto.input.TicketInputDTO;
 import spring.springboot.WebBackend.Ticket.infraestructure.controller.dto.output.TicketOutputDTO;
+import spring.springboot.WebBackend.Ticket.infraestructure.repository.TicketRepository;
 
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class TicketService implements TicketInterface {
+
+    @Autowired
+    TicketRepository ticketRepository;
 
     @Override
     public List<TicketOutputDTO> getAllTickets() {

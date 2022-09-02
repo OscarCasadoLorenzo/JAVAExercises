@@ -31,4 +31,7 @@ public class TripEntity {
 
     @Column(name = "date")
     Date date;
+
+    @Column(name = "date")
+    Integer hour;
 }
