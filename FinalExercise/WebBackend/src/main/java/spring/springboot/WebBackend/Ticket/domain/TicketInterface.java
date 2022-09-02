@@ -9,8 +9,6 @@ import java.util.UUID;
 public interface TicketInterface {
     List<TicketOutputDTO> getAllTickets();
 
-    boolean existsTicket(UUID id);
-
     TicketOutputDTO getTicketByID(UUID id);
 
     TicketOutputDTO postTicket(TicketInputDTO ticketInputDTO);

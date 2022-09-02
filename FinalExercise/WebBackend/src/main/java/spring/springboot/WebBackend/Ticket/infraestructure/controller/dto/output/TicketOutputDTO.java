@@ -19,7 +19,7 @@ public class TicketOutputDTO {
 
     public TicketOutputDTO(TicketEntity ticketEntity){
         this.ticketID = ticketEntity.getId();
-        this.person = new PersonOutputDTO(ticketEntity.getPersonEntity());
-        this.trip = new TripOutputDTO(ticketEntity.getTripEntity());
+        //this.person = new PersonOutputDTO(ticketEntity.getPersonEntity());
+        //this.trip = new TripOutputDTO(ticketEntity.getTripEntity());
     }
 }

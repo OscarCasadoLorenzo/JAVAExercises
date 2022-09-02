@@ -1,20 +1,21 @@
 package spring.springboot.WebBackend.Ticket.infraestructure.controller.dto.input;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.UUID;
 
-@Data
-@NoArgsConstructor
+@Getter
+@Setter
 public class TicketInputDTO {
 
     @NotBlank(message = "PersonID property is required.")
-    @Pattern(regexp = "[0-9]{8}[A-Za-z]{1}", message = "PersonID property dont have correct syntax.")
-    private String personID;
+    private UUID personID;
 
     @NotBlank(message = "TripID property is required.")
     private UUID tripID;

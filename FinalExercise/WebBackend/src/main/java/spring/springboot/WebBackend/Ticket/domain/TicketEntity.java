@@ -1,14 +1,19 @@
 package spring.springboot.WebBackend.Ticket.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import spring.springboot.WebBackend.Person.domain.PersonEntity;
+import spring.springboot.WebBackend.Ticket.infraestructure.controller.dto.input.TicketInputDTO;
 import spring.springboot.WebBackend.Trip.domain.TripEntity;
 
 import javax.persistence.*;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "TICKETS")
 public class TicketEntity {
@@ -23,10 +28,19 @@ public class TicketEntity {
 
     @ManyToOne
     @JoinColumn(name="tripID")
-    TripEntity tripEntity;
+    private TripEntity tripEntity;
 
     @ManyToOne
     @JoinColumn(name="personID")
-    PersonEntity personEntity;
+    private PersonEntity personEntity;
 
+    public TicketEntity(TripEntity tripEntity, PersonEntity personEntity){
+        this.tripEntity = tripEntity;
+        this.personEntity = personEntity;
+    }
+
+    public void updateEntity(TripEntity tripEntity, PersonEntity personEntity){
+        this.tripEntity = tripEntity;
+        this.personEntity = personEntity;
+    }
 }

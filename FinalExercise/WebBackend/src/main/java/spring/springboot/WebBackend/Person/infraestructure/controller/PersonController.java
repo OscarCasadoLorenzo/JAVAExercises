@@ -10,6 +10,7 @@ import spring.springboot.WebBackend.exceptions.UnprocesableException;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController("WebBackendPersonControllerBean")
 @RequestMapping("/api/v0/person")
@@ -25,8 +26,8 @@ public class PersonController
 
 
     @GetMapping("/{dni}")
-    public PersonOutputDTO getPersonByIDRoute(@PathVariable String dni){
-        return personService.getPersonByID(dni);
+    public PersonOutputDTO getPersonByIDRoute(@PathVariable UUID id){
+        return personService.getPersonByID(id);
     }
 
     @PostMapping
@@ -36,15 +37,15 @@ public class PersonController
         return personService.postPerson(personaInputDTO);
     }
 
-    @PutMapping("/{dni}")
-    public PersonOutputDTO updatePersonRoute(@PathVariable String dni, @Valid @RequestBody PersonInputDTO personaInputDTO, BindingResult errors){
+    @PutMapping("/{id}")
+    public PersonOutputDTO updatePersonRoute(@PathVariable UUID id, @Valid @RequestBody PersonInputDTO personaInputDTO, BindingResult errors){
         if(errors.hasErrors())
             throw new UnprocesableException(errors);
-        return personService.updatePerson(dni, personaInputDTO);
+        return personService.updatePerson(id, personaInputDTO);
     }
 
-    @DeleteMapping("/{dni}")
-    public PersonOutputDTO deletePersonRoute(@PathVariable String dni){
-        return personService.deletePerson(dni);
+    @DeleteMapping("/{id}")
+    public PersonOutputDTO deletePersonRoute(@PathVariable UUID id){
+        return personService.deletePerson(id);
     }
 }

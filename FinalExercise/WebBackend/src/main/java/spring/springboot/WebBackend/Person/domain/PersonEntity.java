@@ -1,6 +1,8 @@
 package spring.springboot.WebBackend.Person.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.GenericGenerator;
 import spring.springboot.WebBackend.Person.infraestructure.controller.dto.input.PersonInputDTO;
@@ -11,10 +13,12 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "PERSONS")
 public class PersonEntity {
-    @Column(name = "id")
+    @Column(name = "personID")
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -45,13 +49,8 @@ public class PersonEntity {
     @ColumnDefault("USER")
     private String rol;
 
-    @OneToMany
-    @JoinColumn(name="ticketID")
-    private List<TicketEntity> tickets;
-
-    PersonEntity(){
-
-    }
+    @OneToMany(mappedBy = "personEntity")
+    private List<TicketEntity> ticketEntity;
 
     public PersonEntity(PersonInputDTO personInputDTO) {
         this.dni = personInputDTO.getDni();

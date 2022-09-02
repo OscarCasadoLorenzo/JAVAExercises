@@ -1,13 +1,19 @@
 package spring.springboot.WebBackend.Trip.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import spring.springboot.WebBackend.Ticket.domain.TicketEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "TRIPS")
 public class TripEntity {
@@ -21,17 +27,20 @@ public class TripEntity {
     private UUID id;
 
     @Column(name = "origin")
-    String origin;
+    private String origin;
 
     @Column(name = "destination")
-    String destination;
+    private String destination;
 
     @Column(name = "capacity")
-    Integer capacity;
+    private Integer capacity;
 
     @Column(name = "date")
-    Date date;
+    private Date date;
 
-    @Column(name = "date")
-    Integer hour;
+    @Column(name = "exitHour")
+    private Integer exitHour;
+
+    @OneToMany(mappedBy = "tripEntity")
+    List<TicketEntity> ticketEntity;
 }

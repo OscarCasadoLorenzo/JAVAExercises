@@ -11,8 +11,6 @@ public interface PersonInterface {
 
     List<PersonOutputDTO> getAllPersons();
 
-    boolean existsPerson(UUID id);
-
     PersonOutputDTO getPersonByID(UUID id);
 
     PersonOutputDTO postPerson(PersonInputDTO personInputDTO);

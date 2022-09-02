@@ -29,11 +29,6 @@ public class PersonService implements PersonInterface{
     }
 
     @Override
-    public boolean existsPerson(UUID id) {
-        return personRepository.existsById(id);
-    }
-
-    @Override
     public PersonOutputDTO getPersonByID(UUID id){
         PersonEntity personEntity = personRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Person with id " + id + " doesnt exists."));
@@ -54,10 +49,6 @@ public class PersonService implements PersonInterface{
 
     @Override
     public PersonOutputDTO updatePerson(UUID id, PersonInputDTO personaInputDTO){
-        /*
-            We could then simply get the entity from the database,
-            make the change, and use the save() method as before.
-         */
         PersonEntity personEntity = personRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Person with id " + id + " doesnt exists."));
 
