@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import spring.springboot.WebBackend.Person.domain.PersonEntity;
 import spring.springboot.WebBackend.Ticket.domain.TicketEntity;
+import spring.springboot.WebBackend.Trip.infraestructure.controller.dto.input.TripInputDTO;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -39,4 +41,21 @@ public class TripEntity {
 
     @OneToMany(mappedBy = "tripEntity")
     List<TicketEntity> ticketEntity;
+
+    public TripEntity(TripInputDTO tripInputDTO){
+        this.origin= tripInputDTO.getOrigin();
+        this.destination = tripInputDTO.getDestination();
+        this.capacity = tripInputDTO.getCapacity();
+        this.date = tripInputDTO.getDate();
+        this.exitHour = tripInputDTO.getHour();
+    }
+
+    public void updateEntity(TripInputDTO tripInputDTO){
+        this.origin= tripInputDTO.getOrigin();
+        this.destination = tripInputDTO.getDestination();
+        this.capacity = tripInputDTO.getCapacity();
+        this.date = tripInputDTO.getDate();
+        this.exitHour = tripInputDTO.getHour();
+    }
+
 }

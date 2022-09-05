@@ -13,7 +13,6 @@ import java.util.UUID;
 @Getter
 @Setter
 public class TicketInputDTO {
-
     @NotBlank(message = "PersonID property is required.")
     private Integer personID;
 

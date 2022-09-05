@@ -4,7 +4,6 @@ import spring.springboot.WebBackend.Ticket.infraestructure.controller.dto.input.
 import spring.springboot.WebBackend.Ticket.infraestructure.controller.dto.output.TicketOutputDTO;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface TicketInterface {
     List<TicketOutputDTO> getAllTickets();
