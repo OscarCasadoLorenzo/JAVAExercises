@@ -10,7 +10,7 @@ import java.util.List;
 public interface TripInterface {
     List<TripOutputDTO> getAllTrips();
 
-    TripOutputDTO getTripsByID(Integer id);
+    TripOutputDTO getTripByID(Integer id);
 
     TripOutputDTO postTrip(TripInputDTO tripInputDTO);
 

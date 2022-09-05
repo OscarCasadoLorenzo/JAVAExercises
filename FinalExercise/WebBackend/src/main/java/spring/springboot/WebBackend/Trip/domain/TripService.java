@@ -1,6 +1,7 @@
 package spring.springboot.WebBackend.Trip.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import spring.springboot.WebBackend.Trip.infraestructure.controller.dto.input.TripInputDTO;
 import spring.springboot.WebBackend.Trip.infraestructure.controller.dto.output.TripOutputDTO;
 import spring.springboot.WebBackend.Trip.infraestructure.repository.TripRepository;
@@ -9,6 +10,7 @@ import spring.springboot.WebBackend.exceptions.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class TripService implements TripInterface{
     @Autowired
     TripRepository tripRepository;
@@ -24,7 +26,7 @@ public class TripService implements TripInterface{
     }
 
     @Override
-    public TripOutputDTO getTripsByID(Integer id) {
+    public TripOutputDTO getTripByID(Integer id) {
         return new TripOutputDTO(tripRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Trip with id: " + id + " doesnt exists.")));
     }
@@ -48,7 +50,7 @@ public class TripService implements TripInterface{
 
     @Override
     public TripOutputDTO deleteTrip(Integer id) {
-        TripOutputDTO tripOutputDTO = getTripsByID(id);
+        TripOutputDTO tripOutputDTO = getTripByID(id);
         tripRepository.deleteById(id);
         return tripOutputDTO;
     }
