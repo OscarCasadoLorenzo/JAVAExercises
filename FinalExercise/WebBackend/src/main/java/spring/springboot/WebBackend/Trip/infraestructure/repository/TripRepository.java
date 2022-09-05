@@ -7,5 +7,5 @@ import spring.springboot.WebBackend.Trip.domain.TripEntity;
 import java.util.UUID;
 
 @Repository
-public interface TripRepository extends CrudRepository<TripEntity, UUID> {
+public interface TripRepository extends CrudRepository<TripEntity, Integer> {
 }

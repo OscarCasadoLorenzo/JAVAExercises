@@ -17,14 +17,10 @@ import java.util.UUID;
 @Entity
 @Table(name = "TICKETS")
 public class TicketEntity {
-    @Column(name = "id")
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    private UUID id;
+    @Column(name="ticketID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name="tripID")

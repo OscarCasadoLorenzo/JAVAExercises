@@ -38,15 +38,15 @@ public class TicketService implements TicketInterface {
     }
 
     @Override
-    public TicketOutputDTO getTicketByID(UUID id) {
+    public TicketOutputDTO getTicketByID(Integer id) {
         return new TicketOutputDTO(ticketRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Ticket with id: " + id + " doesnt exists.")));
     }
 
     @Override
     public TicketOutputDTO postTicket(TicketInputDTO ticketInputDTO) {
-        UUID personID = ticketInputDTO.getPersonID();
-        UUID tripID = ticketInputDTO.getTripID();
+        Integer personID = ticketInputDTO.getPersonID();
+        Integer tripID = ticketInputDTO.getTripID();
 
         PersonEntity personEntity = personRepository.findById(personID)
                 .orElseThrow(() -> new NotFoundException("Ticket with id: " + personID + " doesnt exits."));
@@ -60,7 +60,7 @@ public class TicketService implements TicketInterface {
     }
 
     @Override
-    public TicketOutputDTO updateTicket(UUID id, TicketInputDTO ticketInputDTO) {
+    public TicketOutputDTO updateTicket(Integer id, TicketInputDTO ticketInputDTO) {
         TicketEntity ticketEntity = ticketRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Ticket with id " + id + " doesnt exists."));
 
@@ -77,7 +77,7 @@ public class TicketService implements TicketInterface {
     }
 
     @Override
-    public TicketOutputDTO deleteTicket(UUID id) {
+    public TicketOutputDTO deleteTicket(Integer id) {
         TicketOutputDTO ticketOutputDTO = getTicketByID(id);
         ticketRepository.deleteById(id);
         return ticketOutputDTO;

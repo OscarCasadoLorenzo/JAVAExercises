@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Setter
 public class TripOutputDTO {
-    private UUID id;
+    private Integer id;
     private String origin;
     private String destination;
     private Integer capacity;

@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import spring.springboot.WebBackend.Person.infraestructure.controller.dto.input.PersonInputDTO;
 import spring.springboot.WebBackend.Ticket.domain.TicketEntity;
 
@@ -18,14 +19,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "PERSONS")
 public class PersonEntity {
-    @Column(name = "personID")
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    private UUID id;
+    @Column(name="personID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @Column(name = "dni")
     private String dni;

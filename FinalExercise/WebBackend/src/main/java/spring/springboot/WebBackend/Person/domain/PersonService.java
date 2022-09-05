@@ -29,7 +29,7 @@ public class PersonService implements PersonInterface{
     }
 
     @Override
-    public PersonOutputDTO getPersonByID(UUID id){
+    public PersonOutputDTO getPersonByID(Integer id){
         PersonEntity personEntity = personRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Person with id " + id + " doesnt exists."));
 
@@ -48,7 +48,7 @@ public class PersonService implements PersonInterface{
     }
 
     @Override
-    public PersonOutputDTO updatePerson(UUID id, PersonInputDTO personaInputDTO){
+    public PersonOutputDTO updatePerson(Integer id, PersonInputDTO personaInputDTO){
         PersonEntity personEntity = personRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Person with id " + id + " doesnt exists."));
 
@@ -60,7 +60,7 @@ public class PersonService implements PersonInterface{
     }
 
     @Override
-    public PersonOutputDTO deletePerson(UUID id) {
+    public PersonOutputDTO deletePerson(Integer id) {
         PersonOutputDTO personaOutputDTO = getPersonByID(id);
         personRepository.deleteById(id);
         return personaOutputDTO;

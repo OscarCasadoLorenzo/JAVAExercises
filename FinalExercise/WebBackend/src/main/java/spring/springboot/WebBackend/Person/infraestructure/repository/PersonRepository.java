@@ -7,5 +7,5 @@ import spring.springboot.WebBackend.Person.domain.PersonEntity;
 import java.util.UUID;
 
 @Repository
-public interface PersonRepository extends CrudRepository<PersonEntity, UUID> {
+public interface PersonRepository extends CrudRepository<PersonEntity, Integer> {
 }

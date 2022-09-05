@@ -11,11 +11,11 @@ public interface PersonInterface {
 
     List<PersonOutputDTO> getAllPersons();
 
-    PersonOutputDTO getPersonByID(UUID id);
+    PersonOutputDTO getPersonByID(Integer id);
 
     PersonOutputDTO postPerson(PersonInputDTO personInputDTO);
 
-    PersonOutputDTO updatePerson(UUID id, PersonInputDTO personaInputDTO);
+    PersonOutputDTO updatePerson(Integer id, PersonInputDTO personaInputDTO);
 
-    PersonOutputDTO deletePerson(UUID id);
+    PersonOutputDTO deletePerson(Integer id);
 }

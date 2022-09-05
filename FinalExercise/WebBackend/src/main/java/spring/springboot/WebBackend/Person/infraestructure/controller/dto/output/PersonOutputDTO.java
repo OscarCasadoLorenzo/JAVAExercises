@@ -3,8 +3,11 @@ package spring.springboot.WebBackend.Person.infraestructure.controller.dto.outpu
 import lombok.Data;
 import spring.springboot.WebBackend.Person.domain.PersonEntity;
 
+import java.util.UUID;
+
 @Data
 public class PersonOutputDTO {
+    private Integer id;
     private String dni;
     private String email;
     private String password;
@@ -14,6 +17,7 @@ public class PersonOutputDTO {
     private String rol;
 
     public PersonOutputDTO(PersonEntity personEntity){
+        this.id = personEntity.getId();
         this.dni = personEntity.getDni();
         this.email = personEntity.getEmail();
         this.password = personEntity.getPassword();

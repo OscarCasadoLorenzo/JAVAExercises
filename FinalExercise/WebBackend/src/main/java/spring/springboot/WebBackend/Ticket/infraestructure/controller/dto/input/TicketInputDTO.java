@@ -15,8 +15,8 @@ import java.util.UUID;
 public class TicketInputDTO {
 
     @NotBlank(message = "PersonID property is required.")
-    private UUID personID;
+    private Integer personID;
 
     @NotBlank(message = "TripID property is required.")
-    private UUID tripID;
+    private Integer tripID;
 }

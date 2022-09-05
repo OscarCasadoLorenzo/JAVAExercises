@@ -11,7 +11,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class TicketOutputDTO {
-    private UUID ticketID;
+    private Integer ticketID;
 
     private PersonOutputDTO person;
 

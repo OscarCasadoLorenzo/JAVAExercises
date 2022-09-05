@@ -25,8 +25,8 @@ public class PersonController
     }
 
 
-    @GetMapping("/{dni}")
-    public PersonOutputDTO getPersonByIDRoute(@PathVariable UUID id){
+    @GetMapping("/{id}")
+    public PersonOutputDTO getPersonByIDRoute(@PathVariable Integer id){
         return personService.getPersonByID(id);
     }
 
@@ -38,14 +38,14 @@ public class PersonController
     }
 
     @PutMapping("/{id}")
-    public PersonOutputDTO updatePersonRoute(@PathVariable UUID id, @Valid @RequestBody PersonInputDTO personaInputDTO, BindingResult errors){
+    public PersonOutputDTO updatePersonRoute(@PathVariable Integer id, @Valid @RequestBody PersonInputDTO personaInputDTO, BindingResult errors){
         if(errors.hasErrors())
             throw new UnprocesableException(errors);
         return personService.updatePerson(id, personaInputDTO);
     }
 
     @DeleteMapping("/{id}")
-    public PersonOutputDTO deletePersonRoute(@PathVariable UUID id){
+    public PersonOutputDTO deletePersonRoute(@PathVariable Integer id){
         return personService.deletePerson(id);
     }
 }

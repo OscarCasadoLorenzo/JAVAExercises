@@ -26,7 +26,7 @@ public class TicketController {
     }
 
     @GetMapping("/{id}")
-    public TicketOutputDTO getTicketByIDRoute(@PathVariable UUID id){
+    public TicketOutputDTO getTicketByIDRoute(@PathVariable Integer id){
         return ticketService.getTicketByID(id);
     }
 
@@ -38,14 +38,14 @@ public class TicketController {
     }
 
     @PutMapping("/{id}")
-    public TicketOutputDTO updateTicketRoute(@PathVariable UUID id, @Valid @RequestBody TicketInputDTO ticketInputDTO, BindingResult errors){
+    public TicketOutputDTO updateTicketRoute(@PathVariable Integer id, @Valid @RequestBody TicketInputDTO ticketInputDTO, BindingResult errors){
         if(errors.hasErrors())
             throw new UnprocesableException(errors);
         return ticketService.updateTicket(id, ticketInputDTO);
     }
 
     @DeleteMapping("/{id}")
-    public TicketOutputDTO deleteTicketRoute(@PathVariable UUID id){
+    public TicketOutputDTO deleteTicketRoute(@PathVariable Integer id){
         return ticketService.deleteTicket(id);
     }
 }

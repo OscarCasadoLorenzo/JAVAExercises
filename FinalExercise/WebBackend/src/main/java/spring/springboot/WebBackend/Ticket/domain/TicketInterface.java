@@ -9,11 +9,11 @@ import java.util.UUID;
 public interface TicketInterface {
     List<TicketOutputDTO> getAllTickets();
 
-    TicketOutputDTO getTicketByID(UUID id);
+    TicketOutputDTO getTicketByID(Integer id);
 
     TicketOutputDTO postTicket(TicketInputDTO ticketInputDTO);
 
-    TicketOutputDTO updateTicket(UUID id, TicketInputDTO ticketInputDTO);
+    TicketOutputDTO updateTicket(Integer id, TicketInputDTO ticketInputDTO);
 
-    TicketOutputDTO deleteTicket(UUID id);
+    TicketOutputDTO deleteTicket(Integer id);
 }

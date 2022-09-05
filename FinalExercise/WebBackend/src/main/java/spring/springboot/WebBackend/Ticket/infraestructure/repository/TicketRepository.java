@@ -7,5 +7,5 @@ import spring.springboot.WebBackend.Ticket.domain.TicketEntity;
 import java.util.UUID;
 
 @Repository
-public interface TicketRepository extends CrudRepository<TicketEntity, UUID> {
+public interface TicketRepository extends CrudRepository<TicketEntity, Integer> {
 }
