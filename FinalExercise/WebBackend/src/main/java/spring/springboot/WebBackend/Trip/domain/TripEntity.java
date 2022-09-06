@@ -33,7 +33,8 @@ public class TripEntity {
     @Column(name = "capacity")
     private Integer capacity;
 
-    @Column(name = "date")
+    @Column(name = "exitDate")
+    @Temporal(TemporalType.DATE)
     private Date date;
 
     @Column(name = "exitHour")

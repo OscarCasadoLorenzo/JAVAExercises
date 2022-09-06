@@ -4,6 +4,13 @@ INSERT INTO Persons(personID, dni, email, name, surname, password, phone, role) 
 INSERT INTO Persons(personID, dni, email, name, surname, password, phone, role) VALUES (4, '46328702M', 'oscar.clorenzo@bosonit.com', 'Oscar', 'Casado Lorenzo', 'OscarContrasena', '967123879', 'USER');
 INSERT INTO Persons(personID, dni, email, name, surname, password, phone, role) VALUES (5, '28735497F', 'alberto.asaavedra@bosonit.com', 'Alberto', 'Alonso Saavedra', 'AlbertoContrasena', '763428973', 'USER');
 
+INSERT INTO Trips(tripID, capacity, exit_Date, destination, exit_Hour, origin) VALUES (1, 40, '2022-09-06', 'Barcelona', 8, 'Vitoria');
+INSERT INTO Trips(tripID, capacity, exit_Date, destination, exit_Hour, origin) VALUES (2, 40, '2022-09-06', 'Valencia', 12, 'Vitoria');
+INSERT INTO Trips(tripID, capacity, exit_Date, destination, exit_Hour, origin) VALUES (3, 40, '2022-09-06', 'Madrid', 12, 'Vitoria');
+INSERT INTO Trips(tripID, capacity, exit_Date, destination, exit_Hour, origin) VALUES (4, 40, '2022-09-07', 'Bilbao', 16, 'Vitoria');
+INSERT INTO Trips(tripID, capacity, exit_Date, destination, exit_Hour, origin) VALUES (5, 40, '2022-09-07', 'Barcelona', 16, 'Vitoria');
+INSERT INTO Trips(tripID, capacity, exit_Date, destination, exit_Hour, origin) VALUES (6, 40, '2022-09-08', 'Barcelona', 20, 'Vitoria');
+
 
 
 
