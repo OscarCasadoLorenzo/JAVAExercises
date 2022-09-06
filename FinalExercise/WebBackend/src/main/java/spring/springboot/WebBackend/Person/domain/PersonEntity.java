@@ -4,14 +4,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 import spring.springboot.WebBackend.Person.infraestructure.controller.dto.input.PersonInputDTO;
 import spring.springboot.WebBackend.Ticket.domain.TicketEntity;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -42,7 +39,7 @@ public class PersonEntity {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "rol")
+    @Column(name = "role")
     @ColumnDefault("USER")
     private String rol;
 

@@ -3,7 +3,6 @@ package spring.springboot.WebBackend.Trip.infraestructure.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import spring.springboot.WebBackend.Ticket.infraestructure.controller.dto.input.TicketInputDTO;
 import spring.springboot.WebBackend.Trip.domain.TripService;
 import spring.springboot.WebBackend.Trip.infraestructure.controller.dto.input.TripInputDTO;
 import spring.springboot.WebBackend.Trip.infraestructure.controller.dto.output.TripOutputDTO;
@@ -12,6 +11,7 @@ import spring.springboot.WebBackend.exceptions.UnprocesableException;
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v0/trip")
@@ -30,14 +30,14 @@ public class TripController {
     }
 
     @GetMapping("/availability/:destinationCity")
-    public List<TripOutputDTO> getTripAvailabilityRoute(
+    public List<TripOutputDTO> getTripsByAvailabilityRoute(
             @RequestParam Date inferiorDate,
-            @RequestParam(required = false) Date superiorDate,
-            @RequestParam(required = false) Date inferiorHour,
-            @RequestParam(required = false) Date superiorHour
+            @RequestParam(required = false) Optional<Date> superiorDate,
+            @RequestParam(required = false) Optional<Integer> inferiorHour,
+            @RequestParam(required = false) Optional<Integer> superiorHour
 
     ){
-        return null;
+        return tripService.getTripsByAvailability(inferiorDate, superiorDate, inferiorHour, superiorHour);
     }
 
     @PostMapping

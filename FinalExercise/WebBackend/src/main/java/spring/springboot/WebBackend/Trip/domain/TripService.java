@@ -45,8 +45,8 @@ public class TripService implements TripInterface{
     public List<TripOutputDTO> getTripsByAvailability(
             Date inferiorDate,
             Optional<Date> superiorDate,
-            Optional<Integer> superiorExitHour,
-            Optional<Integer> inferiorExitHour)
+            Optional<Integer> inferiorExitHour,
+            Optional<Integer> superiorExitHour)
     {
         List<TripOutputDTO> tripOutputDTOList = new ArrayList<>();
 
