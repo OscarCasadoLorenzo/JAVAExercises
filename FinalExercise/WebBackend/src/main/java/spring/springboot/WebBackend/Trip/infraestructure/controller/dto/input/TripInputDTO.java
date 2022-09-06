@@ -17,10 +17,10 @@ public class TripInputDTO {
     @NotBlank
     private String destination;
 
-    @NotBlank
+    @NotNull
     private Integer capacity;
 
-    @NotBlank
+    @NotNull
     private Date date;
 
     @NotNull

@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v0")
+@RequestMapping("api/v0/trip")
 public class TripController {
 
     @Autowired
