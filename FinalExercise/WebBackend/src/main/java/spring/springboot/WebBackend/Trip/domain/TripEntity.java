@@ -34,7 +34,7 @@ public class TripEntity {
 
     @Column(name = "exitDate")
     @Temporal(TemporalType.DATE)
-    private Date date;
+    private Date exitDate;
 
     @Column(name = "exitHour")
     private Integer exitHour;
@@ -46,7 +46,7 @@ public class TripEntity {
         this.origin= "Vitoria";
         this.capacity = 40;
         this.destination = tripInputDTO.getDestination();
-        this.date = tripInputDTO.getDate();
+        this.exitDate = tripInputDTO.getDate();
         this.exitHour = tripInputDTO.getHour();
     }
 
@@ -54,13 +54,13 @@ public class TripEntity {
         this.origin= "Vitoria";
         this.capacity = 40;
         this.destination = destination;
-        this.date = exitDate;
+        this.exitDate = exitDate;
         this.exitHour = exitHour;
     }
 
     public void updateEntity(TripInputDTO tripInputDTO){
         this.destination = tripInputDTO.getDestination();
-        this.date = tripInputDTO.getDate();
+        this.exitDate = tripInputDTO.getDate();
         this.exitHour = tripInputDTO.getHour();
     }
 }

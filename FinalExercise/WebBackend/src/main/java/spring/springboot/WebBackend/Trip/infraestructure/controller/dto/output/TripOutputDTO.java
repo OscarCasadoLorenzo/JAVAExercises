@@ -22,7 +22,7 @@ public class TripOutputDTO {
         this.origin = tripEntity.getOrigin();
         this.destination = tripEntity.getDestination();
         this.capacity = tripEntity.getCapacity();
-        this.date = tripEntity.getDate();
+        this.date = tripEntity.getExitDate();
         this.hour = tripEntity.getExitHour();
     }
 }

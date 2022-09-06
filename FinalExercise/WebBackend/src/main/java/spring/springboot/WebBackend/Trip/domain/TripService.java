@@ -43,6 +43,7 @@ public class TripService implements TripInterface{
 
     @Override
     public List<TripOutputDTO> getTripsByAvailability(
+            String destination,
             Date inferiorDate,
             Optional<Date> superiorDate,
             Optional<Integer> inferiorExitHour,
@@ -55,17 +56,23 @@ public class TripService implements TripInterface{
         Root<TripEntity> tripEntityRoot = query.from(TripEntity.class);
 
         List<Predicate> predicates = new ArrayList<>();
+        predicates.add(cb.equal(tripEntityRoot.get("destination"), destination));
         predicates.add(cb.greaterThan(tripEntityRoot.get("capacity"), 0));
 
-        predicates.add(cb.greaterThan(tripEntityRoot.get("date"), inferiorDate));
+        predicates.add(cb.greaterThan(tripEntityRoot.get("exitDate"), inferiorDate));
         if(superiorDate.isPresent())
-            predicates.add(cb.lessThan(tripEntityRoot.get("date"), inferiorDate));
+            predicates.add(cb.lessThan(tripEntityRoot.get("exitDate"), inferiorDate));
 
         if(superiorExitHour.isPresent())
             predicates.add(cb.lessThan(tripEntityRoot.get("exitHour"), superiorExitHour.get()));
         if(inferiorExitHour.isPresent())
             predicates.add(cb.greaterThan(tripEntityRoot.get("exitHour"), inferiorExitHour.get()));
 
+        query.select(tripEntityRoot).where(cb.and(predicates.toArray(new Predicate[predicates.size()]))).orderBy(cb.asc(tripEntityRoot.get("exitDate")));
+
+        entityManager.createQuery(query).getResultList().forEach( tripEntity -> {
+                    tripOutputDTOList.add(new TripOutputDTO(tripEntity));
+        });
         return tripOutputDTOList;
     }
 

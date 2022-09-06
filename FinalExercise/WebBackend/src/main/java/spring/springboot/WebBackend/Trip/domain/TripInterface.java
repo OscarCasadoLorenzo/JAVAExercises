@@ -13,6 +13,7 @@ public interface TripInterface {
     TripOutputDTO getTripByID(Integer id);
 
     List<TripOutputDTO> getTripsByAvailability(
+            String destination,
             Date inferiorDate,
             Optional<Date> superiorDate,
             Optional<Integer> superiorExitHour,
