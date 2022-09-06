@@ -3,15 +3,14 @@ package spring.springboot.WebBackend.Trip.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-import spring.springboot.WebBackend.Person.domain.PersonEntity;
 import spring.springboot.WebBackend.Ticket.domain.TicketEntity;
 import spring.springboot.WebBackend.Trip.infraestructure.controller.dto.input.TripInputDTO;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -21,7 +20,7 @@ import java.util.UUID;
 public class TripEntity {
     @Id
     @Column(name="tripID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "origin")
@@ -44,19 +43,24 @@ public class TripEntity {
     List<TicketEntity> ticketEntity;
 
     public TripEntity(TripInputDTO tripInputDTO){
-        this.origin= tripInputDTO.getOrigin();
+        this.origin= "Vitoria";
+        this.capacity = 40;
         this.destination = tripInputDTO.getDestination();
-        this.capacity = tripInputDTO.getCapacity();
         this.date = tripInputDTO.getDate();
         this.exitHour = tripInputDTO.getHour();
+    }
+
+    public TripEntity(String destination, Date exitDate, Integer exitHour){
+        this.origin= "Vitoria";
+        this.capacity = 40;
+        this.destination = destination;
+        this.date = exitDate;
+        this.exitHour = exitHour;
     }
 
     public void updateEntity(TripInputDTO tripInputDTO){
-        this.origin= tripInputDTO.getOrigin();
         this.destination = tripInputDTO.getDestination();
-        this.capacity = tripInputDTO.getCapacity();
         this.date = tripInputDTO.getDate();
         this.exitHour = tripInputDTO.getHour();
     }
-
 }

@@ -56,6 +56,16 @@ public class PersonEntity {
         this.rol = "USER";
     }
 
+    public PersonEntity(String dni, String email, String password, String name, String surname, String phone, String role) {
+        this.dni = dni;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.rol = role;
+    }
+
     public void updateEntity(PersonInputDTO personaInputDTO) {
         this.dni = personaInputDTO.getDni();
         this.email = personaInputDTO.getEmail();

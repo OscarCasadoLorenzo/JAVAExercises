@@ -9,16 +9,17 @@ import spring.springboot.WebBackend.Trip.infraestructure.controller.dto.output.T
 import spring.springboot.WebBackend.exceptions.UnprocesableException;
 
 import javax.validation.Valid;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("api/v0/trip")
 public class TripController {
 
+    List<String> permitedDestinations = Arrays.asList("Barcelona", "Bilbao", "Madrid", "Valencia");
+
     @Autowired
     TripService tripService;
+
     @GetMapping
     public List<TripOutputDTO> getAllTripsRoute(){
         return tripService.getAllTrips();
@@ -42,14 +43,14 @@ public class TripController {
 
     @PostMapping
     public TripOutputDTO postTripRoute(@Valid @RequestBody TripInputDTO tripInputDTO, BindingResult errors){
-        if(errors.hasErrors())
+        if(errors.hasErrors() || !permitedDestinations.contains(tripInputDTO.getDestination()))
             throw new UnprocesableException(errors);
         return tripService.postTrip(tripInputDTO);
     }
 
     @PutMapping("/{id}")
     public TripOutputDTO updateTripRoute(@PathVariable Integer id, @Valid @RequestBody TripInputDTO tripInputDTO, BindingResult errors){
-        if(errors.hasErrors())
+        if(errors.hasErrors() || !permitedDestinations.contains(tripInputDTO.getDestination()))
             throw new UnprocesableException(errors);
         return tripService.updateTrip(id, tripInputDTO);
     }
