@@ -23,7 +23,6 @@ public class TripService implements TripInterface{
     @Autowired
     TripRepository tripRepository;
 
-
     @Autowired
     EntityManager entityManager;
 
