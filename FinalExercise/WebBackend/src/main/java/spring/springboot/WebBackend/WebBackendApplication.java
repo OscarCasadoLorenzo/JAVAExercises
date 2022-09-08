@@ -3,10 +3,10 @@ package spring.springboot.WebBackend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import spring.springboot.WebBackend.Person.domain.PersonEntity;
-import spring.springboot.WebBackend.Person.infraestructure.repository.PersonRepository;
-import spring.springboot.WebBackend.Trip.domain.TripEntity;
-import spring.springboot.WebBackend.Trip.infraestructure.repository.TripRepository;
+import spring.springboot.WebBackend.domain.PersonEntity;
+import spring.springboot.WebBackend.infraestructure.repository.PersonRepository;
+import spring.springboot.WebBackend.domain.TripEntity;
+import spring.springboot.WebBackend.infraestructure.repository.TripRepository;
 
 import javax.annotation.PostConstruct;
 import java.util.Date;
