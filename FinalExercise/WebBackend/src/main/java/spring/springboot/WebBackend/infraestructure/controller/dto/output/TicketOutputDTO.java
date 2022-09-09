@@ -13,9 +13,12 @@ public class TicketOutputDTO {
 
     private TripOutputDTO trip;
 
+    private Boolean confirmed;
+
     public TicketOutputDTO(TicketEntity ticketEntity){
         this.ticketID = ticketEntity.getId();
         this.person = new PersonOutputDTO(ticketEntity.getPersonEntity());
         this.trip = new TripOutputDTO(ticketEntity.getTripEntity());
+        this.confirmed = ticketEntity.getConfirmed();
     }
 }

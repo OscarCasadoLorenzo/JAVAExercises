@@ -25,7 +25,11 @@ public class TicketEntity {
     @JoinColumn(name="personID")
     private PersonEntity personEntity;
 
+    @Column(name = "confirmed")
+    private Boolean confirmed;
+
     public TicketEntity(TripEntity tripEntity, PersonEntity personEntity){
+        this.confirmed = false;
         this.tripEntity = tripEntity;
         this.personEntity = personEntity;
     }

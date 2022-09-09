@@ -32,7 +32,7 @@ public class TicketController {
         return ticketService.getTicketByID(id);
     }
 
-    @GetMapping("/availability/{destination}")
+    @GetMapping("/reserve/{destination}")
     public List<TicketOutputDTO> getTicketsByDestinationRoute(
             @PathVariable String destination,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date inferiorDate,
