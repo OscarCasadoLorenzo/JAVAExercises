@@ -1,4 +1,4 @@
-package spring.springboot.WebBackend.kafka;
+package spring.springboot.EnterpriseApplication.kafka;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +14,6 @@ public class KafkaProducer {
 
     public void sendMessage(String message){
         LOGGUER.info(String.format("Message sent %s", message));
-        kafkaTemplate.send("tickets", message);
+        kafkaTemplate.send("confirmTickets", message);
     }
 }

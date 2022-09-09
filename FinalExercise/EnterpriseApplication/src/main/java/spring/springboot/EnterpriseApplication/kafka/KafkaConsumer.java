@@ -1,4 +1,4 @@
-package spring.springboot.WebBackend.kafka;
+package spring.springboot.EnterpriseApplication.kafka;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,7 @@ public class KafkaConsumer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(KafkaConsumer.class);
 
-    @KafkaListener(topics = "tickets", groupId="myGroup")
+    @KafkaListener(topics = "checkTickets", groupId="myGroup")
     public void consume(String message){
         LOGGER.info(String.format("Message received -> %s", message));
     }

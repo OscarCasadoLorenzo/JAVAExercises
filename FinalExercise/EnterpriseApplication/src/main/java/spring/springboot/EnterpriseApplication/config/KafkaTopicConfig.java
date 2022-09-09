@@ -1,4 +1,4 @@
-package spring.springboot.WebBackend.config;
+package spring.springboot.EnterpriseApplication.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +11,7 @@ public class KafkaTopicConfig {
     @Bean
     public NewTopic checkTicketsTopic(){
         return TopicBuilder
-                .name("checkTickets")
+                .name("confirmTickets")
                 .build();
     }
 }
-
