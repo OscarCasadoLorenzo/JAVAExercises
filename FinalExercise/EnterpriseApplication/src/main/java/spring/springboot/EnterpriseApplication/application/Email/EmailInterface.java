@@ -9,4 +9,5 @@ public interface EmailInterface {
     List<EmailOutputDTO> getAllEmails();
 
     EmailOutputDTO getEmailByID(Integer id);
+
 }

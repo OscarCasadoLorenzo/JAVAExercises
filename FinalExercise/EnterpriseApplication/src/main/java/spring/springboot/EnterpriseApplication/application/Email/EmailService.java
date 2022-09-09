@@ -31,4 +31,6 @@ public class EmailService implements EmailInterface{
 
         return new EmailOutputDTO(emailEntity);
     }
+
+
 }

@@ -13,11 +13,11 @@ public class EmailEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "from")
-    private String from;
+    @Column(name = "fromEmail")
+    private String fromEmail;
 
-    @Column(name = "to")
-    private String to;
+    @Column(name = "toEmail")
+    private String toEmail;
 
     @Column(name = "subject")
     private String subject;

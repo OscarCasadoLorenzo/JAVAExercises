@@ -9,6 +9,7 @@ import spring.springboot.WebBackend.infraestructure.controller.dto.input.TicketI
 import spring.springboot.WebBackend.infraestructure.controller.dto.output.TicketOutputDTO;
 import spring.springboot.WebBackend.exceptions.UnprocesableException;
 import spring.springboot.WebBackend.infraestructure.controller.dto.output.TripOutputDTO;
+import spring.springboot.WebBackend.kafka.KafkaProducer;
 
 import javax.validation.Valid;
 import java.util.Date;
@@ -21,6 +22,7 @@ public class TicketController {
 
     @Autowired
     TicketService ticketService;
+
 
     @GetMapping
     public List<TicketOutputDTO> getAllTicketsRoute(){

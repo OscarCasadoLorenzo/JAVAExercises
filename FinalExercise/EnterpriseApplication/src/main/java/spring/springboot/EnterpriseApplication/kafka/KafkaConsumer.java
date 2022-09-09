@@ -12,6 +12,6 @@ public class KafkaConsumer {
 
     @KafkaListener(topics = "checkTickets", groupId="myGroup")
     public void consume(String message){
-        LOGGER.info(String.format("Message received -> %s", message));
+        LOGGER.info(String.format("Message received from checkTickets topic -> %s", message));
     }
 }

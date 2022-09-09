@@ -12,6 +12,7 @@ import spring.springboot.WebBackend.domain.TripEntity;
 import spring.springboot.WebBackend.infraestructure.repository.TripRepository;
 import spring.springboot.WebBackend.domain.TicketEntity;
 import spring.springboot.WebBackend.exceptions.NotFoundException;
+import spring.springboot.WebBackend.kafka.KafkaProducer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.*;
@@ -34,6 +35,9 @@ public class TicketService implements TicketInterface {
 
     @Autowired
     EntityManager entityManager;
+
+    @Autowired
+    KafkaProducer kafkaProducer;
 
     @Override
     public List<TicketOutputDTO> getAllTickets() {
@@ -95,6 +99,9 @@ public class TicketService implements TicketInterface {
 
         TicketEntity ticketEntity = new TicketEntity(tripEntity, personEntity);
         ticketRepository.save(ticketEntity);
+
+        kafkaProducer.sendMessage("HOLA DESDE BACKWEB");
+
         return new TicketOutputDTO(ticketEntity);
     }
 
