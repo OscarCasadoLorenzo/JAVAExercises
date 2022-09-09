@@ -11,9 +11,9 @@ import javax.validation.constraints.*;
 @Getter
 @Setter
 public class TicketInputDTO {
-    @NotBlank(message = "PersonID property is required.")
+    @NotNull(message = "PersonID property is required.")
     private Integer personID;
 
-    @NotBlank(message = "TripID property is required.")
+    @NotNull(message = "TripID property is required.")
     private Integer tripID;
 }

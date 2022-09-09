@@ -60,7 +60,7 @@ public class TicketService implements TicketInterface {
         Root<TicketEntity> ticketRoot = cq.from(TicketEntity.class);
         Root<TripEntity> tripRoot = cq.from(TripEntity.class);
         cq.multiselect(ticketRoot, tripRoot);
-        cq.where(cb.equal(ticketRoot.get("tripID"), tripRoot.get("id")));
+        cq.where(cb.equal(ticketRoot.get("tripEntity"), tripRoot.get("id")));
 
         List<Predicate> predicates = new ArrayList<>();
         predicates.add(cb.equal(tripRoot.get("destination"), destination));
@@ -69,9 +69,9 @@ public class TicketService implements TicketInterface {
         if(superiorDate.isPresent())
             predicates.add(cb.lessThan(tripRoot.get("exitDate"), inferiorDate));
         if(superiorExitHour.isPresent())
-            predicates.add(cb.lessThan(tripRoot.get("exitHour"), superiorExitHour.get()));
+            predicates.add(cb.greaterThan(tripRoot.get("exitHour"), superiorExitHour.get()));
         if(inferiorExitHour.isPresent())
-            predicates.add(cb.greaterThan(tripRoot.get("exitHour"), inferiorExitHour.get()));
+            predicates.add(cb.lessThan(tripRoot.get("exitHour"), inferiorExitHour.get()));
 
         cq.select(ticketRoot).where(cb.and(predicates.toArray(new Predicate[predicates.size()]))).orderBy(cb.asc(tripRoot.get("exitDate")));
 
