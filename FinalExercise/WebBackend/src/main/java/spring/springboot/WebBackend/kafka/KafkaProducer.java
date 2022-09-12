@@ -13,7 +13,7 @@ public class KafkaProducer {
     KafkaTemplate<String, String> kafkaTemplate;
 
     public void sendMessage(String message){
-        LOGGUER.debug(String.format("Message sent to checkTickets topic -> %s", message));
+        LOGGUER.info(String.format("Message sent to checkTickets topic -> %s", message));
         kafkaTemplate.send("checkTickets", message);
     }
 }
