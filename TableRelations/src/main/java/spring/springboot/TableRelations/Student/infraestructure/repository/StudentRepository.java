@@ -6,11 +6,8 @@ import spring.springboot.TableRelations.Student.domain.StudentEntity;
 
 
 public interface StudentRepository extends CrudRepository<StudentEntity, Integer> {
-
-
          @Query(value = "SELECT * FROM STUDENTS s WHERE s.PERSONID= ?", nativeQuery = true)
-          public StudentEntity getPersonQuery(Integer personID);
-
+         public StudentEntity getPersonQuery(Integer personID);
 
 
 }

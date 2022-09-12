@@ -2,11 +2,11 @@ package spring.springboot.EnterpriseApplication.application.Trip;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spring.springboot.WebBackend.domain.TripEntity;
-import spring.springboot.WebBackend.exceptions.NotFoundException;
-import spring.springboot.WebBackend.infraestructure.controller.dto.input.TripInputDTO;
-import spring.springboot.WebBackend.infraestructure.controller.dto.output.TripOutputDTO;
-import spring.springboot.WebBackend.infraestructure.repository.TripRepository;
+import spring.springboot.EnterpriseApplication.domain.TripEntity;
+import spring.springboot.EnterpriseApplication.exceptions.NotFoundException;
+import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.input.TripInputDTO;
+import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output.TripOutputDTO;
+import spring.springboot.EnterpriseApplication.insfraestructure.repository.TripRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;

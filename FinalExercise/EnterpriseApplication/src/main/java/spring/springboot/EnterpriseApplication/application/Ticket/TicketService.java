@@ -2,16 +2,16 @@ package spring.springboot.EnterpriseApplication.application.Ticket;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spring.springboot.WebBackend.domain.PersonEntity;
-import spring.springboot.WebBackend.domain.TicketEntity;
-import spring.springboot.WebBackend.domain.TripEntity;
-import spring.springboot.WebBackend.exceptions.NotFoundException;
-import spring.springboot.WebBackend.infraestructure.controller.dto.input.TicketInputDTO;
-import spring.springboot.WebBackend.infraestructure.controller.dto.output.TicketOutputDTO;
-import spring.springboot.WebBackend.infraestructure.repository.PersonRepository;
-import spring.springboot.WebBackend.infraestructure.repository.TicketRepository;
-import spring.springboot.WebBackend.infraestructure.repository.TripRepository;
-import spring.springboot.WebBackend.kafka.KafkaProducer;
+import spring.springboot.EnterpriseApplication.domain.PersonEntity;
+import spring.springboot.EnterpriseApplication.domain.TicketEntity;
+import spring.springboot.EnterpriseApplication.domain.TripEntity;
+import spring.springboot.EnterpriseApplication.exceptions.NotFoundException;
+import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.input.TicketInputDTO;
+import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output.TicketOutputDTO;
+import spring.springboot.EnterpriseApplication.insfraestructure.repository.PersonRepository;
+import spring.springboot.EnterpriseApplication.insfraestructure.repository.TicketRepository;
+import spring.springboot.EnterpriseApplication.insfraestructure.repository.TripRepository;
+import spring.springboot.EnterpriseApplication.kafka.KafkaProducer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;

@@ -2,7 +2,7 @@ package spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.
 
 import lombok.Getter;
 import lombok.Setter;
-import spring.springboot.WebBackend.domain.TripEntity;
+import spring.springboot.EnterpriseApplication.domain.TripEntity;
 
 import java.util.Date;
 

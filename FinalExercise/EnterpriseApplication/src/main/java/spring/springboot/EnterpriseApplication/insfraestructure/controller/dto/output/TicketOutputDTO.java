@@ -2,7 +2,7 @@ package spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.
 
 import lombok.Getter;
 import lombok.Setter;
-import spring.springboot.WebBackend.domain.TicketEntity;
+import spring.springboot.EnterpriseApplication.domain.TicketEntity;
 
 @Getter
 @Setter

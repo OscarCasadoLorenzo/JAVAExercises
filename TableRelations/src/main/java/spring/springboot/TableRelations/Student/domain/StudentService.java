@@ -64,8 +64,7 @@ public class StudentService implements StudentInterface{
 
         //We need to recover the PersonEntity linked to the InputDTO's personID
         PersonEntity personEntity = personRepository.findById(studentInputDTO.getPersonID()).orElse(null);
-        if (personEntity==null ||
-                studentRepository.getPersonQuery(studentInputDTO.getPersonID()) != null ||
+        if (
                 teacherRepository.getPersonQuery(studentInputDTO.getPersonID()) != null
         )
             throw new RuntimeException("Student object must have a correct person reference.");

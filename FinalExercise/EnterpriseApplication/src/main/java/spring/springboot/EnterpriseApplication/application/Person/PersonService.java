@@ -2,11 +2,11 @@ package spring.springboot.EnterpriseApplication.application.Person;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spring.springboot.WebBackend.domain.PersonEntity;
-import spring.springboot.WebBackend.exceptions.NotFoundException;
-import spring.springboot.WebBackend.infraestructure.controller.dto.input.PersonInputDTO;
-import spring.springboot.WebBackend.infraestructure.controller.dto.output.PersonOutputDTO;
-import spring.springboot.WebBackend.infraestructure.repository.PersonRepository;
+import spring.springboot.EnterpriseApplication.domain.PersonEntity;
+import spring.springboot.EnterpriseApplication.exceptions.NotFoundException;
+import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.input.PersonInputDTO;
+import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output.PersonOutputDTO;
+import spring.springboot.EnterpriseApplication.insfraestructure.repository.PersonRepository;
 
 import java.util.ArrayList;
 import java.util.List;

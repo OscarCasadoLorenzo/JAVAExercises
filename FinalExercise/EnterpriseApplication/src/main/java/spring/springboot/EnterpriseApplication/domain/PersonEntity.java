@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
-import spring.springboot.WebBackend.infraestructure.controller.dto.input.PersonInputDTO;
+import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.input.PersonInputDTO;
 
 import javax.persistence.*;
 import java.util.List;

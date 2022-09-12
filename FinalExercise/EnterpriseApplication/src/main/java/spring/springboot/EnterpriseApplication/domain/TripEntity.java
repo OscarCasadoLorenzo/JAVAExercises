@@ -3,7 +3,7 @@ package spring.springboot.EnterpriseApplication.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import spring.springboot.WebBackend.infraestructure.controller.dto.input.TripInputDTO;
+import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.input.TripInputDTO;
 
 import javax.persistence.*;
 import java.util.Date;

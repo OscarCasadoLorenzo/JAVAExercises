@@ -1,7 +1,7 @@
 package spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output;
 
 import lombok.Data;
-import spring.springboot.WebBackend.domain.PersonEntity;
+import spring.springboot.EnterpriseApplication.domain.PersonEntity;
 
 @Data
 public class PersonOutputDTO {

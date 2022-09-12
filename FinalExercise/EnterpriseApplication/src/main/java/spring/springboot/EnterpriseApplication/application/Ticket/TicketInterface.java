@@ -1,7 +1,7 @@
 package spring.springboot.EnterpriseApplication.application.Ticket;
 
-import spring.springboot.WebBackend.infraestructure.controller.dto.input.TicketInputDTO;
-import spring.springboot.WebBackend.infraestructure.controller.dto.output.TicketOutputDTO;
+import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.input.TicketInputDTO;
+import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output.TicketOutputDTO;
 
 import java.util.Date;
 import java.util.List;
