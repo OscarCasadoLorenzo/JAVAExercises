@@ -1,4 +1,4 @@
-package spring.springboot.WebBackend.application.Trip;
+package spring.springboot.EnterpriseApplication.application.Trip;
 
 import spring.springboot.WebBackend.infraestructure.controller.dto.input.TripInputDTO;
 import spring.springboot.WebBackend.infraestructure.controller.dto.output.TripOutputDTO;

@@ -1,21 +1,23 @@
-package spring.springboot.WebBackend.application.Ticket;
+package spring.springboot.EnterpriseApplication.application.Ticket;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.springboot.WebBackend.domain.PersonEntity;
-import spring.springboot.WebBackend.infraestructure.controller.dto.output.TripOutputDTO;
-import spring.springboot.WebBackend.infraestructure.repository.PersonRepository;
+import spring.springboot.WebBackend.domain.TicketEntity;
+import spring.springboot.WebBackend.domain.TripEntity;
+import spring.springboot.WebBackend.exceptions.NotFoundException;
 import spring.springboot.WebBackend.infraestructure.controller.dto.input.TicketInputDTO;
 import spring.springboot.WebBackend.infraestructure.controller.dto.output.TicketOutputDTO;
+import spring.springboot.WebBackend.infraestructure.repository.PersonRepository;
 import spring.springboot.WebBackend.infraestructure.repository.TicketRepository;
-import spring.springboot.WebBackend.domain.TripEntity;
 import spring.springboot.WebBackend.infraestructure.repository.TripRepository;
-import spring.springboot.WebBackend.domain.TicketEntity;
-import spring.springboot.WebBackend.exceptions.NotFoundException;
 import spring.springboot.WebBackend.kafka.KafkaProducer;
 
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

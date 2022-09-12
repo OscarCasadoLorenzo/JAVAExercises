@@ -1,4 +1,4 @@
-package spring.springboot.WebBackend.infraestructure.repository;
+package spring.springboot.EnterpriseApplication.insfraestructure.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

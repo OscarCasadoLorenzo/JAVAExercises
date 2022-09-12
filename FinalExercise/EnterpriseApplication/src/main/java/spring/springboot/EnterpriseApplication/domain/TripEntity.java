@@ -1,4 +1,4 @@
-package spring.springboot.WebBackend.domain;
+package spring.springboot.EnterpriseApplication.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

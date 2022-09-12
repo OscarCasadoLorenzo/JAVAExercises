@@ -1,4 +1,4 @@
-package spring.springboot.WebBackend.application.Ticket;
+package spring.springboot.EnterpriseApplication.application.Ticket;
 
 import spring.springboot.WebBackend.infraestructure.controller.dto.input.TicketInputDTO;
 import spring.springboot.WebBackend.infraestructure.controller.dto.output.TicketOutputDTO;

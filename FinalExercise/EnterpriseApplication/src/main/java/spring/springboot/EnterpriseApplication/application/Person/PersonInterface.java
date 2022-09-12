@@ -1,4 +1,4 @@
-package spring.springboot.WebBackend.application.Person;
+package spring.springboot.EnterpriseApplication.application.Person;
 
 import spring.springboot.WebBackend.infraestructure.controller.dto.input.PersonInputDTO;
 import spring.springboot.WebBackend.infraestructure.controller.dto.output.PersonOutputDTO;

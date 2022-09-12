@@ -1,4 +1,4 @@
-package spring.springboot.WebBackend.infraestructure.controller.dto.output;
+package spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output;
 
 import lombok.Getter;
 import lombok.Setter;

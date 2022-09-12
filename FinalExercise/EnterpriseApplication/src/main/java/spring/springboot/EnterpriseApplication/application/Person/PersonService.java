@@ -1,18 +1,18 @@
-package spring.springboot.WebBackend.application.Person;
+package spring.springboot.EnterpriseApplication.application.Person;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.springboot.WebBackend.domain.PersonEntity;
+import spring.springboot.WebBackend.exceptions.NotFoundException;
 import spring.springboot.WebBackend.infraestructure.controller.dto.input.PersonInputDTO;
 import spring.springboot.WebBackend.infraestructure.controller.dto.output.PersonOutputDTO;
 import spring.springboot.WebBackend.infraestructure.repository.PersonRepository;
-import spring.springboot.WebBackend.exceptions.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service("WebBackendPersonServiceBean")
-public class PersonService implements PersonInterface{
+public class PersonService implements PersonInterface {
     @Autowired
     PersonRepository personRepository;
 
