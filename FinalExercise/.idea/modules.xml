@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EnterpriseApplication/EnterpriseApplication.iml" filepath="$PROJECT_DIR$/EnterpriseApplication/EnterpriseApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/FinalExercise.iml" filepath="$PROJECT_DIR$/.idea/FinalExercise.iml" />
-      <module fileurl="file://$PROJECT_DIR$/WebBackend/WebBackend.iml" filepath="$PROJECT_DIR$/WebBackend/WebBackend.iml" />
     </modules>
   </component>
 </project>

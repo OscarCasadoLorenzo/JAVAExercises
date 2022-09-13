@@ -100,9 +100,10 @@ public class TicketService implements TicketInterface {
         TicketEntity ticketEntity = new TicketEntity(tripEntity, personEntity);
         ticketRepository.save(ticketEntity);
 
-        kafkaProducer.sendMessage("HOLA DESDE BACKWEB");
+        TicketOutputDTO ticketOutputDTO = new TicketOutputDTO(ticketEntity);
+        kafkaProducer.sendMessage(ticketOutputDTO);
 
-        return new TicketOutputDTO(ticketEntity);
+        return ticketOutputDTO;
     }
 
     @Override
