@@ -3,7 +3,6 @@ package spring.springboot.WebBackend.application.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.springboot.WebBackend.domain.PersonEntity;
-import spring.springboot.WebBackend.infraestructure.controller.dto.output.TripOutputDTO;
 import spring.springboot.WebBackend.infraestructure.repository.PersonRepository;
 import spring.springboot.WebBackend.infraestructure.controller.dto.input.TicketInputDTO;
 import spring.springboot.WebBackend.infraestructure.controller.dto.output.TicketOutputDTO;

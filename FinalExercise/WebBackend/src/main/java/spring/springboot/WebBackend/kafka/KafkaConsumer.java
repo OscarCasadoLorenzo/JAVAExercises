@@ -10,7 +10,7 @@ public class KafkaConsumer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(KafkaConsumer.class);
 
-    @KafkaListener(topics = "confirmTickets")
+    @KafkaListener(topics = "confirmTickets", groupId = "${eureka.instance.instance-id}")
     public void consume(String message){
         LOGGER.info(String.format("Message received from confirmTickets topic  -> %s", message));
     }

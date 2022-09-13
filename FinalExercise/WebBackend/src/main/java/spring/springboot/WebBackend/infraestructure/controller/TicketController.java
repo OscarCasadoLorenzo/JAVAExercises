@@ -8,8 +8,6 @@ import spring.springboot.WebBackend.application.Ticket.TicketService;
 import spring.springboot.WebBackend.infraestructure.controller.dto.input.TicketInputDTO;
 import spring.springboot.WebBackend.infraestructure.controller.dto.output.TicketOutputDTO;
 import spring.springboot.WebBackend.exceptions.UnprocesableException;
-import spring.springboot.WebBackend.infraestructure.controller.dto.output.TripOutputDTO;
-import spring.springboot.WebBackend.kafka.KafkaProducer;
 
 import javax.validation.Valid;
 import java.util.Date;
