@@ -2,10 +2,12 @@ package spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import spring.springboot.EnterpriseApplication.domain.TicketEntity;
 
 @Getter
 @Setter
+@ToString
 public class TicketOutputDTO {
     private Integer ticketID;
 
