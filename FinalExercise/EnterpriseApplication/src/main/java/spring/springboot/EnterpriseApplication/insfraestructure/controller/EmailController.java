@@ -11,7 +11,7 @@ import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.o
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/email")
+@RequestMapping("api/backenterprise/email")
 public class EmailController {
 
     @Autowired

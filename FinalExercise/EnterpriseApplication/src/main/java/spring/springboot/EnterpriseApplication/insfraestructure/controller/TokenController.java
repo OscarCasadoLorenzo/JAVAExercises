@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import spring.springboot.EnterpriseApplication.application.Token.TokenService;
 
 @RestController
-@RequestMapping("api/v0/token")
+@RequestMapping("api/backenterprise/token")
 public class TokenController {
 
     @Autowired

@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController("WebBackendPersonControllerBean")
-@RequestMapping("/api/v0/person")
+@RequestMapping("/api/backenterprise/person")
 public class PersonController
 {
     @Autowired
