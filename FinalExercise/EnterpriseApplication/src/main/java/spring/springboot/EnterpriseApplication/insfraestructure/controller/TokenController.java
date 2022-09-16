@@ -22,6 +22,5 @@ public class TokenController {
     public void checkTokenRoute(
         @PathVariable String token
     ){
-        tokenService.chekToken(token);
     }
 }

@@ -1,9 +1,13 @@
 package spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output;
 
-import lombok.Data;
+import lombok.*;
 import spring.springboot.EnterpriseApplication.domain.PersonEntity;
 
-@Data
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class PersonOutputDTO {
     private Integer id;
     private String dni;

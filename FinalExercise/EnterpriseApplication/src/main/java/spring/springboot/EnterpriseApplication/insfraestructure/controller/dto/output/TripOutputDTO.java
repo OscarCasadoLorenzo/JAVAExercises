@@ -1,13 +1,15 @@
 package spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import spring.springboot.EnterpriseApplication.domain.TripEntity;
 
 import java.util.Date;
 
-@Setter
 @Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class TripOutputDTO {
     private Integer id;
     private String origin;
