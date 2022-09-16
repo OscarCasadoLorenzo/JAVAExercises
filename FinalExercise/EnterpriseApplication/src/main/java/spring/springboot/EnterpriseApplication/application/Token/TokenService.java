@@ -3,6 +3,7 @@ package spring.springboot.EnterpriseApplication.application.Token;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Service;
@@ -17,11 +18,13 @@ import java.util.stream.Collectors;
 @Service
 public class TokenService implements TokenInterface{
 
+    @Value("${secretKey}")
+    String secretKey;
+
     @Autowired
     PersonRepository personRepository;
 
     private String generateJWTToken(Integer id, String user, String role){
-        /*
         List<GrantedAuthority> grantedAuthorities;
         if(role.equals("admin"))
             grantedAuthorities= AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN");
@@ -39,23 +42,18 @@ public class TokenService implements TokenInterface{
                 .setExpiration(new Date(System.currentTimeMillis() + 600000))
                 .signWith(SignatureAlgorithm.HS512, secretKey.getBytes())
                 .compact();
-    */
-        return "Bearer ";
+        return "Bearer " + token;
     }
 
     @Override
-    public String getToken(String user, String password) {
-        /*
+    public String getToken(String email, String password) {
         PersonEntity userLogin = null;
-        if(personRepository.findById(user).size() != 0){
-            userLogin = personRepository.findByName(user).get(0);
-            if(userLogin.getPassword().equals(password)){
-                return getJWTToken(userLogin.getId_person(), userLogin.getName(), userLogin.getRole());
+        if(personRepository.findByEmail(email).size() != 0) {
+            userLogin = personRepository.findByEmail(email).get(0);
+            if (userLogin.getPassword().equals(password)) {
+                return generateJWTToken(userLogin.getId(), userLogin.getEmail(), userLogin.getRol());
             } else return "Incorrect password. Try again.";
-        } else return "User " + user + " doesnt exits.";
-        *
-         */
-        return  null   ;
+        } else return "User with email: " + userLogin.getEmail() + " doesnt exits.";
     }
 
     @Override
