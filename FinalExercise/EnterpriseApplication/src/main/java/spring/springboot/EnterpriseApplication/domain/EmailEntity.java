@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "EMAILS")
+@Table(name = "EMAIL")
 @Data
 public class EmailEntity {
     @Column(name = "emailID")

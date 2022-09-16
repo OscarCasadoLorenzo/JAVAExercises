@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "PERSONS")
+@Table(name = "PERSON")
 public class PersonEntity {
     @Id
     @Column(name="personID")
@@ -23,7 +23,7 @@ public class PersonEntity {
     @Column(name = "dni")
     private String dni;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")
