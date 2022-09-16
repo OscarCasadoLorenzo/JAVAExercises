@@ -16,13 +16,12 @@ public class WebSecurityConfiguration {
         httpSecurity.csrf().disable()
             .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
             .authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/person/login").permitAll()
-            .antMatchers(HttpMethod.POST, "/person/signup").permitAll()
-
-            .antMatchers(HttpMethod.PUT).hasAnyAuthority("ROLE_ADMIN")
-            .antMatchers(HttpMethod.DELETE).hasAnyAuthority("ROLE_ADMIN")
-
             .antMatchers(HttpMethod.GET).permitAll()
+
+            .antMatchers(HttpMethod.POST).hasAnyAuthority("ROLE_USER")
+            .antMatchers(HttpMethod.PUT).hasAnyAuthority("ROLE_USER")
+            .antMatchers(HttpMethod.DELETE).hasAnyAuthority("ROLE_USER")
+
             .anyRequest().authenticated();
 
         return httpSecurity.build();

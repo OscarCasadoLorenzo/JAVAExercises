@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import spring.springboot.WebBackend.application.Trip.TripService;
-import spring.springboot.WebBackend.exceptions.UnprocesableException;
-import spring.springboot.WebBackend.infraestructure.controller.dto.input.TripInputDTO;
-import spring.springboot.WebBackend.infraestructure.controller.dto.output.TripOutputDTO;
+import spring.springboot.EnterpriseApplication.application.Trip.TripService;
+import spring.springboot.EnterpriseApplication.exceptions.UnprocesableException;
+import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.input.TripInputDTO;
+import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output.TripOutputDTO;
 
 import javax.validation.Valid;
 import java.util.Arrays;

@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import spring.springboot.WebBackend.application.Ticket.TicketService;
-import spring.springboot.WebBackend.exceptions.UnprocesableException;
-import spring.springboot.WebBackend.infraestructure.controller.dto.input.TicketInputDTO;
-import spring.springboot.WebBackend.infraestructure.controller.dto.output.TicketOutputDTO;
+import spring.springboot.EnterpriseApplication.application.Ticket.TicketService;
+import spring.springboot.EnterpriseApplication.exceptions.UnprocesableException;
+import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.input.TicketInputDTO;
+import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output.TicketOutputDTO;
 
 import javax.validation.Valid;
 import java.util.Date;
@@ -20,7 +20,6 @@ public class TicketController {
 
     @Autowired
     TicketService ticketService;
-
 
     @GetMapping
     public List<TicketOutputDTO> getAllTicketsRoute(){
