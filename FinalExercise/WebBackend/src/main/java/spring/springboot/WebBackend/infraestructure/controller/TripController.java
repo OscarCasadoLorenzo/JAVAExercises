@@ -5,9 +5,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import spring.springboot.WebBackend.application.Trip.OpenFeignTripClient;
+import spring.springboot.WebBackend.application.Trip.TripService;
 import spring.springboot.WebBackend.exceptions.UnprocesableException;
 import spring.springboot.WebBackend.infraestructure.controller.dto.input.TripInputDTO;
+import spring.springboot.WebBackend.infraestructure.controller.dto.output.TripOutputDTO;
 
 import javax.validation.Valid;
 import java.util.Arrays;
@@ -22,20 +23,20 @@ public class TripController {
     List<String> permitedDestinations = Arrays.asList("Barcelona", "Bilbao", "Madrid", "Valencia");
 
     @Autowired
-    OpenFeignTripClient tripClient;
+    TripService tripService;
 
     @GetMapping
-    public ResponseEntity getAllTripsRoute(){
-        return tripClient.getAllTrips();
+    public List<TripOutputDTO> getAllTripsRoute(){
+        return tripService.getAllTrips();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getTripByIDRoute(@PathVariable Integer id){
-        return tripClient.getTripByID(id);
+    public TripOutputDTO getTripByIDRoute(@PathVariable Integer id){
+        return tripService.getTripByID(id);
     }
 
     @GetMapping("/availability/{destination}")
-    public ResponseEntity getTripsByAvailabilityRoute(
+    public List<TripOutputDTO> getTripsByAvailabilityRoute(
             @PathVariable String destination,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date inferiorDate,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Optional<Date> superiorDate,
@@ -43,25 +44,25 @@ public class TripController {
             @RequestParam(required = false) Optional<Integer> superiorHour
 
     ){
-        return tripClient.getTripsByAvailability(destination, inferiorDate, superiorDate, inferiorHour, superiorHour);
+        return tripService.getTripsByAvailability(destination, inferiorDate, superiorDate, inferiorHour, superiorHour);
     }
 
     @PostMapping
-    public ResponseEntity postTripRoute(@Valid @RequestBody TripInputDTO tripInputDTO, BindingResult errors){
+    public TripOutputDTO postTripRoute(@Valid @RequestBody TripInputDTO tripInputDTO, BindingResult errors){
         if(errors.hasErrors() || !permitedDestinations.contains(tripInputDTO.getDestination()))
             throw new UnprocesableException(errors);
-        return tripClient.postTrip(tripInputDTO);
+        return tripService.postTrip(tripInputDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity updateTripRoute(@PathVariable Integer id, @Valid @RequestBody TripInputDTO tripInputDTO, BindingResult errors){
+    public TripOutputDTO updateTripRoute(@PathVariable Integer id, @Valid @RequestBody TripInputDTO tripInputDTO, BindingResult errors){
         if(errors.hasErrors() || !permitedDestinations.contains(tripInputDTO.getDestination()))
             throw new UnprocesableException(errors);
-        return tripClient.updateTrip(id, tripInputDTO);
+        return tripService.updateTrip(id, tripInputDTO);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteTripRoute(@PathVariable Integer id){
-        return tripClient.deleteTrip(id);
+    public TripOutputDTO deleteTripRoute(@PathVariable Integer id){
+        return tripService.deleteTrip(id);
     }
 }
