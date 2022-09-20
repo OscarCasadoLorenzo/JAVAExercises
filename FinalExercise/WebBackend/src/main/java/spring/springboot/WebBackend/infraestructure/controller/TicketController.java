@@ -27,11 +27,6 @@ public class TicketController {
         return ticketService.getAllTickets();
     }
 
-    @GetMapping("/{id}")
-    public TicketOutputDTO getTicketByIDRoute(@PathVariable Integer id){
-        return ticketService.getTicketByID(id);
-    }
-
     @GetMapping("/reserve/{destination}")
     public List<TicketOutputDTO> getTicketsByDestinationRoute(
             @PathVariable String destination,
@@ -49,17 +44,5 @@ public class TicketController {
         if(errors.hasErrors())
             throw new UnprocesableException(errors);
         return ticketService.postTicket(ticketInputDTO);
-    }
-
-    @PutMapping("/{id}")
-    public TicketOutputDTO updateTicketRoute(@PathVariable Integer id, @Valid @RequestBody TicketInputDTO ticketInputDTO, BindingResult errors){
-        if(errors.hasErrors())
-            throw new UnprocesableException(errors);
-        return ticketService.updateTicket(id, ticketInputDTO);
-    }
-
-    @DeleteMapping("/{id}")
-    public TicketOutputDTO deleteTicketRoute(@PathVariable Integer id){
-        return ticketService.deleteTicket(id);
     }
 }
