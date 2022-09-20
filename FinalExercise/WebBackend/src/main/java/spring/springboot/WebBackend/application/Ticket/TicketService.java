@@ -48,12 +48,6 @@ public class TicketService implements TicketInterface {
     }
 
     @Override
-    public TicketOutputDTO getTicketByID(Integer id) {
-        return new TicketOutputDTO(ticketRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Ticket with id: " + id + " doesnt exists.")));
-    }
-
-    @Override
     public List<TicketOutputDTO> getTicketsByDestination(String destination, Date inferiorDate, Optional<Date> superiorDate, Optional<Integer> superiorExitHour, Optional<Integer> inferiorExitHour) {
         List<TicketOutputDTO> ticketOutputDTOList = new ArrayList<>();
 
@@ -102,30 +96,6 @@ public class TicketService implements TicketInterface {
         TicketOutputDTO ticketOutputDTO = new TicketOutputDTO(ticketEntity);
         kafkaProducer.sendMessage(ticketOutputDTO);
 
-        return ticketOutputDTO;
-    }
-
-    @Override
-    public TicketOutputDTO updateTicket(Integer id, TicketInputDTO ticketInputDTO) {
-        TicketEntity ticketEntity = ticketRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Ticket with id " + id + " doesnt exists."));
-
-        TripEntity tripEntity = tripRepository.findById(ticketInputDTO.getTripID())
-                .orElseThrow(() -> new NotFoundException("Trip with id " + ticketInputDTO.getTripID() + " doesnt exists."));
-
-        PersonEntity personEntity = personRepository.findById(ticketInputDTO.getPersonID())
-                .orElseThrow(() -> new NotFoundException("Person with id " + ticketInputDTO.getPersonID() + " doesnt exists."));
-
-        ticketEntity.updateEntity(tripEntity, personEntity);
-        ticketRepository.save(ticketEntity);
-
-        return new TicketOutputDTO(ticketEntity);
-    }
-
-    @Override
-    public TicketOutputDTO deleteTicket(Integer id) {
-        TicketOutputDTO ticketOutputDTO = getTicketByID(id);
-        ticketRepository.deleteById(id);
         return ticketOutputDTO;
     }
 }

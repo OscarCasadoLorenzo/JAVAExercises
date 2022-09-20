@@ -10,9 +10,6 @@ import java.util.Optional;
 public interface TicketInterface {
     List<TicketOutputDTO> getAllTickets();
 
-    TicketOutputDTO getTicketByID(Integer id);
-
-
     List<TicketOutputDTO> getTicketsByDestination(
             String destination,
             Date inferiorDate,
@@ -21,8 +18,4 @@ public interface TicketInterface {
             Optional<Integer> inferiorExitHour);
 
     TicketOutputDTO postTicket(TicketInputDTO ticketInputDTO);
-
-    TicketOutputDTO updateTicket(Integer id, TicketInputDTO ticketInputDTO);
-
-    TicketOutputDTO deleteTicket(Integer id);
 }
