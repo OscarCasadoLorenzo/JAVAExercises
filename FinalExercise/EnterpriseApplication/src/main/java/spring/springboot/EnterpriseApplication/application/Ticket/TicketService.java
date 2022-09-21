@@ -90,7 +90,7 @@ public class TicketService implements TicketInterface {
     }
 
     @Override
-    public TicketOutputDTO postTicket(TicketInputDTO ticketInputDTO) {
+    public TicketOutputDTO postTicket(TicketInputDTO ticketInputDTO) throws FullCapacityException{
         Integer personID = ticketInputDTO.getPersonID();
         Integer tripID = ticketInputDTO.getTripID();
 
@@ -114,8 +114,6 @@ public class TicketService implements TicketInterface {
         tripEntity.setCapacity(tripEntity.getCapacity() - 1);
         //Update trip entity
         tripRepository.save(tripEntity);
-
-        System.out.println("Ticket was accepted!");
 
         return new TicketOutputDTO(ticketEntity);
     }

@@ -3,6 +3,7 @@ package spring.springboot.WebBackend.kafka;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.KafkaException;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
@@ -16,7 +17,7 @@ public class KafkaProducer {
     @Autowired
     KafkaTemplate<String, TicketOutputDTO> kafkaTemplate;
 
-    public void sendMessage(TicketOutputDTO reservationRequest){
+    public void sendMessage(TicketOutputDTO reservationRequest) throws KafkaException {
         LOGGUER.info(String.format("Message sent to checkTickets topic -> %s", reservationRequest.toString()));
 
         Message<TicketOutputDTO> messageRequest = MessageBuilder
@@ -25,6 +26,7 @@ public class KafkaProducer {
                 .build();
 
         kafkaTemplate.send(messageRequest);
+
 
     }
 }

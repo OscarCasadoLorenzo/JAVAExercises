@@ -17,5 +17,5 @@ public interface TicketInterface {
             Optional<Integer> superiorExitHour,
             Optional<Integer> inferiorExitHour);
 
-    TicketOutputDTO postTicket(TicketInputDTO ticketInputDTO);
+    String postTicket(TicketInputDTO ticketInputDTO);
 }

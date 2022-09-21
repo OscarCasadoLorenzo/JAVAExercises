@@ -39,6 +39,11 @@ public class CustomizedResponseEntityExceptionHandler{
 
         return new ResponseEntity<>(unprocesableCustomError, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(FullCapacityException.class)
+    public ResponseEntity<String> tripCapacityIsZero(FullCapacityException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
+    }
 }
 
 

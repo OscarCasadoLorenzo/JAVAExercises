@@ -1,8 +1,10 @@
 package spring.springboot.WebBackend.application.Ticket;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.KafkaException;
 import org.springframework.stereotype.Service;
 import spring.springboot.WebBackend.domain.PersonEntity;
+import spring.springboot.WebBackend.exceptions.FullCapacityException;
 import spring.springboot.WebBackend.infraestructure.repository.PersonRepository;
 import spring.springboot.WebBackend.infraestructure.controller.dto.input.TicketInputDTO;
 import spring.springboot.WebBackend.infraestructure.controller.dto.output.TicketOutputDTO;
@@ -80,7 +82,7 @@ public class TicketService implements TicketInterface {
     }
 
     @Override
-    public TicketOutputDTO postTicket(TicketInputDTO ticketInputDTO) {
+    public String postTicket(TicketInputDTO ticketInputDTO) {
         Integer personID = ticketInputDTO.getPersonID();
         Integer tripID = ticketInputDTO.getTripID();
 
@@ -91,11 +93,15 @@ public class TicketService implements TicketInterface {
                 .orElseThrow(() -> new NotFoundException("Trip with id: " + tripID + " doesnt exists."));
 
         TicketEntity ticketEntity = new TicketEntity(tripEntity, personEntity);
-        ticketRepository.save(ticketEntity);
 
         TicketOutputDTO ticketOutputDTO = new TicketOutputDTO(ticketEntity);
-        kafkaProducer.sendMessage(ticketOutputDTO);
 
-        return ticketOutputDTO;
+        try{
+            kafkaProducer.sendMessage(ticketOutputDTO);
+        }catch (KafkaException k){
+            throw new FullCapacityException(tripID);
+        }
+
+        return "Ticket was correctly send to our servers. Check your email to take it.";
     }
 }

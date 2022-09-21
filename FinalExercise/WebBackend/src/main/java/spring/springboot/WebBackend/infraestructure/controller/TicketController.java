@@ -40,7 +40,7 @@ public class TicketController {
     }
 
     @PostMapping
-    public TicketOutputDTO postTicketRoute(@Valid @RequestBody TicketInputDTO ticketInputDTO, BindingResult errors){
+    public String postTicketRoute(@Valid @RequestBody TicketInputDTO ticketInputDTO, BindingResult errors){
         if(errors.hasErrors())
             throw new UnprocesableException(errors);
         return ticketService.postTicket(ticketInputDTO);
