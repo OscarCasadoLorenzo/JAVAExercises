@@ -99,9 +99,21 @@ public class TicketService implements TicketInterface {
         TripEntity tripEntity = tripRepository.findById(tripID)
                 .orElseThrow(() -> new NotFoundException("Trip with id: " + tripID + " doesnt exists."));
 
+        //Create ticket
         TicketEntity ticketEntity = new TicketEntity(tripEntity, personEntity);
-        ticketRepository.save(ticketEntity);
 
+        //Check if Tickets' trip has capacity for one more.
+        if(tripEntity.getCapacity() > 0){
+            ticketRepository.save(ticketEntity);
+
+            //Reduce trip capacity
+            tripEntity.setCapacity(tripEntity.getCapacity() - 1);
+            //Update trip entity
+            tripRepository.save(tripEntity);
+
+            System.out.println("Ticket was accepted!");
+        }
+        System.out.println("Ticket was denied!");
         kafkaProducer.sendMessage("HOLA DESDE BACKWEB");
 
         return new TicketOutputDTO(ticketEntity);

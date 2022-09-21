@@ -15,5 +15,6 @@ public class KafkaConsumer {
     @KafkaListener(topics = "checkTickets", groupId = "${eureka.instance.instance-id}")
     public void consume(TicketOutputDTO reserveRequest){
         LOGGER.info(String.format("Message received from checkTickets topic -> %s", reserveRequest.toString()));
+        
     }
 }
