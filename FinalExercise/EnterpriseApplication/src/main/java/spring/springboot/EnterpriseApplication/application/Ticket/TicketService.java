@@ -2,6 +2,7 @@ package spring.springboot.EnterpriseApplication.application.Ticket;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import spring.springboot.EnterpriseApplication.application.Email.EmailService;
 import spring.springboot.EnterpriseApplication.domain.PersonEntity;
 import spring.springboot.EnterpriseApplication.domain.TicketEntity;
 import spring.springboot.EnterpriseApplication.domain.TripEntity;
@@ -38,6 +39,9 @@ public class TicketService implements TicketInterface {
 
     @Autowired
     EntityManager entityManager;
+
+    @Autowired
+    EmailService emailService;
 
     @Autowired
     KafkaProducer kafkaProducer;
@@ -105,6 +109,8 @@ public class TicketService implements TicketInterface {
 
         //Check if Tickets' trip has capacity for one more.
         if(tripEntity.getCapacity() <= 0){
+            emailService.sendEmail(personEntity.getEmail(), "Ticket cancelled", "Your ticket receipt couldn't been booked because trip " + tripID + " has no availability. ");
+
             throw new FullCapacityException(tripID);
         }
 
@@ -115,7 +121,11 @@ public class TicketService implements TicketInterface {
         //Update trip entity
         tripRepository.save(tripEntity);
 
-        return new TicketOutputDTO(ticketEntity);
+        TicketOutputDTO ticketOutputDTO = new TicketOutputDTO(ticketEntity);
+        emailService.sendEmail(personEntity.getEmail(), "VirtualTravel Ticket receipt", "Here you have your ticket receipt. \n" + ticketOutputDTO);
+
+
+        return ticketOutputDTO;
     }
 
     @Override

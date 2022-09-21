@@ -5,7 +5,6 @@ import spring.springboot.EnterpriseApplication.domain.PersonEntity;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class PersonOutputDTO {
@@ -27,5 +26,15 @@ public class PersonOutputDTO {
         this.surname = personEntity.getSurname();
         this.phone = personEntity.getPhone();
         this.rol = personEntity.getRol();
+    }
+
+    @Override
+    public String toString() {
+        return "Your ID: " + id + "\n" +
+                "Your DNI:" + dni + "\n" +
+                "Your name:" + name + " " + surname + "\n" +
+                "Your email:" + email + "\n" +
+                "Your phone:" + phone + "\n" +
+                '}';
     }
 }

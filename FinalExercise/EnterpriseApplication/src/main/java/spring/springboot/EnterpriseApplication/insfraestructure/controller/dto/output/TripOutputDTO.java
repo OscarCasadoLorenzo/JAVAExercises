@@ -7,7 +7,6 @@ import java.util.Date;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class TripOutputDTO {
@@ -25,5 +24,15 @@ public class TripOutputDTO {
         this.capacity = tripEntity.getCapacity();
         this.date = tripEntity.getExitDate();
         this.hour = tripEntity.getExitHour();
+    }
+
+    @Override
+    public String toString() {
+        return "Trip id=" + id + "\n" +
+                "Trip origin='" + origin + "\n" +
+                "Trip destination='" + destination + "\n" +
+                "Trip capacity=" + capacity + "\n" +
+                "Trip date=" + date  + "\n" +
+                "Trip hour=" + hour;
     }
 }

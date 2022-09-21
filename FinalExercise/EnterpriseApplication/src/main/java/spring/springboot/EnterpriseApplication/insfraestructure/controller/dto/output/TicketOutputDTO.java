@@ -5,7 +5,6 @@ import spring.springboot.EnterpriseApplication.domain.TicketEntity;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class TicketOutputDTO {
@@ -22,5 +21,12 @@ public class TicketOutputDTO {
         this.person = new PersonOutputDTO(ticketEntity.getPersonEntity());
         this.trip = new TripOutputDTO(ticketEntity.getTripEntity());
         this.confirmed = ticketEntity.getConfirmed();
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket ID: " + ticketID + "\n" +
+                 person + "\n" +
+                 trip;
     }
 }
