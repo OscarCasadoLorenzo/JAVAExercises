@@ -1,10 +1,7 @@
 package spring.springboot.EnterpriseApplication.insfraestructure.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import spring.springboot.EnterpriseApplication.application.Email.EmailService;
 import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output.EmailOutputDTO;
 
@@ -25,5 +22,14 @@ public class EmailController {
     @GetMapping("/{id}")
     public EmailOutputDTO getEmailByID(@PathVariable Integer id){
         return emailService.getEmailByID(id);
+    }
+
+    @PostMapping
+    public void postEmailRoute(
+            @RequestParam String to,
+            @RequestParam String subject,
+            @RequestParam String text
+    ){
+        emailService.sendEmail(to, subject, text);
     }
 }

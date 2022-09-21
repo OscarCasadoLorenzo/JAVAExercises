@@ -10,4 +10,6 @@ public interface EmailInterface {
 
     EmailOutputDTO getEmailByID(Integer id);
 
+    void sendEmail(String to, String subject, String text);
+
 }
