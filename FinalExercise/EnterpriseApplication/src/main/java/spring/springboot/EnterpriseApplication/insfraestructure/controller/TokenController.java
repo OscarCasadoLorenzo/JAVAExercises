@@ -13,9 +13,9 @@ public class TokenController {
 
     @GetMapping
     public String getTokenRoute(
-            @RequestHeader String user,
+            @RequestHeader String email,
             @RequestHeader String password){
-        return tokenService.getToken(user, password);
+        return tokenService.getToken(email, password);
     }
 
     @GetMapping("/{token}")
