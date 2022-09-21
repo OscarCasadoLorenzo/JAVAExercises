@@ -1,6 +1,7 @@
 package spring.springboot.EnterpriseApplication.insfraestructure.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import spring.springboot.EnterpriseApplication.application.Token.TokenService;
 
@@ -19,8 +20,9 @@ public class TokenController {
     }
 
     @GetMapping("/{token}")
-    public void checkTokenRoute(
+    public ResponseEntity checkTokenRoute(
         @PathVariable String token
     ){
+        return tokenService.checkToken(token);
     }
 }

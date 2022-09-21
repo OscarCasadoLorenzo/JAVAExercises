@@ -13,8 +13,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable();
-
+        httpSecurity.csrf().disable()
+            .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+            .authorizeRequests()
+            .antMatchers(HttpMethod.POST, "/api/backenterprise/person").permitAll()
+            .antMatchers(HttpMethod.GET, "/api/backenterprise/token").permitAll()
+            .antMatchers(HttpMethod.POST, "/api/backenterprise/ticket").permitAll()
+            .antMatchers(HttpMethod.GET, "/api/backenterprise/trip").permitAll()
+            /*
+            .antMatchers(HttpMethod.PUT).hasAnyAuthority("ROLE_ADMIN")
+            .antMatchers(HttpMethod.DELETE).hasAnyAuthority("ROLE_ADMIN")
+            */
+            .anyRequest().authenticated();
 
         return httpSecurity.build();
     }

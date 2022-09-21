@@ -4,6 +4,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Service;
@@ -57,7 +59,9 @@ public class TokenService implements TokenInterface{
     }
 
     @Override
-    public void checkToken(String token) {
-
+    public ResponseEntity checkToken(String token) {
+        if(token != null)
+            return new ResponseEntity(null, HttpStatus.OK);
+        else return  new ResponseEntity(null, HttpStatus.FORBIDDEN);
     }
 }
