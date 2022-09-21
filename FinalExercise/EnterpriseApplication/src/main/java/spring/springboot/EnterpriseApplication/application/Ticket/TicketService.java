@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import spring.springboot.EnterpriseApplication.domain.PersonEntity;
 import spring.springboot.EnterpriseApplication.domain.TicketEntity;
 import spring.springboot.EnterpriseApplication.domain.TripEntity;
+import spring.springboot.EnterpriseApplication.exceptions.FullCapacityException;
 import spring.springboot.EnterpriseApplication.exceptions.NotFoundException;
 import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.input.TicketInputDTO;
 import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output.TicketOutputDTO;
@@ -103,18 +104,18 @@ public class TicketService implements TicketInterface {
         TicketEntity ticketEntity = new TicketEntity(tripEntity, personEntity);
 
         //Check if Tickets' trip has capacity for one more.
-        if(tripEntity.getCapacity() > 0){
-            ticketRepository.save(ticketEntity);
-
-            //Reduce trip capacity
-            tripEntity.setCapacity(tripEntity.getCapacity() - 1);
-            //Update trip entity
-            tripRepository.save(tripEntity);
-
-            System.out.println("Ticket was accepted!");
+        if(tripEntity.getCapacity() <= 0){
+            throw new FullCapacityException(tripID);
         }
-        System.out.println("Ticket was denied!");
-        kafkaProducer.sendMessage("HOLA DESDE BACKWEB");
+
+        ticketRepository.save(ticketEntity);
+
+        //Reduce trip capacity
+        tripEntity.setCapacity(tripEntity.getCapacity() - 1);
+        //Update trip entity
+        tripRepository.save(tripEntity);
+
+        System.out.println("Ticket was accepted!");
 
         return new TicketOutputDTO(ticketEntity);
     }

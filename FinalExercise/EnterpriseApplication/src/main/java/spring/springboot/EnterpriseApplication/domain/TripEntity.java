@@ -41,7 +41,7 @@ public class TripEntity {
 
     public TripEntity(TripInputDTO tripInputDTO){
         this.origin= "Vitoria";
-        this.capacity = 40;
+        this.capacity = 2;
         this.destination = tripInputDTO.getDestination();
         this.exitDate = tripInputDTO.getDate();
         this.exitHour = tripInputDTO.getHour();
@@ -49,7 +49,7 @@ public class TripEntity {
 
     public TripEntity(String destination, Date exitDate, Integer exitHour){
         this.origin= "Vitoria";
-        this.capacity = 40;
+        this.capacity = 2;
         this.destination = destination;
         this.exitDate = exitDate;
         this.exitHour = exitHour;
