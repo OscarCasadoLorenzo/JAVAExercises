@@ -27,17 +27,21 @@ public class CustomizedResponseEntityExceptionHandler{
     }
 
     @ExceptionHandler(UnprocesableException.class)
-    public ResponseEntity<UnprocesableTicketCustomError> invalidArguments(UnprocesableException ex) {
-        UnprocesableTicketCustomError unprocesableTicketCustomError = new UnprocesableTicketCustomError();
+    public ResponseEntity invalidArguments(UnprocesableException ex) {
+        switch (ex.getControllerRoot()){
+            case "Person":
+                UnprocesablePersonCustomError unprocesablePersonCustomError = new UnprocesablePersonCustomError(ex.getMismatchedValidations());
+                return new ResponseEntity<>(unprocesablePersonCustomError, HttpStatus.BAD_REQUEST);
 
-        unprocesableTicketCustomError.setDniMismatch(ex.getMismatchedValidations().getFieldError("dni"));
-        unprocesableTicketCustomError.setEmailMismatch(ex.getMismatchedValidations().getFieldError("email"));
-        unprocesableTicketCustomError.setPasswordMismatch(ex.getMismatchedValidations().getFieldError("password"));
-        unprocesableTicketCustomError.setNameMismatch(ex.getMismatchedValidations().getFieldError("name"));
-        unprocesableTicketCustomError.setSurnameMismatch(ex.getMismatchedValidations().getFieldError("surname"));
-        unprocesableTicketCustomError.setPhoneMismatch(ex.getMismatchedValidations().getFieldError("phone"));
+            case "Trip":
+                UnprocesableTripCustomError unprocesableTripCustomError = new UnprocesableTripCustomError(ex.getMismatchedValidations());
+                return new ResponseEntity<>(unprocesableTripCustomError, HttpStatus.BAD_REQUEST);
 
-        return new ResponseEntity<>(unprocesableTicketCustomError, HttpStatus.BAD_REQUEST);
+            case "Ticket":
+                UnprocesableTicketCustomError unprocesableTicketCustomError = new UnprocesableTicketCustomError(ex.getMismatchedValidations());
+                return new ResponseEntity<>(unprocesableTicketCustomError, HttpStatus.BAD_REQUEST);
+        }
+        return null;
     }
 
     @ExceptionHandler(FullCapacityException.class)

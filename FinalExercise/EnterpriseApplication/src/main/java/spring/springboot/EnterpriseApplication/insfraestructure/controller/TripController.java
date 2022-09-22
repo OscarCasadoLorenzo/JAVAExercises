@@ -49,14 +49,14 @@ public class TripController {
     @PostMapping
     public TripOutputDTO postTripRoute(@Valid @RequestBody TripInputDTO tripInputDTO, BindingResult errors){
         if(errors.hasErrors() || !permitedDestinations.contains(tripInputDTO.getDestination()))
-            throw new UnprocesableException(errors);
+            throw new UnprocesableException(errors, "Trip");
         return tripService.postTrip(tripInputDTO);
     }
 
     @PutMapping("/{id}")
     public TripOutputDTO updateTripRoute(@PathVariable Integer id, @Valid @RequestBody TripInputDTO tripInputDTO, BindingResult errors){
         if(errors.hasErrors() || !permitedDestinations.contains(tripInputDTO.getDestination()))
-            throw new UnprocesableException(errors);
+            throw new UnprocesableException(errors, "Trip");
         return tripService.updateTrip(id, tripInputDTO);
     }
 

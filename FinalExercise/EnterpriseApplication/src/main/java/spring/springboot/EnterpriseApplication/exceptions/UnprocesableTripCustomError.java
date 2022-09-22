@@ -2,6 +2,7 @@ package spring.springboot.EnterpriseApplication.exceptions;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
 import javax.validation.constraints.NotNull;
@@ -11,22 +12,13 @@ import java.util.Date;
 @Getter
 public class UnprocesableTripCustomError {
 
-    private String destination;
-    private String date;
-    private String hour;
+    private String destinationMismatch;
+    private String dateMismatch;
+    private String hourMismatch;
 
-    public void setDestination(FieldError destinationMismatch) {
-        if(destinationMismatch != null)
-            this.destination = destinationMismatch.getDefaultMessage();
-    }
-
-    public void setDate(FieldError dateMismatch) {
-        if(dateMismatch != null)
-            this.date = dateMismatch.getDefaultMessage();
-    }
-
-    public void setHour(FieldError hourMismatch) {
-        if(hourMismatch != null)
-            this.hour = hourMismatch.getDefaultMessage();
+    public UnprocesableTripCustomError(BindingResult bindingResult) {
+        this.destinationMismatch = bindingResult.getFieldError("destination").getDefaultMessage();
+        this.dateMismatch = bindingResult.getFieldError("date").getDefaultMessage();
+        this.hourMismatch = bindingResult.getFieldError("hour").getDefaultMessage();
     }
 }

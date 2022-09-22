@@ -46,14 +46,14 @@ public class TicketController {
     @PostMapping
     public TicketOutputDTO postTicketRoute(@Valid @RequestBody TicketInputDTO ticketInputDTO, BindingResult errors){
         if(errors.hasErrors())
-            throw new UnprocesableException(errors);
+            throw new UnprocesableException(errors, "Ticket");
         return ticketService.postTicket(ticketInputDTO);
     }
 
     @PutMapping("/{id}")
     public TicketOutputDTO updateTicketRoute(@PathVariable Integer id, @Valid @RequestBody TicketInputDTO ticketInputDTO, BindingResult errors){
         if(errors.hasErrors())
-            throw new UnprocesableException(errors);
+            throw new UnprocesableException(errors, "Ticket");
         return ticketService.updateTicket(id, ticketInputDTO);
     }
 

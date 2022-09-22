@@ -32,14 +32,14 @@ public class PersonController
     @PostMapping
     public PersonOutputDTO postPersonRoute(@Valid @RequestBody PersonInputDTO personaInputDTO, BindingResult errors){
         if(errors.hasErrors())
-            throw new UnprocesableException(errors);
+            throw new UnprocesableException(errors, "Person");
         return personService.postPerson(personaInputDTO);
     }
 
     @PutMapping("/{id}")
     public PersonOutputDTO updatePersonRoute(@PathVariable Integer id, @Valid @RequestBody PersonInputDTO personaInputDTO, BindingResult errors){
         if(errors.hasErrors())
-            throw new UnprocesableException(errors);
+            throw new UnprocesableException(errors, "Person");
         return personService.updatePerson(id, personaInputDTO);
     }
 

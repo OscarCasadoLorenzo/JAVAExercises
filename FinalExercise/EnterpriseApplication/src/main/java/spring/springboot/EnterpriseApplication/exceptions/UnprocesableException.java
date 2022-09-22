@@ -7,9 +7,11 @@ import org.springframework.validation.BindingResult;
 public class UnprocesableException extends RuntimeException{
 
     private BindingResult mismatchedValidations;
+    private String controllerRoot;
 
-    public UnprocesableException(BindingResult mismatchedValidations) {
+    public UnprocesableException(BindingResult mismatchedValidations, String controllerRoot ) {
         super();
         this.mismatchedValidations = mismatchedValidations;
+        this.controllerRoot = controllerRoot;
     }
 }
