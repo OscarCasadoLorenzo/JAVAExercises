@@ -1,3 +1,11 @@
+## POSTGRESQL SETUP
+### STEP 1: Create Docker container
+docker run --name virtualtravelDB -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=passwd -e POSTGRES_DB=virtualtravel postgres
+
+### STEP 2: See if it is running
+docker container ls
+
+## KAFKA SETUP 
 #### STEP 1: DOWNLOAD AND INSTALL KAFKA
 https://dlcdn.apache.org/kafka/3.2.0/
 
