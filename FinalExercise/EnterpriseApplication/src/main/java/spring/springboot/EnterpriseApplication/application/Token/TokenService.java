@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Service
 public class TokenService implements TokenInterface{
 
-    @Value("${secretKey}")
+    @Value("${secretkey}")
     String secretKey;
 
     @Autowired
