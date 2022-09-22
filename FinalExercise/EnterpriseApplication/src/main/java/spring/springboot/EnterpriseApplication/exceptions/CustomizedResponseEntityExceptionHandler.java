@@ -27,17 +27,17 @@ public class CustomizedResponseEntityExceptionHandler{
     }
 
     @ExceptionHandler(UnprocesableException.class)
-    public ResponseEntity<UnprocesableCustomError> invalidArguments(UnprocesableException ex) {
-        UnprocesableCustomError unprocesableCustomError = new UnprocesableCustomError();
+    public ResponseEntity<UnprocesableTicketCustomError> invalidArguments(UnprocesableException ex) {
+        UnprocesableTicketCustomError unprocesableTicketCustomError = new UnprocesableTicketCustomError();
 
-        unprocesableCustomError.setDniMismatch(ex.getMismatchedValidations().getFieldError("dni"));
-        unprocesableCustomError.setEmailMismatch(ex.getMismatchedValidations().getFieldError("email"));
-        unprocesableCustomError.setPasswordMismatch(ex.getMismatchedValidations().getFieldError("password"));
-        unprocesableCustomError.setNameMismatch(ex.getMismatchedValidations().getFieldError("name"));
-        unprocesableCustomError.setSurnameMismatch(ex.getMismatchedValidations().getFieldError("surname"));
-        unprocesableCustomError.setPhoneMismatch(ex.getMismatchedValidations().getFieldError("phone"));
+        unprocesableTicketCustomError.setDniMismatch(ex.getMismatchedValidations().getFieldError("dni"));
+        unprocesableTicketCustomError.setEmailMismatch(ex.getMismatchedValidations().getFieldError("email"));
+        unprocesableTicketCustomError.setPasswordMismatch(ex.getMismatchedValidations().getFieldError("password"));
+        unprocesableTicketCustomError.setNameMismatch(ex.getMismatchedValidations().getFieldError("name"));
+        unprocesableTicketCustomError.setSurnameMismatch(ex.getMismatchedValidations().getFieldError("surname"));
+        unprocesableTicketCustomError.setPhoneMismatch(ex.getMismatchedValidations().getFieldError("phone"));
 
-        return new ResponseEntity<>(unprocesableCustomError, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(unprocesableTicketCustomError, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(FullCapacityException.class)

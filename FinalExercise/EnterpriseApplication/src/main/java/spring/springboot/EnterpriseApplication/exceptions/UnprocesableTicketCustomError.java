@@ -6,8 +6,7 @@ import org.springframework.validation.FieldError;
 
 @NoArgsConstructor
 @Getter
-public class UnprocesableCustomError{
-
+public class UnprocesableTicketCustomError {
     private String dniMismatch;
     private String emailMismatch;
     private String nameMismatch;
