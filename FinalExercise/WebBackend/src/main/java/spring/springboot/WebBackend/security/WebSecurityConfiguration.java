@@ -16,8 +16,10 @@ public class WebSecurityConfiguration {
         httpSecurity.csrf().disable()
             .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
             .authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/api/backweb/ticket").permitAll()
-            .antMatchers(HttpMethod.GET, "/api/backweb/ticket/reserve/{destination}").permitAll()
+            .antMatchers(HttpMethod.POST, "/api/backenterprise/person").permitAll()
+            .antMatchers(HttpMethod.GET, "/api/backenterprise/token").permitAll()
+            .antMatchers(HttpMethod.POST, "/api/backenterprise/ticket").permitAll()
+            .antMatchers(HttpMethod.GET, "/api/backenterprise/trip").permitAll()
             /*
             .antMatchers(HttpMethod.PUT).hasAnyAuthority("ROLE_ADMIN")
             .antMatchers(HttpMethod.DELETE).hasAnyAuthority("ROLE_ADMIN")
