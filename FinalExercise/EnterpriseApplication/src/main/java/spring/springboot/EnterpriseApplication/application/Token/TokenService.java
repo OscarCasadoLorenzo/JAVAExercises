@@ -55,7 +55,7 @@ public class TokenService implements TokenInterface{
             if (userLogin.getPassword().equals(password)) {
                 return generateJWTToken(userLogin.getId(), userLogin.getEmail(), userLogin.getRol());
             } else return "Incorrect password. Try again.";
-        } else return "User with email: " + userLogin.getEmail() + " doesnt exits.";
+        } else return "User with email: " + email + " doesnt exits.";
     }
 
     @Override
