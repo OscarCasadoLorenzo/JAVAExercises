@@ -3,6 +3,7 @@ package spring.springboot.EnterpriseApplication.application.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.springboot.EnterpriseApplication.application.Email.EmailService;
+import spring.springboot.EnterpriseApplication.domain.PendantBookEntity;
 import spring.springboot.EnterpriseApplication.domain.PersonEntity;
 import spring.springboot.EnterpriseApplication.domain.TicketEntity;
 import spring.springboot.EnterpriseApplication.domain.TripEntity;
@@ -10,6 +11,7 @@ import spring.springboot.EnterpriseApplication.exceptions.FullCapacityException;
 import spring.springboot.EnterpriseApplication.exceptions.NotFoundException;
 import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.input.TicketInputDTO;
 import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output.TicketOutputDTO;
+import spring.springboot.EnterpriseApplication.insfraestructure.repository.PendantBookRepository;
 import spring.springboot.EnterpriseApplication.insfraestructure.repository.PersonRepository;
 import spring.springboot.EnterpriseApplication.insfraestructure.repository.TicketRepository;
 import spring.springboot.EnterpriseApplication.insfraestructure.repository.TripRepository;
@@ -36,6 +38,9 @@ public class TicketService implements TicketInterface {
 
     @Autowired
     TripRepository tripRepository;
+
+    @Autowired
+    PendantBookRepository pendantBookRepository;
 
     @Autowired
     EntityManager entityManager;
@@ -99,7 +104,7 @@ public class TicketService implements TicketInterface {
         Integer tripID = ticketInputDTO.getTripID();
 
         PersonEntity personEntity = personRepository.findById(personID)
-                .orElseThrow(() -> new NotFoundException("Ticket with id: " + personID + " doesnt exits."));
+                .orElseThrow(() -> new NotFoundException("Person with id: " + personID + " doesnt exits."));
 
         TripEntity tripEntity = tripRepository.findById(tripID)
                 .orElseThrow(() -> new NotFoundException("Trip with id: " + tripID + " doesnt exists."));
@@ -107,9 +112,17 @@ public class TicketService implements TicketInterface {
         //Create ticket
         TicketEntity ticketEntity = new TicketEntity(tripEntity, personEntity);
 
+
+        PendantBookEntity updatedBook = pendantBookRepository.findById(ticketEntity.getId()).get();
+
         //Check if Tickets' trip has capacity for one more.
         if(tripEntity.getCapacity() <= 0){
+            //Send error email to customer
             emailService.sendEmail(personEntity.getEmail(), "Ticket cancelled", "Your ticket receipt couldn't been booked because trip " + tripID + " has no availability. ");
+
+            //Update PendantBook status associated to ticket
+            updatedBook.setRequestState("cancelled");
+            pendantBookRepository.save(updatedBook);
 
             throw new FullCapacityException(tripID);
         }
@@ -120,6 +133,10 @@ public class TicketService implements TicketInterface {
         tripEntity.setCapacity(tripEntity.getCapacity() - 1);
         //Update trip entity
         tripRepository.save(tripEntity);
+        
+        //Update PendantBook status associated to ticket
+        updatedBook.setRequestState("granted");
+        pendantBookRepository.save(updatedBook);
 
         TicketOutputDTO ticketOutputDTO = new TicketOutputDTO(ticketEntity);
         emailService.sendEmail(personEntity.getEmail(), "VirtualTravel Ticket receipt", "Here you have your ticket receipt. \n" + ticketOutputDTO);
