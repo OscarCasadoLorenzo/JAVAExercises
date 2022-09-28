@@ -14,15 +14,12 @@ public class TicketOutputDTO {
 
     private TripOutputDTO trip;
 
-    private Boolean confirmed;
-
     @Override
     public String toString() {
         return "TicketOutputDTO{" +
                 "ticketID=" + ticketID +
                 ", person=" + person.toString() +
                 ", trip=" + trip.toString() +
-                ", confirmed=" + confirmed +
                 '}';
     }
 
@@ -30,6 +27,5 @@ public class TicketOutputDTO {
         this.ticketID = ticketEntity.getId();
         this.person = new PersonOutputDTO(ticketEntity.getPersonEntity());
         this.trip = new TripOutputDTO(ticketEntity.getTripEntity());
-        this.confirmed = ticketEntity.getConfirmed();
     }
 }

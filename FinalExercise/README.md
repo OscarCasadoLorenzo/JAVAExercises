@@ -5,6 +5,18 @@ docker run --name virtualtravelDB -p 5432:5432 -e POSTGRES_USER=postgres -e POST
 ### STEP 2: See if it is running
 docker container ls
 
+### STEP 3: PostgreSQL login
+psql -U postgres
+
+### STEP 4: Access to DB
+\c virtualtravel
+
+## STEP 5: Show tables 
+\dt+
+
+## STEP 6: Query for data
+SELECT * FROM person;
+
 ## KAFKA SETUP 
 #### STEP 1: DOWNLOAD AND INSTALL KAFKA
 https://dlcdn.apache.org/kafka/3.2.0/
@@ -23,5 +35,5 @@ Start the Kafka service
 #### STEP 4: WRITE SOME EVENTS INTO THE TOPIC
 .\bin\windows\kafka-console-producer.bat --topic checkTickets --bootstrap-server localhost:9092
 
-#### STEP 5:  READ THE EVENTS
+#### STEP 5: READ THE EVENTS
 .\bin\windows\kafka-console-consumer.bat --topic checkTickets --from-beginning --bootstrap-server localhost:9092
