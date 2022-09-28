@@ -133,7 +133,7 @@ public class TicketService implements TicketInterface {
         tripEntity.setCapacity(tripEntity.getCapacity() - 1);
         //Update trip entity
         tripRepository.save(tripEntity);
-        
+
         //Update PendantBook status associated to ticket
         updatedBook.setRequestState("granted");
         pendantBookRepository.save(updatedBook);

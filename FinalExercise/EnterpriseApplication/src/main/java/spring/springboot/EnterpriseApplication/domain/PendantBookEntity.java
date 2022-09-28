@@ -19,9 +19,9 @@ public class PendantBookEntity {
     @Column(name="ticketID")
     private Integer id;
 
-    @Column(name = "requestState")
-    private String requestState;
+    @Column(name = "requeststate")
+    private String requeststate;
 
-    @Column(name = "consumerServiceID")
-    private String consumerServiceID;
+    @Column(name = "service")
+    private String service;
 }
