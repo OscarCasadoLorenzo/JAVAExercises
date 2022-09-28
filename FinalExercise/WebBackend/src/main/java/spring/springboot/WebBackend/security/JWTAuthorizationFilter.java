@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
     private final String HEADER = "Authorization";
     private final String PREFIX = "Bearer ";
-    private final String SECRET = "mySecretKey";
+    private final String SECRET = "q4t6w9z$C&F)J@Nc";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {

@@ -20,8 +20,7 @@ import java.util.stream.Collectors;
 @Service
 public class TokenService implements TokenInterface{
 
-    @Value("${secretkey}")
-    String secretKey;
+    String secretKey = "q4t6w9z$C&F)J@Nc";
 
     @Autowired
     PersonRepository personRepository;

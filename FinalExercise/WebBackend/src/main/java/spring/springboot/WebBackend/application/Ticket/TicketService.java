@@ -110,8 +110,8 @@ public class TicketService implements TicketInterface {
         //Save ticket request on auxiliar pendantBook table
         PendantBookEntity pendantBookEntity = new PendantBookEntity();
         pendantBookEntity.setId(ticketEntity.getId());
-        pendantBookEntity.setConsumerServiceID(customerServiceID);
-        pendantBookEntity.setRequestState("requested");
+        pendantBookEntity.setService(customerServiceID);
+        pendantBookEntity.setRequeststate("requested");
 
         pendantBookRepository.save(pendantBookEntity);
 

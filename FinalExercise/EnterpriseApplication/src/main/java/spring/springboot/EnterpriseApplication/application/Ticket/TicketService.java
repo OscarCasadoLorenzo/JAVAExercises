@@ -121,7 +121,7 @@ public class TicketService implements TicketInterface {
             emailService.sendEmail(personEntity.getEmail(), "Ticket cancelled", "Your ticket receipt couldn't been booked because trip " + tripID + " has no availability. ");
 
             //Update PendantBook status associated to ticket
-            updatedBook.setRequestState("cancelled");
+            updatedBook.setRequeststate("cancelled");
             pendantBookRepository.save(updatedBook);
 
             throw new FullCapacityException(tripID);
@@ -135,7 +135,7 @@ public class TicketService implements TicketInterface {
         tripRepository.save(tripEntity);
 
         //Update PendantBook status associated to ticket
-        updatedBook.setRequestState("granted");
+        updatedBook.setRequeststate("granted");
         pendantBookRepository.save(updatedBook);
 
         TicketOutputDTO ticketOutputDTO = new TicketOutputDTO(ticketEntity);
