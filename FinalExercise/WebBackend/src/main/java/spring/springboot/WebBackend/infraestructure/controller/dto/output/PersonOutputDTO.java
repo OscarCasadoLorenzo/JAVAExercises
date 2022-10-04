@@ -1,10 +1,8 @@
 package spring.springboot.WebBackend.infraestructure.controller.dto.output;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import spring.springboot.WebBackend.domain.PersonEntity;
 
 @Getter
 @Setter

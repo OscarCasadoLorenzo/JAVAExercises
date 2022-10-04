@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import spring.springboot.WebBackend.domain.PendantBookEntity;
-import spring.springboot.WebBackend.domain.PersonEntity;
 
 @Getter
 @Setter

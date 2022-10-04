@@ -109,11 +109,12 @@ public class TicketService implements TicketInterface {
         TripEntity tripEntity = tripRepository.findById(tripID)
                 .orElseThrow(() -> new NotFoundException("Trip with id: " + tripID + " doesnt exists."));
 
+
+        PendantBookEntity updatedBook = pendantBookRepository.findById(ticketEntity.getId()).get();
+
         //Create ticket
         TicketEntity ticketEntity = new TicketEntity(tripEntity, personEntity);
 
-
-        PendantBookEntity updatedBook = pendantBookRepository.findById(ticketEntity.getId()).get();
 
         //Check if Tickets' trip has capacity for one more.
         if(tripEntity.getCapacity() <= 0){

@@ -9,24 +9,23 @@ import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
+import spring.springboot.WebBackend.domain.PendantBookEntity;
 import spring.springboot.WebBackend.infraestructure.controller.dto.output.TicketOutputDTO;
 
 @Service
 public class KafkaProducer {
     private static  final Logger LOGGUER = LoggerFactory.getLogger(KafkaProducer.class);
     @Autowired
-    KafkaTemplate<String, TicketOutputDTO> kafkaTemplate;
+    KafkaTemplate<String, PendantBookEntity> kafkaTemplate;
 
-    public void sendMessage(TicketOutputDTO reservationRequest) throws KafkaException {
-        LOGGUER.info(String.format("Message sent to checkTickets topic -> %s", reservationRequest.toString()));
+    public void sendMessage(PendantBookEntity pendantBookEntity) throws KafkaException {
+        LOGGUER.info(String.format("Message sent to checkTickets topic -> %s", pendantBookEntity.toString()));
 
-        Message<TicketOutputDTO> messageRequest = MessageBuilder
-                .withPayload(reservationRequest)
+        Message<PendantBookEntity> messageRequest = MessageBuilder
+                .withPayload(pendantBookEntity)
                 .setHeader(KafkaHeaders.TOPIC, "checkTickets")
                 .build();
 
         kafkaTemplate.send(messageRequest);
-
-
     }
 }

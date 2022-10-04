@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 
-import javax.naming.Name;
 import javax.persistence.*;
 
 @Getter
@@ -20,9 +20,22 @@ public class PendantBookEntity {
     @Column(name="ticketID")
     private Integer id;
 
+    @Column(name="tripID")
+    private Integer tripID;
+
+    @Column(name="personID")
+    private Integer personID;
+
     @Column(name = "requeststate")
     private String requeststate;
 
     @Column(name = "service")
     private String service;
+
+    public PendantBookEntity(Integer tripID, Integer personID, String service){
+        this.tripID = tripID;
+        this.personID = personID;
+        this.requeststate = "requested";
+        this.service = service;
+    }
 }

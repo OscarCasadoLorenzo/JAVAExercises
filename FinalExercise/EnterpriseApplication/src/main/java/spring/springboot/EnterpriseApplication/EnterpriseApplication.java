@@ -13,12 +13,6 @@ import java.util.Date;
 
 @SpringBootApplication
 public class EnterpriseApplication {
-	@Autowired
-	PersonRepository personRepository;
-
-	@Autowired
-	TripRepository tripRepository;
-
 	public static void main(String[] args) {
 		SpringApplication.run(EnterpriseApplication.class, args);
 	}

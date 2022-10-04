@@ -3,9 +3,7 @@ package spring.springboot.WebBackend.application.PendantBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.springboot.WebBackend.domain.PendantBookEntity;
-import spring.springboot.WebBackend.domain.TicketEntity;
 import spring.springboot.WebBackend.infraestructure.controller.dto.output.PendantBookOutputDTO;
-import spring.springboot.WebBackend.infraestructure.controller.dto.output.TicketOutputDTO;
 import spring.springboot.WebBackend.infraestructure.repository.PendantBookRepository;
 
 import java.util.ArrayList;

@@ -6,17 +6,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.KafkaException;
 import org.springframework.stereotype.Service;
 import spring.springboot.WebBackend.domain.PendantBookEntity;
-import spring.springboot.WebBackend.domain.PersonEntity;
 import spring.springboot.WebBackend.exceptions.FullCapacityException;
 import spring.springboot.WebBackend.infraestructure.repository.PendantBookRepository;
 import spring.springboot.WebBackend.infraestructure.repository.PersonRepository;
 import spring.springboot.WebBackend.infraestructure.controller.dto.input.TicketInputDTO;
 import spring.springboot.WebBackend.infraestructure.controller.dto.output.TicketOutputDTO;
 import spring.springboot.WebBackend.infraestructure.repository.TicketRepository;
-import spring.springboot.WebBackend.domain.TripEntity;
 import spring.springboot.WebBackend.infraestructure.repository.TripRepository;
 import spring.springboot.WebBackend.domain.TicketEntity;
-import spring.springboot.WebBackend.exceptions.NotFoundException;
 import spring.springboot.WebBackend.kafka.KafkaProducer;
 
 import javax.persistence.EntityManager;
@@ -95,29 +92,15 @@ public class TicketService implements TicketInterface {
     public String postTicket(TicketInputDTO ticketInputDTO) {
         Integer personID = ticketInputDTO.getPersonID();
         Integer tripID = ticketInputDTO.getTripID();
-
-        PersonEntity personEntity = personRepository.findById(personID)
-                .orElseThrow(() -> new NotFoundException("Person with id: " + personID + " doesnt exits."));
-
-        TripEntity tripEntity = tripRepository.findById(tripID)
-                .orElseThrow(() -> new NotFoundException("Trip with id: " + tripID + " doesnt exists."));
-
-        TicketEntity ticketEntity = new TicketEntity(tripEntity, personEntity);
-
-        TicketOutputDTO ticketOutputDTO = new TicketOutputDTO(ticketEntity);
-
-
+        
         //Save ticket request on auxiliar pendantBook table
-        PendantBookEntity pendantBookEntity = new PendantBookEntity();
-        pendantBookEntity.setId(ticketEntity.getId());
-        pendantBookEntity.setService(customerServiceID);
-        pendantBookEntity.setRequeststate("requested");
+        PendantBookEntity pendantBookEntity = new PendantBookEntity(tripID, personID, customerServiceID);
 
         pendantBookRepository.save(pendantBookEntity);
 
         //Request BackEnterprise to accept the ticket
         try{
-            kafkaProducer.sendMessage(ticketOutputDTO);
+            kafkaProducer.sendMessage(pendantBookEntity);
         }catch (KafkaException k){
             throw new FullCapacityException(tripID);
         }

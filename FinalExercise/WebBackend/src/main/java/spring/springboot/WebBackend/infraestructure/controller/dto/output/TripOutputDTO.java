@@ -3,8 +3,6 @@ package spring.springboot.WebBackend.infraestructure.controller.dto.output;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.format.annotation.DateTimeFormat;
-import spring.springboot.WebBackend.domain.TripEntity;
 
 import java.util.Date;
 

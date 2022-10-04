@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import spring.springboot.EnterpriseApplication.application.Ticket.TicketService;
+import spring.springboot.EnterpriseApplication.domain.PendantBookEntity;
 import spring.springboot.EnterpriseApplication.exceptions.FullCapacityException;
 import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.input.TicketInputDTO;
 import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output.TicketOutputDTO;
@@ -19,10 +20,10 @@ public class KafkaConsumer {
     TicketService ticketService;
 
     @KafkaListener(topics = "checkTickets", groupId = "${eureka.instance.instance-id}")
-    public void consume(TicketOutputDTO reserveRequest){
+    public void consume(PendantBookEntity reserveRequest){
         LOGGER.info(String.format("Message received from checkTickets topic -> %s", reserveRequest.toString()));
 
-        TicketInputDTO ticketInputDTO = new TicketInputDTO(reserveRequest.getPerson().getId(), reserveRequest.getTrip().getId());
+        TicketInputDTO ticketInputDTO = new TicketInputDTO(reserveRequest.ge, reserveRequest.getTrip().getId());
         try{
             ticketService.postTicket(ticketInputDTO);
             LOGGER.info(String.format("Book ok -> %s", reserveRequest));
