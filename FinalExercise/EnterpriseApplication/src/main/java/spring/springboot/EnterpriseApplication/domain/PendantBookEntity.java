@@ -19,9 +19,22 @@ public class PendantBookEntity {
     @Column(name="ticketID")
     private Integer id;
 
+    @Column(name="tripID")
+    private Integer tripID;
+
+    @Column(name="personID")
+    private Integer personID;
+
     @Column(name = "requeststate")
     private String requeststate;
 
     @Column(name = "service")
     private String service;
+
+    public PendantBookEntity(Integer tripID, Integer personID, String service){
+        this.tripID = tripID;
+        this.personID = personID;
+        this.requeststate = "requested";
+        this.service = service;
+    }
 }

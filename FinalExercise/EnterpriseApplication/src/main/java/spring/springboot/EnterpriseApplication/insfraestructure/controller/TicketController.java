@@ -1,10 +1,12 @@
 package spring.springboot.EnterpriseApplication.insfraestructure.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import spring.springboot.EnterpriseApplication.application.Ticket.TicketService;
+import spring.springboot.EnterpriseApplication.domain.PendantBookEntity;
 import spring.springboot.EnterpriseApplication.exceptions.UnprocesableException;
 import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.input.TicketInputDTO;
 import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output.TicketOutputDTO;
@@ -20,6 +22,9 @@ public class TicketController {
 
     @Autowired
     TicketService ticketService;
+
+    @Value("${eureka.instance.instance-id}")
+    private String customerServiceID;
 
     @GetMapping
     public List<TicketOutputDTO> getAllTicketsRoute(){
@@ -47,7 +52,9 @@ public class TicketController {
     public TicketOutputDTO postTicketRoute(@Valid @RequestBody TicketInputDTO ticketInputDTO, BindingResult errors){
         if(errors.hasErrors())
             throw new UnprocesableException(errors, "Ticket");
-        return ticketService.postTicket(ticketInputDTO);
+
+        PendantBookEntity reserveRequest = new PendantBookEntity(ticketInputDTO.getTripID(), ticketInputDTO.getPersonID(), customerServiceID);
+        return ticketService.postTicket(reserveRequest);
     }
 
     @PutMapping("/{id}")

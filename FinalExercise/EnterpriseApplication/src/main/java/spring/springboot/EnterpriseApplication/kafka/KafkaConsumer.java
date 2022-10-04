@@ -23,9 +23,8 @@ public class KafkaConsumer {
     public void consume(PendantBookEntity reserveRequest){
         LOGGER.info(String.format("Message received from checkTickets topic -> %s", reserveRequest.toString()));
 
-        TicketInputDTO ticketInputDTO = new TicketInputDTO(reserveRequest.ge, reserveRequest.getTrip().getId());
         try{
-            ticketService.postTicket(ticketInputDTO);
+            ticketService.postTicket(reserveRequest);
             LOGGER.info(String.format("Book ok -> %s", reserveRequest));
         }catch (FullCapacityException f){
             LOGGER.error(String.format("Book failed -> %s", reserveRequest));

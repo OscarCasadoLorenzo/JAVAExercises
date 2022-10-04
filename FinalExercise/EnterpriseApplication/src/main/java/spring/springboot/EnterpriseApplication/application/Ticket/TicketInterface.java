@@ -1,5 +1,6 @@
 package spring.springboot.EnterpriseApplication.application.Ticket;
 
+import spring.springboot.EnterpriseApplication.domain.PendantBookEntity;
 import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.input.TicketInputDTO;
 import spring.springboot.EnterpriseApplication.insfraestructure.controller.dto.output.TicketOutputDTO;
 
@@ -20,7 +21,7 @@ public interface TicketInterface {
             Optional<Integer> superiorExitHour,
             Optional<Integer> inferiorExitHour);
 
-    TicketOutputDTO postTicket(TicketInputDTO ticketInputDTO);
+    TicketOutputDTO postTicket(PendantBookEntity ticketInputDTO);
 
     TicketOutputDTO updateTicket(Integer id, TicketInputDTO ticketInputDTO);
 

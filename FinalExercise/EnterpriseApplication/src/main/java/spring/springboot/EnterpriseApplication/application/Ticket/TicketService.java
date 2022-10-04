@@ -99,9 +99,9 @@ public class TicketService implements TicketInterface {
     }
 
     @Override
-    public TicketOutputDTO postTicket(TicketInputDTO ticketInputDTO) throws FullCapacityException{
-        Integer personID = ticketInputDTO.getPersonID();
-        Integer tripID = ticketInputDTO.getTripID();
+    public TicketOutputDTO postTicket(PendantBookEntity reserveRequest) throws FullCapacityException{
+        Integer personID = reserveRequest.getPersonID();
+        Integer tripID = reserveRequest.getTripID();
 
         PersonEntity personEntity = personRepository.findById(personID)
                 .orElseThrow(() -> new NotFoundException("Person with id: " + personID + " doesnt exits."));
@@ -109,26 +109,17 @@ public class TicketService implements TicketInterface {
         TripEntity tripEntity = tripRepository.findById(tripID)
                 .orElseThrow(() -> new NotFoundException("Trip with id: " + tripID + " doesnt exists."));
 
-
-        PendantBookEntity updatedBook = pendantBookRepository.findById(ticketEntity.getId()).get();
-
-        //Create ticket
-        TicketEntity ticketEntity = new TicketEntity(tripEntity, personEntity);
-
-
         //Check if Tickets' trip has capacity for one more.
         if(tripEntity.getCapacity() <= 0){
             //Send error email to customer
             emailService.sendEmail(personEntity.getEmail(), "Ticket cancelled", "Your ticket receipt couldn't been booked because trip " + tripID + " has no availability. ");
 
             //Update PendantBook status associated to ticket
-            updatedBook.setRequeststate("cancelled");
-            pendantBookRepository.save(updatedBook);
+            reserveRequest.setRequeststate("cancelled");
+            pendantBookRepository.save(reserveRequest);
 
             throw new FullCapacityException(tripID);
         }
-
-        ticketRepository.save(ticketEntity);
 
         //Reduce trip capacity
         tripEntity.setCapacity(tripEntity.getCapacity() - 1);
@@ -136,13 +127,17 @@ public class TicketService implements TicketInterface {
         tripRepository.save(tripEntity);
 
         //Update PendantBook status associated to ticket
-        updatedBook.setRequeststate("granted");
-        pendantBookRepository.save(updatedBook);
+        reserveRequest.setRequeststate("granted");
+        pendantBookRepository.save(reserveRequest);
+
+        //Create ticket
+        TicketEntity ticketEntity = new TicketEntity(tripEntity, personEntity);
+        ticketEntity.setId(reserveRequest.getId());
+        ticketRepository.save(ticketEntity);
 
         TicketOutputDTO ticketOutputDTO = new TicketOutputDTO(ticketEntity);
         emailService.sendEmail(personEntity.getEmail(), "VirtualTravel Ticket receipt", "Here you have your ticket receipt. \n" + ticketOutputDTO);
-
-
+        
         return ticketOutputDTO;
     }
 
