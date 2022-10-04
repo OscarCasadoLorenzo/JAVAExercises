@@ -10,12 +10,5 @@ import java.util.Optional;
 public interface TicketInterface {
     List<TicketOutputDTO> getAllTickets();
 
-    List<TicketOutputDTO> getTicketsByDestination(
-            String destination,
-            Date inferiorDate,
-            Optional<Date> superiorDate,
-            Optional<Integer> superiorExitHour,
-            Optional<Integer> inferiorExitHour);
-
     String postTicket(TicketInputDTO ticketInputDTO);
 }
