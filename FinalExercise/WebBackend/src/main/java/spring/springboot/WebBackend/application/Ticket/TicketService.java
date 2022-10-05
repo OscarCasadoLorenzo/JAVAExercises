@@ -8,38 +8,13 @@ import org.springframework.stereotype.Service;
 import spring.springboot.WebBackend.domain.PendantBookEntity;
 import spring.springboot.WebBackend.exceptions.FullCapacityException;
 import spring.springboot.WebBackend.infraestructure.repository.PendantBookRepository;
-import spring.springboot.WebBackend.infraestructure.repository.PersonRepository;
 import spring.springboot.WebBackend.infraestructure.controller.dto.input.TicketInputDTO;
-import spring.springboot.WebBackend.infraestructure.controller.dto.output.TicketOutputDTO;
-import spring.springboot.WebBackend.infraestructure.repository.TicketRepository;
-import spring.springboot.WebBackend.infraestructure.repository.TripRepository;
-import spring.springboot.WebBackend.domain.TicketEntity;
 import spring.springboot.WebBackend.kafka.KafkaProducer;
-
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TicketService implements TicketInterface {
-
-    @Autowired
-    TicketRepository ticketRepository;
-
-    @Autowired
-    PersonRepository personRepository;
-
-    @Autowired
-    TripRepository tripRepository;
-
     @Autowired
     PendantBookRepository pendantBookRepository;
-
-    @Autowired
-    EntityManager entityManager;
 
     @Value("${eureka.instance.instance-id}")
     private String customerServiceID;
@@ -47,14 +22,6 @@ public class TicketService implements TicketInterface {
     @Autowired
     KafkaProducer kafkaProducer;
 
-    @Override
-    public List<TicketOutputDTO> getAllTickets() {
-        List<TicketOutputDTO> ticketOutputDTOList = new ArrayList<>();
-        for(TicketEntity ticketEntity : ticketRepository.findAll()){
-            ticketOutputDTOList.add(new TicketOutputDTO(ticketEntity));
-        }
-        return ticketOutputDTOList;
-    }
 
     @Override
     public String postTicket(TicketInputDTO ticketInputDTO) {

@@ -10,7 +10,6 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import spring.springboot.WebBackend.domain.PendantBookEntity;
-import spring.springboot.WebBackend.infraestructure.controller.dto.output.TicketOutputDTO;
 
 @Service
 public class KafkaProducer {

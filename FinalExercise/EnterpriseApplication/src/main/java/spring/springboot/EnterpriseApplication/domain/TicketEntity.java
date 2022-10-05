@@ -15,7 +15,6 @@ import javax.persistence.*;
 public class TicketEntity {
     @Id
     @Column(name="ticketID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @ManyToOne

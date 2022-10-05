@@ -11,10 +11,10 @@ psql -U postgres
 ### STEP 4: Access to DB
 \c virtualtravel
 
-## STEP 5: Show tables 
+### STEP 5: Show tables 
 \dt+
 
-## STEP 6: Query for data
+### STEP 6: Query for data
 SELECT * FROM person;
 
 ## KAFKA SETUP 

@@ -137,7 +137,7 @@ public class TicketService implements TicketInterface {
 
         TicketOutputDTO ticketOutputDTO = new TicketOutputDTO(ticketEntity);
         emailService.sendEmail(personEntity.getEmail(), "VirtualTravel Ticket receipt", "Here you have your ticket receipt. \n" + ticketOutputDTO);
-        
+
         return ticketOutputDTO;
     }
 
