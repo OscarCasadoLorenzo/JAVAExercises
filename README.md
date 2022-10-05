@@ -26,3 +26,6 @@
 - [SA2. File Management](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/master/FileManagement)
 - [EJTE1. Testing and SonarQube](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/master/Testing-SonarQube)
 - [EJS3-1. JWT & Spring Security](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/master/SpringSecurity)
+
+## Final Practise
+- [Virtual Travel](https://github.com/OscarCasadoLorenzo/JAVAExercises/tree/master/FinalExercise)
